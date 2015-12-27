@@ -1,0 +1,25 @@
+.kozepre {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.oldalAlja {
+    position: absolute;
+    top: 95%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.nagyKor, .kisKor {
+    width: 500px;
+    height: 500px;
+    border: 3px solid green;
+    border-radius: 50%;
+    font-size: 20px;
+    /* color: #14ff0e; */ /* belso tartalom szine */
+    /* line-height: 100px; */ /* az eredeti magassaggal megegyezo */
+    text-align: center;
+    background: none transparent;
+}
