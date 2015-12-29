@@ -83,6 +83,7 @@ body {
     height: 500px;
     background: url("../kepek/logo.png") rgba(0, 128, 0, 0) no-repeat center center;
     background-size: 80% 80%;
+    z-index: -1;
 }
 
 .kisKor {
