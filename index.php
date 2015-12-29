@@ -14,11 +14,15 @@
     <script type="text/javascript" src=""></script>
     <script type="text/javascript">
     </script>
+    style="border: 0; z-index: -1;"
+    <img src="kepek/test_pic.jpg" alt="teszt kép">
     -->
 </head>
 
 <body>
-    <p>Teszt</p>
     <div class="nagyKor kozepre"></div>
+    <a href="#"><div class="kisKor kisKor1"><span class="szoveg">Bemutatkozó</span></div></a>
+    <a href="#"><div class="kisKor kisKor2"><span class="szoveg">Programajánló demó</span></div></a>
+    <a href="#"><div class="kisKor kisKor3"><span class="szoveg">Interaktív program indítása</span></div></a>
 </body>
 </html>

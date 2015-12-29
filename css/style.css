@@ -1,3 +1,56 @@
+@keyframes kering {
+    from {
+        transform: rotate(0deg)
+        translate(270px)
+        rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg)
+        translate(270px)
+        rotate(360deg);
+    }
+}
+
+/*
+@keyframes kering2 {
+    from {
+        transform: rotate(0deg)
+        translate(-280px)
+        rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg)
+        translate(-280px)
+        rotate(360deg);
+    }
+}
+
+@keyframes kering3 {
+    from {
+        transform: rotate(0deg)
+        translate(30%,80%)
+        rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg)
+        translate(30%,80%)
+        rotate(360deg);
+    }
+}
+*/
+
+html {
+    background: url(../kepek/bg8.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    background-color: transparent;
+}
+
 .kozepre {
     position: absolute;
     top: 50%;
@@ -13,13 +66,56 @@
 }
 
 .nagyKor, .kisKor {
-    width: 500px;
-    height: 500px;
     border: 3px solid green;
     border-radius: 50%;
+}
+
+.nagyKor:hover {
+    background-color: rgba(0, 128, 0, 0.4);
+}
+
+.kisKor:hover {
+    background-color: rgba(0, 128, 0, 0.8);
+}
+
+.nagyKor {
+    width: 500px;
+    height: 500px;
+    background: url("../kepek/logo.png") rgba(0, 128, 0, 0) no-repeat center center;
+    background-size: 80% 80%;
+}
+
+.kisKor {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 280px;
+    left: 42%;
     font-size: 20px;
-    /* color: #14ff0e; */ /* belso tartalom szine */
-    /* line-height: 100px; */ /* az eredeti magassaggal megegyezo */
+    color: #89c540; /* belso tartalom szine */
+    line-height: 200px; /* az eredeti magassaggal kb. megegyezo */
     text-align: center;
-    background: none transparent;
+    background-color: rgba(0, 128, 0, 0.4);
+    /* background: none transparent; */
+    animation: kering 30s infinite linear;
+    /* transform-origin: 50% 200px;
+    animation-play-state: paused; */
+}
+
+.szoveg {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.kisKor1 {
+    animation-delay: -10s;
+}
+
+.kisKor2 {
+    animation-delay: -20s;
+}
+
+.kisKor3 {
+    animation-delay: -30s;
 }
