@@ -1,46 +1,18 @@
 @keyframes kering {
     from {
         transform: rotate(0deg)
-        translate(270px)
+        translate(120%) /* eredetileg 270px */
         rotate(0deg);
     }
     to {
         transform: rotate(-360deg)
-        translate(270px)
+        translate(120%) /* eredetileg 270px */
         rotate(360deg);
     }
 }
-
-/*
-@keyframes kering2 {
-    from {
-        transform: rotate(0deg)
-        translate(-280px)
-        rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg)
-        translate(-280px)
-        rotate(360deg);
-    }
-}
-
-@keyframes kering3 {
-    from {
-        transform: rotate(0deg)
-        translate(30%,80%)
-        rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg)
-        translate(30%,80%)
-        rotate(360deg);
-    }
-}
-*/
 
 html {
-    background: url(../kepek/bg8.jpg) no-repeat center center fixed;
+    background: url(../kepek/bg13_m.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -66,7 +38,7 @@ body {
 }
 
 .nagyKor, .kisKor {
-    border: 3px solid green;
+    /* border: 3px solid green; */
     border-radius: 50%;
 }
 
@@ -75,29 +47,36 @@ body {
 }
 
 .kisKor:hover {
-    background-color: rgba(0, 128, 0, 0.8);
+    background: rgba(255,255,255,0.8); /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    background: -o-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    background: -moz-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    background: radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
 }
 
 .nagyKor {
     width: 500px;
     height: 500px;
-    background: url("../kepek/logo.png") rgba(0, 128, 0, 0) no-repeat center center;
+    /* background: url("../kepek/logo.png") rgba(0, 128, 0, 0) no-repeat center center; */
     background-size: 80% 80%;
     z-index: -1;
 }
 
 .kisKor {
-    width: 200px;
-    height: 200px;
+    width: 170px;
+    height: 170px;
     position: absolute;
     top: 280px;
     left: 42%;
     font-size: 20px;
-    color: #89c540; /* belso tartalom szine */
-    line-height: 200px; /* az eredeti magassaggal kb. megegyezo */
+    color: rgb(0, 0, 128); /* belso tartalom szine */
+    line-height: 170px; /* az eredeti magassaggal kb. megegyezo */
     text-align: center;
-    background-color: rgba(0, 128, 0, 0.4);
-    /* background: none transparent; */
+    background: rgba(255,255,255,0.4); /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
+    background: -o-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
+    background: -moz-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
+    background: radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
     animation: kering 30s infinite linear;
     /* transform-origin: 50% 200px;
     animation-play-state: paused; */

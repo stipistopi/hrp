@@ -21,7 +21,9 @@
 </head>
 
 <body>
+    <!--
     <div class="nagyKor kozepre"></div>
+    -->
     <a href="#"><div class="kisKor kisKor1"><span class="szoveg">Bemutatkozó</span></div></a>
     <a href="#"><div class="kisKor kisKor2"><span class="szoveg">Programajánló demó</span></div></a>
     <a href="#"><div class="kisKor kisKor3"><span class="szoveg">Interaktív program indítása</span></div></a>
