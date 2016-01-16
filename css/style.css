@@ -1,18 +1,5 @@
-@keyframes kering {
-    from {
-        transform: rotate(0deg)
-        translate(120%) /* eredetileg 270px */
-        rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg)
-        translate(120%) /* eredetileg 270px */
-        rotate(360deg);
-    }
-}
-
 html {
-    background: url(../kepek/bg13_m.jpg) no-repeat center center fixed;
+    background: url(../kepek/bg_grey.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -37,49 +24,44 @@ body {
     transform: translate(-50%,-50%);
 }
 
-.nagyKor, .kisKor {
-    /* border: 3px solid green; */
-    border-radius: 50%;
+.logo {
+    display: table-caption;
+    margin: 0 auto;
+    border-bottom: solid 10px rgb(137, 197, 64);
+    /*transition: border-bottom;
+    transform: scale(0.8) translate(20%);*/
 }
 
-.nagyKor:hover {
-    background-color: rgba(0, 128, 0, 0.4);
+.bentebb {
+    width: 60%;
+    padding-top: 4%;
 }
 
-.kisKor:hover {
-    background: rgba(255,255,255,0.8); /* For browsers that do not support gradients */
-    background: -webkit-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-    background: -o-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-    background: -moz-radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-    background: radial-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-}
-
-.nagyKor {
-    width: 500px;
-    height: 500px;
-    /* background: url("../kepek/logo.png") rgba(0, 128, 0, 0) no-repeat center center; */
-    background-size: 80% 80%;
-    z-index: -1;
-}
-
-.kisKor {
-    width: 170px;
-    height: 170px;
-    position: absolute;
-    top: 280px;
-    left: 42%;
+.responsive-circle {
     font-size: 20px;
-    color: rgb(0, 0, 128); /* belso tartalom szine */
-    line-height: 170px; /* az eredeti magassaggal kb. megegyezo */
+    font-weight: 200;
+    margin: 0 auto 20px;
+    width: 70%;
+}
+
+.responsive-circle::after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 0;
+    margin-bottom: 20px;
+    padding-bottom: 100%;
+    width: 100%;
+}
+
+.responsive-circle div {
+    color: white;
+    float: left;
+    line-height: 1em;
+    margin-top: -0.5em;
+    padding-top: 50%;
     text-align: center;
-    background: rgba(255,255,255,0.4); /* For browsers that do not support gradients */
-    background: -webkit-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
-    background: -o-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
-    background: -moz-radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
-    background: radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.8));
-    animation: kering 30s infinite linear;
-    /* transform-origin: 50% 200px;
-    animation-play-state: paused; */
+    width: 100%;
 }
 
 .szoveg {
@@ -88,14 +70,54 @@ body {
     line-height: normal;
 }
 
-.kisKor1 {
-    animation-delay: -10s;
+.responsive-circle:hover, .responsive-circle:active {
+    cursor: pointer;
 }
 
-.kisKor2 {
-    animation-delay: -20s;
+/*
+.responsive-circle:hover::after, .responsive-circle:active::after {
+    border: none;
+}
+*/
+
+.kisKor1::after {
+    border: outset 3px rgb(220, 142, 0);
+    background-color: rgba(255, 165, 0, 0.8);
 }
 
-.kisKor3 {
-    animation-delay: -30s;
+.kisKor1:hover::after {
+    border: inset 3px rgb(220, 142, 0);
+    background-color: rgba(255, 165, 0, 1);
+}
+
+.kisKor1:active::after {
+    border: inset 5px rgb(220, 142, 0);
+}
+
+.kisKor2::after {
+    border: outset 3px rgb(104, 149, 48);
+    background-color: rgba(137, 197, 64, 0.8);
+}
+
+.kisKor2:hover::after {
+    border: inset 3px rgb(104, 149, 48);
+    background-color: rgba(137, 197, 64, 1);
+}
+
+.kisKor2:active::after {
+    border: inset 5px rgb(104, 149, 48);
+}
+
+.kisKor3::after {
+    border: outset 3px rgb(112, 0, 112);
+    background-color: rgba(139, 0, 139, 0.8);
+}
+
+.kisKor3:hover::after {
+    border: inset 3px rgb(112, 0, 112);
+    background-color: rgba(139, 0, 139, 1);
+}
+
+.kisKor3:active::after {
+    border: inset 5px rgb(112, 0, 112);
 }
