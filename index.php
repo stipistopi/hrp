@@ -21,11 +21,11 @@
 </head>
 
 <body>
-    <img class="logo img-responsive" src="kepek/logo.png" alt="HRP logó" width="30%" height="auto">
+    <img class="logo" src="kepek/logo.png" alt="HRP logó">
     <div class="container-fluid bentebb">
         <div class="row">
             <div class="col-xs-12 col-md-4">
-                <div class="responsive-circle kisKor1">
+                <div class="responsive-circle kisKor1 overlay">
                     <a href="#"><div class="circle-inner"><span class="szoveg">Rólunk</span></div></a>
                 </div>
             </div>

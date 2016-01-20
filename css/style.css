@@ -1,14 +1,71 @@
-html {
-    background: url(../kepek/bg_grey.jpg) no-repeat center center fixed;
+html, body {
+    /*height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;*/
+
+    /*background: url(../kepek/bg_grey.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;*/
+
+    /*background: rgba(245,245,245,1);
+    background: -moz-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(201,201,201,1) 44%, rgba(212,212,212,1) 64%, rgba(217,217,217,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,245,245,1)), color-stop(44%, rgba(201,201,201,1)), color-stop(64%, rgba(212,212,212,1)), color-stop(100%, rgba(217,217,217,1)));
+    background: -webkit-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(201,201,201,1) 44%, rgba(212,212,212,1) 64%, rgba(217,217,217,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(201,201,201,1) 44%, rgba(212,212,212,1) 64%, rgba(217,217,217,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(201,201,201,1) 44%, rgba(212,212,212,1) 64%, rgba(217,217,217,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(201,201,201,1) 44%, rgba(212,212,212,1) 64%, rgba(217,217,217,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#d9d9d9', GradientType=0 );*/
+
+    /*background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );*/
+
+    background: no-repeat fixed;
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, rgb(255, 255, 255)),
+            color-stop(1, rgb(181, 181, 181)),
+            color-stop(1, rgb(186, 186, 186))
+    );
+    background-image: -o-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
 }
 
-body {
-    background-color: transparent;
+#full-screen-background-image {
+    z-index: -999;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
+#wrapper {
+    position: relative;
+    width: 800px;
+    min-height: 400px;
+    margin: 100px auto;
+    color: #333;
+}
+
+/*body {
+    background-color: transparent;
+}*/
 
 .kozepre {
     position: absolute;
@@ -27,9 +84,23 @@ body {
 .logo {
     display: table-caption;
     margin: 0 auto;
+    width: 25%;
+    height: auto;
     border-bottom: solid 10px rgb(137, 197, 64);
     /*transition: border-bottom;
     transform: scale(0.8) translate(20%);*/
+}
+
+@media screen and (min-width: 481px) and (max-width: 700px) {
+    .logo {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 50%;
+    }
 }
 
 .bentebb {
@@ -41,7 +112,7 @@ body {
     font-size: 20px;
     font-weight: 200;
     margin: 0 auto 20px;
-    width: 70%;
+    width: 70%; /* a kis körök nagyságát itt tudjuk állítani */
 }
 
 .responsive-circle::after {
@@ -54,6 +125,7 @@ body {
     width: 100%;
 }
 
+/* a körben található szöveg tulajdonságai */
 .responsive-circle div {
     color: white;
     float: left;
@@ -63,6 +135,26 @@ body {
     text-align: center;
     width: 100%;
 }
+
+/* ez deklarálja a kör hátterének színét; észrevétel: mintha a körben található szöveg a színes háttér mögött lenne; teszteljük le z-index-szel */
+.overlay {
+    position: relative;
+}
+
+.overlay:before {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block; /* eredetileg: none */
+    z-index: 0;
+}
+
+/*.overlay:hover:before {
+    display: block;
+}*/
 
 .szoveg {
     display: inline-block;
@@ -80,44 +172,69 @@ body {
 }
 */
 
-.kisKor1::after {
-    border: outset 3px rgb(220, 142, 0);
-    background-color: rgba(255, 165, 0, 0.8);
+/* a körök színei egyesével így adhatók meg */
+.kisKor1::before {
+    border-radius: 50%;
+    background-color: rgba(255,0,0,0.3);
 }
 
+/* háttérKÉP a körökben */
+.kisKor1::after {
+    background:url('http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/512/Bear-icon.png') no-repeat center center;
+    background-size: 80% 80%;
+    z-index: -1;
+    /*-webkit-filter: hue-rotate(240deg) saturate(3.3);*/
+    /*background-position:50px 50px;*/
+    /*border: outset 3px rgb(220, 142, 0);
+    background-color: rgba(255, 165, 0, 0.6);*/
+}
+
+/*
+http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/512/Lessons-icon.png
+http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/512/Sport-basketball-icon.png
+*/
+
+.responsive-circle:hover {
+    transform:translate(50px,0px);
+    /*background-position: -50px -20px;*/
+}
+
+/* az alap animációval ellentétes irányú kell a háttérre, így azt a hatást érjük el, mintha az fix lenne, és a körök lyukak lennének */
 .kisKor1:hover::after {
-    border: inset 3px rgb(220, 142, 0);
-    background-color: rgba(255, 165, 0, 1);
+    transform:translate(-50px,0px);
+    /*background-position: 50px 20px;*/
+    /*border: inset 3px rgb(220, 142, 0);
+    background-color: rgba(255, 165, 0, 1);*/
 }
 
 .kisKor1:active::after {
-    border: inset 5px rgb(220, 142, 0);
+    /*border: inset 5px rgb(220, 142, 0);*/
 }
 
 .kisKor2::after {
-    border: outset 3px rgb(104, 149, 48);
-    background-color: rgba(137, 197, 64, 0.8);
+    /*border: outset 3px rgb(104, 149, 48);*/
+    background-color: rgba(137, 197, 64, 0.6);
 }
 
 .kisKor2:hover::after {
-    border: inset 3px rgb(104, 149, 48);
-    background-color: rgba(137, 197, 64, 1);
+    /*border: inset 3px rgb(104, 149, 48);
+    background-color: rgba(137, 197, 64, 1);*/
 }
 
 .kisKor2:active::after {
-    border: inset 5px rgb(104, 149, 48);
+    /*border: inset 5px rgb(104, 149, 48);*/
 }
 
 .kisKor3::after {
-    border: outset 3px rgb(112, 0, 112);
-    background-color: rgba(139, 0, 139, 0.8);
+    /*border: outset 3px rgb(112, 0, 112);*/
+    background-color: rgba(139, 0, 139, 0.6);
 }
 
 .kisKor3:hover::after {
-    border: inset 3px rgb(112, 0, 112);
-    background-color: rgba(139, 0, 139, 1);
+    /*border: inset 3px rgb(112, 0, 112);
+    background-color: rgba(139, 0, 139, 1);*/
 }
 
 .kisKor3:active::after {
-    border: inset 5px rgb(112, 0, 112);
+    /*border: inset 5px rgb(112, 0, 112);*/
 }
