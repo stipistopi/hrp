@@ -109,10 +109,19 @@ html, body {
 }
 
 .responsive-circle {
-    font-size: 20px;
+    font-size: 2vw;
     font-weight: 200;
     margin: 0 auto 20px;
     width: 70%; /* a kis körök nagyságát itt tudjuk állítani */
+    position: relative;
+    height: auto;
+}
+
+/* Szovegmeret kis eszkozokon, amikor a gombok egymas alatt jelennek meg */
+@media screen and (max-width: 992px) {
+    .responsive-circle {
+        font-size: 7vw;
+    }
 }
 
 .responsive-circle::after {
@@ -130,10 +139,13 @@ html, body {
     color: white;
     float: left;
     line-height: 1em;
-    margin-top: -0.5em;
-    padding-top: 50%;
     text-align: center;
     width: 100%;
+}
+
+.circle-inner {
+    position: absolute;
+    height: 100%;
 }
 
 /* ez deklarálja a kör hátterének színét; észrevétel: mintha a körben található szöveg a színes háttér mögött lenne; teszteljük le z-index-szel */
@@ -157,9 +169,11 @@ html, body {
 }*/
 
 .szoveg {
-    display: inline-block;
-    vertical-align: middle;
     line-height: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .responsive-circle:hover, .responsive-circle:active {
