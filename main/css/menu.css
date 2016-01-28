@@ -84,5 +84,9 @@ div#right-menu li a.active {
 }
 
 .orange-bottom {
-    border-bottom: 10px solid orange;
+    border-bottom: 10px solid rgb(252, 144, 36);
+}
+
+.green-bottom {
+    border-bottom: 10px solid #89c540;
 }
