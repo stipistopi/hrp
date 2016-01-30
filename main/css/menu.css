@@ -90,3 +90,7 @@ div#right-menu li a.active {
 .green-bottom {
     border-bottom: 10px solid #89c540;
 }
+
+.magenta-bottom {
+    border-bottom: 10px solid #900090;
+}
