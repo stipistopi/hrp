@@ -56,6 +56,11 @@ div#content-wrapper {
     display: flex;
 }
 
+div.about_bg {
+    background: url("../../kepek/logo_mod.png") no-repeat center center fixed;
+    background-size: 40% auto;
+}
+
 div#content {
     width: 82%;
     padding: 0 14px;

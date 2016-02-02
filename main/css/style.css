@@ -1,5 +1,14 @@
 html, body {
-    background: no-repeat fixed;
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgb(203, 203, 203) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(203, 203, 203,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(203, 203, 203,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(203, 203, 203,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(203, 203, 203,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(203, 203, 203,1) 100%) no-repeat fixed;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+
+    /*background: no-repeat fixed;
     background-image: -webkit-gradient(
             linear,
             left top,
@@ -13,7 +22,7 @@ html, body {
     background-image: -webkit-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
     background-image: -ms-linear-gradient(bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
     background-image: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(181, 181, 181) 100%, rgb(186, 186, 186) 100%);
-    margin: 0;
+    margin: 0;*/
 }
 
 #page-wrapper {
@@ -37,6 +46,16 @@ html, body {
 .content-right {
     display: flex;
     align-items: center;
+    flex: 1;
+    /*width: 677px;*/
+}
+
+.content-right p, .content-right ol li, .content-right ul li {
+    text-align: justify;
+}
+
+.content-right nav a {
+    letter-spacing: 1px;
 }
 
 .circle-orange {
