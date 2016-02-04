@@ -99,6 +99,10 @@ html, body {
     height: 100%;
 }
 
+.vertical-padding-5 {
+    padding: 5px 0;
+}
+
 .vertical-padding-10 {
     padding: 10px 0;
 }
