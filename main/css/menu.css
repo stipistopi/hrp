@@ -78,14 +78,14 @@ div#right-menu ul {
 
 div#right-menu li a {
     display: block;
-    color: #000;
+    color: #454343;
     padding: 16px;
     text-decoration: none;
 }
 
 div#right-menu li a.active {
     background-color: #4CAF50;
-    color: white;
+    color: #454343;
 }
 
 .orange-bottom {
