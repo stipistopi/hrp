@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Belépõkártya kódja:"
+AuthUserFile /home/hrp-interaktiv.hu/public_html/main/lecke/.htpasswd
+require valid-user

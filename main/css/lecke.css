@@ -1,6 +1,6 @@
 div.lecke {
 	position: relative;
-	left: -12px;
+	left: 75px;
 	top: 0;
 	float: right;
 }
@@ -26,7 +26,7 @@ img.lecke-vid {
 
 .content-right {
 	position: relative;
-	left: -20px;
+	left: -30px;
 }
 
 .lecke-upper-1 {
@@ -35,7 +35,7 @@ img.lecke-vid {
 	padding: 5px;
 	width: 130px;
 	text-align: center;
-	margin-left: 195px;
+	margin-left: 125px;
 }
 
 .lecke-upper-2 {
