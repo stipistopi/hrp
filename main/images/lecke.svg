@@ -55,33 +55,33 @@
     <text class="cls-3" transform="translate(249.71 78.34)">K<tspan x="15.04" y="0">é</tspan><tspan x="29.97" y="0">r</tspan><tspan x="40.02" y="0">d</tspan><tspan x="55.78" y="0">e</tspan><tspan x="70.42" y="0">zz</tspan><tspan x="94.12" y="0">-</tspan><tspan x="103.04" y="0">f</tspan><tspan x="111.45" y="0">elelek</tspan></text>
     <text x="-16.52"/>  <text class="cls-3" transform="translate(360.62 638.73)">O<tspan x="19.86" y="0">r</tspan><tspan x="30.6" y="0">v</tspan><tspan x="43.87" y="0">os </tspan><tspan x="78.21" y="0">k</tspan><tspan x="90.88" y="0">e</tspan><tspan x="105.81" y="0">r</tspan><tspan x="115.87" y="0">eső</tspan></text>
     <a xlink:href="#">
-        <rect id="kerdezz_kor_hatter" x="200" y="44" opacity="0" width="42" height="50" />
         <rect id="kerdezz" x="243" y="47" fill="rgba(0, 0, 0, 0.2)" width="0" height="40" />
-        <rect id="kerdezz_eloter" x="243" y="47" width="197" height="40" opacity="0" />
+        <rect id="kerdezz_referencia" x="242" y="47" width="197" height="40" opacity="0" />
+        <rect id="kerdezz_hover" x="195" y="44" opacity="0" width="244" height="50" />
     </a>
     <a xlink:href="#">
-        <polygon id="tunet_kor_hatter" points="560,34,589,76,541,100,516,56" opacity="0" />
         <polygon id="tunet" points="" opacity="0.2" />
-        <polygon id="tunet_eloter" points="677,242 580,75 545,99 646,270" opacity="0" />
+        <polygon id="tunet_referencia" points="677,242 580,75 545,99 644,268" opacity="0" />
+        <polygon id="tunet_hover" points="677,242 560,34 516,56 644,268" opacity="0" />
     </a>
     <a xlink:href="#">
-        <polygon id="tudastar_kor_hatter" points="682,353,719,376,743,331,697,319" opacity="0" />
         <polygon id="tudastar" points="" opacity="0.2" />
-        <polygon id="tudastar_eloter" points="683,358 718,379 658,475 623,454" opacity="0" />
+        <polygon id="tudastar_referencia" points="683,358 718,379 658,475 623,454" opacity="0" />
+        <polygon id="tudastar_hover" points="697,319 743,338 658,475 623,454" opacity="0" />
     </a>
     <a xlink:href="#">
-        <polygon id="orvos_kor_hatter" points="575,603,575,647,524,650,536,604" opacity="0" />
         <polygon id="orvos" points="" opacity="0.2" />
-        <polygon id="orvos_eloter" points="528,610 527,648 353,647 353,610" opacity="0" />
+        <polygon id="orvos_referencia" points="528,610 527,648 353,647 353,610" opacity="0" />
+        <polygon id="orvos_hover" points="575,603 575,650 353,647 353,610" opacity="0" />
     </a>
     <a xlink:href="#">
-        <polygon id="segitseg_kor_hatter" points="227,597,252,630,202,661,182,622" opacity="0" />
         <polygon id="segitseg" points="" opacity="0.2" />
-        <polygon id="segitseg_eloter" points="222,600 188,623 95,463 129,441" opacity="0" />
+        <polygon id="segitseg_referencia" points="222,600 188,623 95,463 129,441" opacity="0" />
+        <polygon id="segitseg_hover" points="247,630 213,665 95,463 129,441" opacity="0" />
     </a>
     <a xlink:href="#">
-        <polygon id="vallalom_kor_hatter" points="68,382,18,358,40,313,82,338" opacity="0" />
         <polygon id="vallalom" points="" opacity="0.2" />
-        <polygon id="vallalom_eloter" points="42,320 76,340 172,168 138,149" opacity="0" />
+        <polygon id="vallalom_referencia" points="42,320 76,340 172,168 138,149" opacity="0" />
+        <polygon id="vallalom_hover" points="18,358 58,382 172,168 138,149" opacity="0" />
     </a>
 </svg>

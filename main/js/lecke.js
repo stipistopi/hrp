@@ -20,7 +20,7 @@ $(document).ready(function() {
     var segitseg = $("#segitseg");
     var vallalom = $("#vallalom");
 
-    $( document ).tooltip({
+    $(document).tooltip({
         track: true,
         show: { delay: dur - 200 }
     });
@@ -28,14 +28,12 @@ $(document).ready(function() {
     $("polygon, rect").each(function() {
         $(this).hover(function() {
             nev = $(this).attr("id");
-            if(nev.contains("kor")) {
-                kor = nev.replace("_hatter", "");
+            if(nev.contains("_hover")) {
+                kor = nev.replace("_hover", "_kor");
+            } else if(nev.contains("_referencia")) {
+                kor = nev.replace("_referencia", "_kor");
             } else {
-                if(nev.contains("_eloter")) {
-                    kor = nev.replace("_eloter", "_kor");
-                } else {
-                    kor = nev.concat("_kor");
-                }
+                kor = nev.concat("_kor");
             }
             $("#" + kor).attr("class", "cls-1-mod");
         }, function() {
@@ -43,9 +41,9 @@ $(document).ready(function() {
         });
     });
 
-    $("#kerdezz_eloter, #kerdezz_kor_hatter").hover(function() {
+    $("#kerdezz_hover").hover(function() {
         //$("#kerdezz-anim").attr("begin", "0.5s");
-        var max_width = $("#kerdezz_eloter").attr("width");
+        var max_width = $("#kerdezz_referencia").attr("width");
 
         szoveg = "Erre a gombra kattintva egy gyors teszt segítségével mérheti le az adott témakör elsajátításának, tudásszintjének mértékét.";
         $(this).attr("title", szoveg);
@@ -74,8 +72,8 @@ $(document).ready(function() {
         kerdezz.fadeOut();
     });
 
-    $("#tunet_eloter, #tunet_kor_hatter").hover(function() {
-        var max_points = $("#tunet_eloter").attr("points");
+    $("#tunet_hover").hover(function() {
+        var max_points = $("#tunet_referencia").attr("points");
         var coords = max_points.split(" ");
         var coord1 = coords[0].split(",");
         var coord2 = coords[1].split(",");
@@ -125,8 +123,8 @@ $(document).ready(function() {
         tunet.fadeOut();
     });
 
-    $("#tudastar_eloter, #tudastar_kor_hatter").hover(function() {
-        var max_points = $("#tudastar_eloter").attr("points");
+    $("#tudastar_hover").hover(function() {
+        var max_points = $("#tudastar_referencia").attr("points");
         var coords = max_points.split(" ");
         var coord1 = coords[0].split(",");
         var coord2 = coords[1].split(",");
@@ -154,8 +152,8 @@ $(document).ready(function() {
         tudastar.fadeOut();
     });
 
-    $("#orvos_eloter, #orvos_kor_hatter").hover(function() {
-        var max_points = $("#orvos_eloter").attr("points");
+    $("#orvos_hover").hover(function() {
+        var max_points = $("#orvos_referencia").attr("points");
         var coords = max_points.split(" ");
         var coord1 = coords[0].split(",");
         var coord2 = coords[1].split(",");
@@ -183,8 +181,8 @@ $(document).ready(function() {
         orvos.fadeOut();
     });
 
-    $("#segitseg_eloter, #segitseg_kor_hatter").hover(function() {
-        var max_points = $("#segitseg_eloter").attr("points");
+    $("#segitseg_hover").hover(function() {
+        var max_points = $("#segitseg_referencia").attr("points");
         var coords = max_points.split(" ");
         var coord1 = coords[0].split(",");
         var coord2 = coords[1].split(",");
@@ -212,8 +210,8 @@ $(document).ready(function() {
         segitseg.fadeOut();
     });
 
-    $("#vallalom_eloter, #vallalom_kor_hatter").hover(function() {
-        var max_points = $("#vallalom_eloter").attr("points");
+    $("#vallalom_hover").hover(function() {
+        var max_points = $("#vallalom_referencia").attr("points");
         var coords = max_points.split(" ");
         var coord1 = coords[0].split(",");
         var coord2 = coords[1].split(",");
