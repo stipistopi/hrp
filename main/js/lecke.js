@@ -25,20 +25,12 @@ $(document).ready(function() {
         show: { delay: dur - 200 }
     });
 
-    $("polygon, rect").each(function() {
-        $(this).hover(function() {
-            nev = $(this).attr("id");
-            if(nev.contains("_hover")) {
-                kor = nev.replace("_hover", "_kor");
-            } else if(nev.contains("_referencia")) {
-                kor = nev.replace("_referencia", "_kor");
-            } else {
-                kor = nev.concat("_kor");
-            }
-            $("#" + kor).attr("class", "cls-1-mod");
-        }, function() {
-            $("#" + kor).attr("class", "cls-1");
-        });
+    $("polygon[id*='_hover'], rect[id*='_hover']").hover(function() {
+        nev = $(this).attr("id");
+        kor = nev.replace("_hover", "_kor");
+        $("#" + kor).attr("class", "cls-1-mod");
+    }, function() {
+        $("#" + kor).attr("class", "cls-1");
     });
 
     $("#kerdezz_hover").hover(function() {
