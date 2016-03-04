@@ -120,7 +120,12 @@ table.reg td {
     padding-bottom: .5em;
 }
 
-table.reg td input[type=text], table.reg td input[type=password] {
+table.reg_kartya td {
+    /*margin-left: 2em;*/
+    padding: 1.5em;
+}
+
+table.reg_kartya td input, table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email] {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
     display: block;
@@ -137,10 +142,28 @@ table.reg td input[type=text], table.reg td input[type=password] {
     transition: background 0.2s linear, box-shadow 0.6s linear;
 }
 
-table.reg td input[type=text]:focus, table.reg td input[type=password]:focus {
+table.reg_kartya td input:focus, table.reg td input[type=text]:focus, table.reg td input[type=password]:focus, table.reg td input[type=email]:focus {
     background: #F7F7F7;
     border: dashed 1px #969696;
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
     -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
     box-shadow: 2px 2px 7px #E8E8E8 inset;
+}
+
+/*table.reg td input[type=text]:required:valid {
+    border: 2px dashed rgba(137, 197, 64, 1);
+}*/
+
+div.kartya_ok {
+    background: url(../images/check48.png) no-repeat 10px 10px;
+}
+
+div.kartya_ok h1, div.kartya_ok h2 {
+    color: white;
+    padding: 5px 5px 5px 75px;
+    text-align: left;
+}
+
+div.kartya_ok h2 {
+    font-size: medium;
 }
