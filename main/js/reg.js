@@ -5,6 +5,12 @@ $(document).ready(function() {
     var val_default_focus = "1px dashed #969696";
 
     $("#kartya").keyup(function() {
+
+        // itt kérdezzük le az adatbázisból a kártyaszámot...
+        // ha minden jól megy, nyitjuk a regisztrációs formot,
+        // ezt jelezzük a jobb felső sarokban,
+        // és eltüntetjük az üres részt a lap aljáról
+
         if($(this).val().length > 5) {
             $(this).css(attr, val_accept);
 
@@ -32,6 +38,7 @@ $(document).ready(function() {
             });
 
             $(".reg").fadeIn(1200);
+            $("#uresresz").css("padding", "0");
         } else {
             $(this).css(attr, val_default);
             $(this).focus().css(attr, val_default_focus);

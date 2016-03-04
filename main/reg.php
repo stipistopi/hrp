@@ -132,7 +132,7 @@
                 <div class="content-left">
                     <div class="line-magenta"></div>
                 </div>
-                <div class="content-right vertical-padding-10"></div>
+                <div id="uresresz" class="content-right" style="padding: 180px 0;"></div>
             </div>
         </div>
         <div id="right-menu">
