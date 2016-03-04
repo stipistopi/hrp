@@ -19,10 +19,10 @@
         <img src="../images/logo.png">
         <ul id="top-menu">
             <li><a href="../../index.html">Főoldal</a></li>
-            <li><a href="../about.html">Rólunk</a></li>
-            <li><a href="../services.html">Szolgáltatásaink</a></li>
-            <li><a href="../contact.html">Kapcsolat</a></li>
-            <li><a href="../career.html">Karrier</a></li>
+            <li><a href="../about.php">Rólunk</a></li>
+            <li><a href="../services.php">Szolgáltatásaink</a></li>
+            <li><a href="../contact.php">Kapcsolat</a></li>
+            <li><a href="../career.php">Karrier</a></li>
             <li style="float:right;">
                 <ul style="list-style-type:none;">
                     <li><a href="../reg.php">Regisztráció</a></li>
