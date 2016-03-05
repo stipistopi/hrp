@@ -14,15 +14,15 @@
     <div id="top-menu-wrapper">
         <img src="images/logo.png">
         <ul id="top-menu">
-            <li><a class="<?php if ($active == 'index') echo 'active'; ?>" href="../index.php">Főoldal</a></li>
+            <li><a class="<?php if ($active == 'index') echo 'active'; ?>" href="../index.html">Főoldal</a></li>
             <li><a class="<?php if ($active == 'about') echo 'active'; ?>" href="about.php">Rólunk</a></li>
             <li><a class="<?php if ($active == 'services') echo 'active'; ?>" href="services.php">Szolgáltatásaink</a></li>
             <li><a class="<?php if ($active == 'contact') echo 'active'; ?>" href="contact.php">Kapcsolat</a></li>
             <li><a class="<?php if ($active == 'career') echo 'active'; ?>" href="career.php">Karrier</a></li>
             <li style="float:right;">
                 <ul style="list-style-type:none;">
-                    <li><a href="reg.php">Regisztráció</a></li>
-                    <li><a href="#">Bejelentkezés</a></li>
+                    <li><a class="<?php if ($active == 'reg') echo 'active'; ?>" href="reg.php">Regisztráció</a></li>
+                    <li><a class="<?php if ($active == 'login') echo 'active'; ?>" href="#">Bejelentkezés</a></li>
                 </ul>
             </li>
         </ul>

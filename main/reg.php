@@ -1,5 +1,5 @@
 <?php
-$active = "about";
+$active = "reg";
 $color = "magenta";
 include 'includes/header.php';
 ?>
