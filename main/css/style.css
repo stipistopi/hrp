@@ -158,16 +158,28 @@ table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type
     border: 2px dashed rgba(137, 197, 64, 1);
 }*/
 
-div.kartya_ok {
+div.kartya_ok, div.erd_reg_ok, div.kod_ok {
     background: url(../images/check48.png) no-repeat 10px 10px;
 }
 
-div.kartya_ok h1, div.kartya_ok h2 {
+div.erd_reg_nem_ok, div.kod_nem_ok {
+    background: url(../images/error48.png) no-repeat 10px 10px;
+}
+
+div.kartya_ok h1, div.kartya_ok h2,
+div.erd_reg_ok h1, div.erd_reg_ok h2,
+div.erd_reg_nem_ok h1, div.erd_reg_nem_ok h2,
+div.kod_ok h1, div.kod_ok h2,
+div.kod_nem_ok h1, div.kod_nem_ok h2 {
     color: white;
     padding: 5px 5px 5px 75px;
     text-align: left;
 }
 
-div.kartya_ok h2 {
+div.kartya_ok h2,
+div.erd_reg_ok h2,
+div.erd_reg_nem_ok h2,
+div.kod_ok h2,
+div.kod_nem_ok h2 {
     font-size: medium;
 }

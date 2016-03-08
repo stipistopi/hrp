@@ -102,9 +102,7 @@ include 'includes/header.php';
                                        placeholder="Makkosháza"></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center" style="background-color: rgba(1, 1, 1, 0.2)">Válasszon saját
-                                felhasználónevet!
-                            </td>
+                            <td colspan="2" align="center" style="background-color: rgba(1, 1, 1, 0.2)">Válasszon saját felhasználónevet!</td>
                         </tr>
                         <tr>
                             <td>Felhasználónév<span style="color: red;font-weight: bold;">*</span>:</td>

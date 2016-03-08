@@ -38,7 +38,7 @@ $(document).ready(function() {
             });
 
             $(".reg").fadeIn(1200);
-            $("#uresresz").css("padding", "0");
+            $("#uresresz").css("padding", "20px 0");
         } else {
             $(this).css(attr, val_default);
             $(this).focus().css(attr, val_default_focus);

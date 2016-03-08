@@ -1,9 +1,11 @@
 <?php
 $active = "demo";
 include 'includes/header.php';
+include 'includes/configHRP.php';
 ?>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
     <script type="text/javascript" src="js/erd_reg.js"></script>
     <script>
         $(function() {
@@ -28,7 +30,7 @@ include 'includes/header.php';
             <div class="circle-green"></div>
         </div>
         <div class="content-right">
-            <nav class="cl-effect-21 cl-effect-21-green"><a class="popup-trigger"
+            <nav class="cl-effect-21 cl-effect-21-green"><a id="felso_link" class="popup-trigger"
                                                             title="Tisztelt Érdeklődő!<br/><br/>A programajánló megtekintéséhez egy rövid (és ingyenes) regisztráció szükséges. Kérem, kattintson ide az űrlap megjelenítéséhez!"
                                                             href="#">Programajánló</a></nav>
         </div>
@@ -43,19 +45,35 @@ include 'includes/header.php';
                 <source src="video/vid_mp4.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
+            <div class="erd_reg_ok" style="display:none">
+                <h1>E-mail elküldve</h1>
+                <h2>Kódját elküldtük a megadott címre</h2>
+            </div>
+            <div class="erd_reg_nem_ok" style="display:none">
+                <h1>Hiba</h1>
+                <h2>Ezzel az e-mail címmel már igényeltek kódot</h2>
+            </div>
+            <div class="kod_ok" style="display:none">
+                <h1>Kód elfogadva</h1>
+                <h2>Videó betöltése...</h2>
+            </div>
+            <div class="kod_nem_ok" style="display:none">
+                <h1>Hiba</h1>
+                <h2>Nem találtam ilyen kódot</h2>
+            </div>
             <form id="demo_login" style="margin-left: 3em;">
                 <fieldset>
                     <legend>Kód megadása</legend>
                     <table class="demo_kod">
                         <tr>
                             <td>A regisztráció után kapott kód:</td>
-                            <td><input id="kod" type="text" placeholder="Kezdjen el gépelni..." required autofocus>
+                            <td><input id="kod" type="text" maxlength="10" pattern="[a-zA-Z0-9]{1,10}" placeholder="Kezdjen el gépelni..." required autofocus>
                             </td>
                         </tr>
                     </table>
                 </fieldset>
             </form>
-            <form id="demo_reg" style="margin-left: 5em;display: none;">
+            <form id="demo_reg" style="margin-left: 5em;display: none;" onsubmit="return false;">
                 <fieldset>
                     <legend>Érdeklődő regisztráció</legend>
                     <table class="erdeklodo_reg">
@@ -112,21 +130,19 @@ include 'includes/header.php';
                             <td colspan="2" align="center"><input type="submit" value="Regisztráció"></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 80%">A <span
-                                    style="color: red;font-weight: bold;">*</span>-al jelölt mezők kitöltése kötelező.
-                            </td>
+                            <td colspan="2" style="font-size: 80%">A <span style="color: red;font-weight: bold;">*</span>-al jelölt mezők kitöltése kötelező.</td>
                         </tr>
                     </table>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="flexbox-container">
+    <div id="also_resz" class="flexbox-container">
         <div class="content-left">
             <div class="line-green"></div>
         </div>
-        <div id="uresresz" class="content-right" style="padding: 10px 0;">
-            <div style="margin-left: 3em;font-style: italic;">Kód igénylése</div>
+        <div class="content-right" style="padding: 10px 0;">
+            <div id="also_link" style="margin-left: 3em;font-style: italic;cursor:pointer;">Kód igénylése (gyors és ingyenes)</div>
         </div>
     </div>
     <div class="flexbox-container">
