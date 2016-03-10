@@ -24,7 +24,7 @@ include 'includes/header.php';
                 <h1>Kártya azonosítva</h1>
                 <h2>A rendszer sikeresen azonosította kártyaszámát!</h2>
             </div>
-            <form style="margin-left: 5em">
+            <form id="form-main-reg" style="margin-left: 5em" onsubmit="return false;">
                 <fieldset>
                     <legend>Regisztráció adatai</legend>
                     <table class="reg_kartya">

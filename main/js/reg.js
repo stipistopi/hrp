@@ -4,6 +4,41 @@ $(document).ready(function() {
     var val_default = "1px dashed #DBDBDB";
     var val_default_focus = "1px dashed #969696";
 
+    $("input:submit").click(function() {
+        if($("#form-main-reg").is(":valid")) {
+            $.ajax({
+                url: "reg_ajax.php",
+                type: "POST",
+                data: {
+                    kartyaId: $("#kartya").val(),
+                    vez_nev: $("#vez_nev").val(),
+                    ker_nev: $("#k_nev").val(),
+                    elonev: $("#e_nev").val(),
+                    email: $("#e-mail").val(),
+                    telefon: $("#t_szam").val(),
+                    lakhely_varos: $("#lakhely_varos").val(),
+                    lakhely_varosresz: $("#lakhely_vresz").val(),
+                    felh_nev: $("#user_n").val(),
+                    jelszo: $("#passw").val()
+                },
+                success: function(ret) {
+                    console.log(ret);
+                    if(ret == "registration_succeeded") {
+                        // uzenet megjelenitese
+                        // a regisztacio sikerult, lehet bejelentkezni
+                    } else if (ret == "email_in_use") {
+                        // uzenet megjelenitese
+                        // a beirt email cim mar hasznalatban van
+                    } else {
+                        // uzenet megjelenitese
+                        // ismeretlen hiba tortent, a cucc ertesitette a fejlesztoket (ezt kesobb megoldjuk),
+                        // dolgozunk a hiba elharitasan, stb
+                    }
+                }
+            });
+        }
+    });
+
     $("#kartya").keyup(function() {
 
         // itt kérdezzük le az adatbázisból a kártyaszámot...
