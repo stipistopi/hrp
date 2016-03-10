@@ -1,7 +1,6 @@
 <?php
 $active = "demo";
 include 'includes/header.php';
-include 'includes/configHRP.php';
 ?>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
@@ -29,10 +28,10 @@ include 'includes/configHRP.php';
         <div class="content-left">
             <div class="circle-green"></div>
         </div>
-        <div class="content-right">
-            <nav class="cl-effect-21 cl-effect-21-green"><a id="felso_link" class="popup-trigger"
-                                                            title="Tisztelt Érdeklődő!<br/><br/>A programajánló megtekintéséhez egy rövid (és ingyenes) regisztráció szükséges. Kérem, kattintson ide az űrlap megjelenítéséhez!"
-                                                            href="#">Programajánló</a></nav>
+        <div class="content-right" id="demo_vid_link">
+            <nav class="cl-effect-21 cl-effect-21-green"><a class="popup-trigger"
+                                                            title="Tisztelt Érdeklődő!<br/><br/>Kérjük, tekintse meg a programajánló videónkat, melyet ez alatt a szöveg alatt láthat!"
+                                                            href="#demo_vid_link">Programajánló</a></nav>
         </div>
     </div>
     <div class="flexbox-container top-padding-10">
@@ -40,24 +39,51 @@ include 'includes/configHRP.php';
             <div class="line-green"></div>
         </div>
         <div class="content-right" style="padding: 20px 0;">
-            <!--<img src="images/fakevid.png" height=400 style="display: block;margin:0 auto;">-->
-            <video id="vid" width="560" height="400" controls style="display: none;margin:0 auto;">
+            <video id="vid" width="560" height="400" controls style="display: block;margin:0 auto;">
                 <source src="video/vid_mp4.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
-            <div class="erd_reg_ok" style="display:none">
+        </div>
+    </div>
+    <div class="flexbox-container bottom-padding-10">
+        <div class="content-left">
+            <div class="line-green"></div>
+        </div>
+        <div class="content-right" style="height:0px;"></div>
+    </div>
+    <div class="flexbox-container vertical-padding-10">
+        <div class="content-left">
+            <div class="circle-green"></div>
+        </div>
+        <div class="content-right">
+            <nav class="cl-effect-21 cl-effect-21-green"><a id="lecke_vid_link" class="popup-trigger"
+                                                            title="Tisztelt Érdeklődő!<br/><br/>A lecke videó megtekintéséhez egy rövid (és ingyenes) regisztráció szükséges. Kérem, kattintson az alsó linkre az űrlap megjelenítéséhez!"
+                                                            href="#lecke_vid_link">Lecke videó</a></nav>
+        </div>
+    </div>
+    <div class="flexbox-container top-padding-10">
+        <div class="content-left">
+            <div class="line-green"></div>
+        </div>
+        <div class="content-right" style="padding: 20px 0;">
+            <!-- lecke video helye -->
+            <div id="lecke_vid" style="display:none;">
+                <h2>Szíves türelmét kérjük, a videón még dolgozunk, de regisztrációja és kódja érvényes marad a későbbiekben is.</h2>
+            </div>
+            <!-- ----------------- -->
+            <div class="erd_reg_ok" style="display:none;">
                 <h1>E-mail elküldve</h1>
                 <h2>Kódját elküldtük a megadott címre</h2>
             </div>
-            <div class="erd_reg_nem_ok" style="display:none">
+            <div class="erd_reg_nem_ok" style="display:none;">
                 <h1>Hiba</h1>
                 <h2>Ezzel az e-mail címmel már igényeltek kódot</h2>
             </div>
-            <div class="kod_ok" style="display:none">
+            <div class="kod_ok" style="display:none;">
                 <h1>Kód elfogadva</h1>
                 <h2>Videó betöltése...</h2>
             </div>
-            <div class="kod_nem_ok" style="display:none">
+            <div class="kod_nem_ok" style="display:none;">
                 <h1>Hiba</h1>
                 <h2>Nem találtam ilyen kódot</h2>
             </div>
@@ -142,14 +168,14 @@ include 'includes/configHRP.php';
             <div class="line-green"></div>
         </div>
         <div class="content-right" style="padding: 10px 0;">
-            <div id="also_link" style="margin-left: 3em;font-style: italic;cursor:pointer;">Kód igénylése (gyors és ingyenes)</div>
+            <div id="also_link" style="margin-left: 3em;font-style: italic;cursor:pointer;">Kód igénylése (gyors és ingyenes) ide kattintva</div>
         </div>
     </div>
     <div class="flexbox-container">
         <div class="content-left">
             <div class="line-green"></div>
         </div>
-        <div id="uresresz" class="content-right" style="padding: 140px 0;"></div>
+        <div id="uresresz" class="content-right" style="padding: 40px 0;"></div>
     </div>
 
 <?php

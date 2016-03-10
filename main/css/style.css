@@ -183,3 +183,7 @@ div.kod_ok h2,
 div.kod_nem_ok h2 {
     font-size: medium;
 }
+
+div#also_link:hover {
+    color: blue;
+}

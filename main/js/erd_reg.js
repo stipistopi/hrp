@@ -6,17 +6,17 @@ $(document).ready(function() {
     var mail_msg;
     var kod_msg;
 
-    $("#also_link, #felso_link").click(function() {
+    $("#also_link, #lecke_vid_link").click(function() {
         if($("#also_link").is(":visible")) {
-            $("#felso_link").blur();
+            //$("#lecke_vid_link").blur();
             $("#also_resz").fadeOut(1200);
             $("#demo_login").fadeOut(1200, function () {
                 $("#demo_reg").fadeIn(1200, function () {
-                    $("#uresresz").css("padding", "20px 0");
+                    //$("#uresresz").css("padding", "20px 0");
                 });
             });
         } else {
-            $("#felso_link").blur();
+            //$("#lecke_vid_link").blur();
         }
     });
 
@@ -41,7 +41,7 @@ $(document).ready(function() {
                         $("#demo_reg").fadeOut(1200, function() {
                             $("#also_resz").fadeIn(1200);
                             $("#demo_login").fadeIn(1200, function() {
-                                $("#uresresz").css("padding", "140px 0");
+                                //$("#uresresz").css("padding", "140px 0");
                             });
                         });
                     } else if(siker == "mail_error") {
@@ -76,10 +76,10 @@ $(document).ready(function() {
 
     $("#kod").keyup(function() {
 
-        // itt kérdezzük le az adatbázisból a kódot...
-        // ha minden jól megy, nyitjuk a videót,
-        // ezt jelezzük a jobb felső sarokban,
-        // és eltüntetjük az üres részt a lap aljáról
+        // itt kerdezzuk le az adatbazisbol a kodot...
+        // ha minden jol megy, nyitjuk a videot,
+        // ezt jelezzuk a jobb felso sarokban,
+        // es eltuntetjuk az ures reszt a lap aljarol
 
         if($(this).val().length == 10) {
             $.ajax({
@@ -96,9 +96,9 @@ $(document).ready(function() {
 
                         $("#also_resz").fadeOut(1200);
                         $("#demo_login").fadeOut(1200, function() {
-                            $("#vid").fadeIn(1200, function() {
+                            $("#lecke_vid").fadeIn(1200, function() {
                                 $(this).css("display", "block");
-                                $("#uresresz").css("padding", "40px 0");
+                                //$("#uresresz").css("padding", "40px 0");
                             });
                         });
                     } else if(siker == "kod_nem_ok") {

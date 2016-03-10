@@ -1,11 +1,5 @@
 <?php
-
-$dsn = 'mysql:dbname=hrp_interaktiv;host=localhost';
-$username = 'hrp-interaktiv.h';
-$password = base64_decode("WDdhV0k0TVQ");
-
-$conn = new PDO($dsn, $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Error handling
+include 'includes/configHRP.php';
 
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

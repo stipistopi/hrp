@@ -29,7 +29,7 @@ include 'includes/header.php';
                     <legend>Regisztráció adatai</legend>
                     <table class="reg_kartya">
                         <tr>
-                            <td>Plasztik kártya száma<span style="color: red;font-weight: bold;">*</span>:</td>
+                            <td>Plasztik kártya száma:</td>
                             <td><input id="kartya" type="text" placeholder="Kezdjen el gépelni..." required autofocus>
                             </td>
                         </tr>

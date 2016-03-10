@@ -17,7 +17,7 @@ try {
          szerepkorId INT NOT NULL,
          engedely VARCHAR(12) NOT NULL,
          PRIMARY KEY (szerepkorId, engedely),
-         FOREIGN KEY (szerepkorId) REFERENCES szerepkor(id) ON DELETE CASCADE
+         FOREIGN KEY (szerepkorId) REFERENCES szerepkor(id) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
       CREATE TABLE IF NOT EXISTS ceg (
          id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ try {
          cegId INT NOT NULL,
          vallalat_telephely VARCHAR(50) NOT NULL,
          PRIMARY KEY (cegId, vallalat_telephely),
-         FOREIGN KEY (cegId) REFERENCES ceg(id) ON DELETE CASCADE
+         FOREIGN KEY (cegId) REFERENCES ceg(id) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
       CREATE TABLE IF NOT EXISTS kartya (
          kartya_id CHAR(15) PRIMARY KEY NOT NULL,
@@ -35,7 +35,7 @@ try {
          aktiv BOOLEAN DEFAULT "0" NOT NULL,
          kezdo_nap DATE,
          vallalat_telephely VARCHAR(50),
-         FOREIGN KEY (cegId) REFERENCES ceg(id) ON DELETE CASCADE
+         FOREIGN KEY (cegId) REFERENCES ceg(id) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
       CREATE TABLE IF NOT EXISTS felhasznalo (
          email VARCHAR(50) PRIMARY KEY NOT NULL,
