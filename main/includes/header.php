@@ -12,7 +12,7 @@
 <body>
 <div id="page-wrapper">
     <div id="top-menu-wrapper">
-        <img src="images/logo.png">
+        <img alt="Logó" src="images/logo.png">
         <ul id="top-menu">
             <li><a class="<?php if ($active == 'index') echo 'active'; ?>" href="../index.html">Főoldal</a></li>
             <li><a class="<?php if ($active == 'about') echo 'active'; ?>" href="about.php">Rólunk</a></li>
