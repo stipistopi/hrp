@@ -22,11 +22,11 @@ $(document).ready(function() {
                     jelszo: $("#passw").val()
                 },
                 success: function(ret) {
-                    console.log(ret);
+                    //console.log(ret);
                     if(ret == "registration_succeeded") {
                         // uzenet megjelenitese
                         // a regisztacio sikerult, lehet bejelentkezni
-                    } else if (ret == "email_in_use") {
+                    } else if(ret == "email_in_use") {
                         // uzenet megjelenitese
                         // a beirt email cim mar hasznalatban van
                     } else {
@@ -47,9 +47,9 @@ $(document).ready(function() {
         // és eltüntetjük az üres részt a lap aljáról
 
         if($(this).val().length > 5) {
-            $(this).css(attr, val_accept); // ha az ajax sikeresen azonosította a kártyák, csak akkor zöldüljön ki
+            $(this).css(attr, val_accept); // ha az ajax sikeresen azonosította a kártyát, csak akkor zöldüljön ki
 
-            $(this).prop("disabled", true); // ha az ajax sikeresen azonosította a kártyák, akkor legyen disabled
+            $(this).prop("disabled", true); // ha az ajax sikeresen azonosította a kártyát, akkor legyen disabled
 
             $.blockUI({
                 message: $('div.kartya_ok'),

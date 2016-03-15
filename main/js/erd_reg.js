@@ -5,6 +5,7 @@ $(document).ready(function() {
     var val_default_focus = "1px dashed #969696";
     var mail_msg;
     var kod_msg;
+    var hirlevel;
 
     $("#also_link, #lecke_vid_link").click(function() {
         if($("#also_link").is(":visible")) {
@@ -22,6 +23,9 @@ $(document).ready(function() {
 
     $("input:submit").click(function() {
         if($("#demo_reg").is(":valid")) {
+
+            if($("#hirlevel").is(":checked")) hirlevel = 1; else hirlevel = 0;
+
             $.ajax({
                 url: "demo_reg.php",
                 type: "POST",
@@ -31,6 +35,7 @@ $(document).ready(function() {
                     k_nev: $("#k_nev").val(),
                     e_nev: $("#e_nev").val(),
                     email: $("#e-mail").val(),
+                    hirlevel: hirlevel,
                     t_szam: $("#t_szam").val(),
                     vall_neve: $("#vall_neve").val()
                 },

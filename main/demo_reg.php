@@ -1,5 +1,6 @@
 <?php
 include 'includes/configHRP.php';
+session_start();
 
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -16,6 +17,7 @@ if($_POST["feladat"] == "hozzaad") {
     $k_nev = $_POST["k_nev"];
     $e_nev = $_POST["e_nev"];
     $email = $_POST["email"];
+    $hirlevel = $_POST["hirlevel"];
     $t_szam = $_POST["t_szam"];
     $vall_neve = $_POST["vall_neve"];
 
@@ -64,8 +66,8 @@ if($_POST["feladat"] == "hozzaad") {
         /* *********************************************** */
 
         /* ************** VÉGÜL DB-BE ÍRÁS ************** */
-        $stmt = $conn->prepare("INSERT INTO erdeklodo VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, NOW())");
-        $stmt->execute(array($gen_jelszo, $vez_nev, $k_nev, $e_nev, $email, $t_szam, $vall_neve));
+        $stmt = $conn->prepare("INSERT INTO erdeklodo VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->execute(array($gen_jelszo, $vez_nev, $k_nev, $e_nev, $email, $hirlevel, $t_szam, $vall_neve));
         /* ********************************************** */
 
         echo "mail_ok";
@@ -83,8 +85,16 @@ if($_POST["feladat"] == "hozzaad") {
     /* *********************************************** */
 
     if($row_count != 0) {
+        $_SESSION['erd_jelszo'] = $kod;
         echo "kod_ok";
     } else {
         echo "kod_nem_ok";
+    }
+
+} else if($_POST["feladat"] == "session") {
+    if(!isset($_SESSION['erd_jelszo'])) {
+        echo "session_fail";
+    } else {
+        echo "session_ok";
     }
 }

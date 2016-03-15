@@ -61,6 +61,7 @@ try {
          ker_nev VARCHAR(25) NOT NULL,
          elonev VARCHAR(20),
          email VARCHAR(50) NOT NULL,
+         hirlevel BOOLEAN DEFAULT "1" NOT NULL,
          telefon VARCHAR(16),
          vallalat VARCHAR(40) NOT NULL,
          reg_datum TIMESTAMP NOT NULL
@@ -91,18 +92,12 @@ try {
          tesztId INT NOT NULL,
          FOREIGN KEY (tesztId) REFERENCES teszt(id) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
-      CREATE TABLE IF NOT EXISTS valaszlehetosegek (
-         melyik_helyes INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      CREATE TABLE IF NOT EXISTS valasz (
+         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
          kerdesId INT NOT NULL,
          val_lehetoseg VARCHAR(200) NOT NULL,
+         suly INT,
          FOREIGN KEY (kerdesId) REFERENCES kerdes(id) ON UPDATE CASCADE ON DELETE CASCADE
-      ) ENGINE=InnoDB CHARSET=utf8;
-      CREATE TABLE IF NOT EXISTS valasz (
-         melyik_helyes INT NOT NULL,
-         kerdesId INT NOT NULL,
-         PRIMARY KEY (melyik_helyes, kerdesId),
-         FOREIGN KEY (kerdesId) REFERENCES kerdes(id) ON UPDATE CASCADE ON DELETE CASCADE,
-         FOREIGN KEY (melyik_helyes) REFERENCES valaszlehetosegek(melyik_helyes) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
       CREATE TABLE IF NOT EXISTS kitolt (
          felhNev VARCHAR(20) NOT NULL,
@@ -114,6 +109,36 @@ try {
          PRIMARY KEY (felhNev, tesztId),
          FOREIGN KEY (felhNev) REFERENCES felhasznalo(felh_nev) ON UPDATE CASCADE ON DELETE CASCADE,
          FOREIGN KEY (tesztId) REFERENCES teszt(id) ON UPDATE CASCADE
+      ) ENGINE=InnoDB CHARSET=utf8;
+      CREATE TABLE IF NOT EXISTS gyteszt_kitolt (
+         sorszam INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+         email VARCHAR(50) NOT NULL,
+         tesztId INT NOT NULL,
+         raford_ido INT NOT NULL,
+         datum TIMESTAMP NOT NULL,
+         FOREIGN KEY (tesztId) REFERENCES teszt(id) ON UPDATE CASCADE
+      ) ENGINE=InnoDB CHARSET=utf8;
+      CREATE TABLE IF NOT EXISTS gyteszt_valaszok (
+         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+         kitoltId INT NOT NULL,
+         valaszId INT NOT NULL,
+         ertek INT(1) NOT NULL,
+         FOREIGN KEY (kitoltId) REFERENCES gyteszt_kitolt(sorszam) ON UPDATE CASCADE ON DELETE CASCADE,
+         FOREIGN KEY (valaszId) REFERENCES valasz(id) ON UPDATE CASCADE
+      ) ENGINE=InnoDB CHARSET=utf8;
+      CREATE TABLE IF NOT EXISTS aktivitas (
+         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+         nev VARCHAR(20) NOT NULL,
+         leiras VARCHAR(150),
+         suly INT NOT NULL
+      ) ENGINE=InnoDB CHARSET=utf8;
+      CREATE TABLE IF NOT EXISTS aktivitas_ertekek (
+         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+         aktivitasId INT NOT NULL,
+         felhNev VARCHAR(20) NOT NULL,
+         ertek BOOLEAN DEFAULT "0" NOT NULL,
+         FOREIGN KEY (aktivitasId) REFERENCES aktivitas(id) ON UPDATE CASCADE ON DELETE CASCADE,
+         FOREIGN KEY (felhNev) REFERENCES felhasznalo(felh_nev) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;';
 
     $conn->exec($query);

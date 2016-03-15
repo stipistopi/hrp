@@ -15,6 +15,25 @@ include 'includes/header.php';
                 },
                 show: { delay: 200 }
             });
+
+            $.ajax({
+                url: "demo_reg.php",
+                type: "POST",
+                data: {
+                    feladat: "session"
+                },
+                success: function(session) {
+                    if(session == "session_ok") {
+                        $("#also_resz").hide();
+                        $("#demo_login").hide();
+                        $("#lecke_vid").show();
+                    } else if(session == "session_fail") {
+                        $("#lecke_vid").hide();
+                        $("#also_resz").show();
+                        $("#demo_login").show();
+                    }
+                }
+            });
         });
     </script>
 
@@ -57,8 +76,8 @@ include 'includes/header.php';
         </div>
         <div class="content-right">
             <nav class="cl-effect-21 cl-effect-21-green"><a id="lecke_vid_link" class="popup-trigger"
-                                                            title="Tisztelt Érdeklődő!<br/><br/>A lecke videó megtekintéséhez egy rövid (és ingyenes) regisztráció szükséges. Kérem, kattintson az alsó linkre az űrlap megjelenítéséhez!"
-                                                            href="#lecke_vid_link">Lecke videó</a></nav>
+                                                            title="Tisztelt Érdeklődő!<br/><br/>A demó megtekintéséhez egy rövid (és ingyenes) regisztráció szükséges. Kérem, kattintson az alsó linkre az űrlap megjelenítéséhez!"
+                                                            href="#lecke_vid_link">Demó</a></nav>
         </div>
     </div>
     <div class="flexbox-container top-padding-10">
@@ -66,11 +85,6 @@ include 'includes/header.php';
             <div class="line-green"></div>
         </div>
         <div class="content-right" style="padding: 20px 0;">
-            <!-- lecke video helye -->
-            <div id="lecke_vid" style="display:none;">
-                <h2>Szíves türelmét kérjük, a videón még dolgozunk, de regisztrációja és kódja érvényes marad a későbbiekben is.</h2>
-            </div>
-            <!-- ----------------- -->
             <div class="erd_reg_ok" style="display:none;">
                 <h1>E-mail elküldve</h1>
                 <h2>Kódját elküldtük a megadott címre</h2>
@@ -87,6 +101,11 @@ include 'includes/header.php';
                 <h1>Hiba</h1>
                 <h2>Nem találtam ilyen kódot</h2>
             </div>
+            <!-- lecke video helye -->
+            <div id="lecke_vid" style="display:none;">
+                <h2>Szíves türelmét kérjük, a videón még dolgozunk, de regisztrációja és kódja érvényes marad a későbbiekben is.</h2>
+            </div>
+            <!-- ----------------- -->
             <form id="demo_login" style="margin-left: 3em;">
                 <fieldset>
                     <legend>Kód megadása</legend>
@@ -146,6 +165,11 @@ include 'includes/header.php';
                             <td>Vállalat/intézmény neve<span style="color: red;font-weight: bold;">*</span>:</td>
                             <td><input id="vall_neve" type="text" maxlength="40" pattern="[^\x22\x27\{\}\[\]\(\)]{3,40}"
                                        placeholder="Minta Bt." required></td>
+                        </tr>
+                        <tr>
+                            <td>Kérek hírlevelet az újdonságokról:
+                            </td>
+                            <td><input id="hirlevel" type="checkbox" checked></td>
                         </tr>
                         <tr>
                             <td>Adatkezelési szabályzat elfogadása<span style="color: red;font-weight: bold;">*</span>:
