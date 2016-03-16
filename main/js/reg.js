@@ -180,13 +180,14 @@ $(document).ready(function() {
                                 },
                                 dataType: 'json',
                                 success: function(cegEsTelephelyei) {
-                                    alert(cegEsTelephelyei[1]);
-                                    /*var i;
-                                    $("#vall_neve").val(cegEsTelephelyei[0]);
-                                    $("#vall_neve").prop("disabled", true);
-                                    for(i = 1; i < cegEsTelephelyei.length; i++) {
-                                        $("#vall_thely").append("<option>" + cegEsTelephelyei[i] + "</option>");
-                                    }*/
+                                    var vallalatNeveInput = $("#vall_neve");
+                                    vallalatNeveInput.val(cegEsTelephelyei["vallalat_neve"]);
+                                    vallalatNeveInput.prop("disabled", true);
+                                    var i;
+                                    for(i = 0; i < cegEsTelephelyei["vallalat_telephelyei"].length; i++) {
+                                        $("#vall_thely").append(
+                                            "<option>" + cegEsTelephelyei["vallalat_telephelyei"][i] + "</option>");
+                                    }
                                 }
                             });
                         });
