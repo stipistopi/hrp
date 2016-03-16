@@ -126,7 +126,7 @@ table.reg_kartya td, table.demo_kod td {
 }
 
 table.reg_kartya td input, table.demo_kod td input,
-table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email],
+table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email] {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
@@ -158,15 +158,21 @@ table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type
     border: 2px dashed rgba(137, 197, 64, 1);
 }*/
 
-div.kartya_ok, div.erd_reg_ok, div.kod_ok {
+div.kartya_ok, div.reg_ok, div.erd_reg_ok, div.kod_ok {
     background: url(../images/check48.png) no-repeat 10px 10px;
 }
 
-div.erd_reg_nem_ok, div.kod_nem_ok {
+div.erd_reg_nem_ok, div.kod_nem_ok, div.kartya_nem_ok,
+div.username_in_use, div.card_in_use, div.email_in_use {
     background: url(../images/error48.png) no-repeat 10px 10px;
 }
 
 div.kartya_ok h1, div.kartya_ok h2,
+div.kartya_nem_ok h1, div.kartya_nem_ok h2,
+div.reg_ok h1, div.reg_ok h2,
+div.username_in_use h1, div.username_in_use h2,
+div.card_in_use h1, div.card_in_use h2,
+div.email_in_use h1, div.email_in_use h2,
 div.erd_reg_ok h1, div.erd_reg_ok h2,
 div.erd_reg_nem_ok h1, div.erd_reg_nem_ok h2,
 div.kod_ok h1, div.kod_ok h2,
@@ -177,6 +183,11 @@ div.kod_nem_ok h1, div.kod_nem_ok h2 {
 }
 
 div.kartya_ok h2,
+div.kartya_nem_ok h2,
+div.reg_ok h2,
+div.username_in_use h2,
+div.card_in_use h2,
+div.email_in_use h2,
 div.erd_reg_ok h2,
 div.erd_reg_nem_ok h2,
 div.kod_ok h2,

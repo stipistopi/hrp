@@ -102,7 +102,7 @@ $(document).ready(function() {
                         $("#also_resz").fadeOut(1200);
                         $("#demo_login").fadeOut(1200, function() {
                             $("#lecke_vid").fadeIn(1200, function() {
-                                $(this).css("display", "block");
+                                //$(this).css("display", "block");
                                 //$("#uresresz").css("padding", "40px 0");
                             });
                         });

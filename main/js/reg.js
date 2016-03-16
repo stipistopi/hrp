@@ -3,6 +3,7 @@ $(document).ready(function() {
     var val_accept = "2px dashed rgba(137, 197, 64, 1)";
     var val_default = "1px dashed #DBDBDB";
     var val_default_focus = "1px dashed #969696";
+    var kartya = $("#kartya");
 
     $("input:submit").click(function() {
         if($("#form-main-reg").is(":valid")) {
@@ -10,6 +11,7 @@ $(document).ready(function() {
                 url: "reg_ajax.php",
                 type: "POST",
                 data: {
+                    feladat: "hozzaad",
                     kartyaId: $("#kartya").val(),
                     vez_nev: $("#vez_nev").val(),
                     ker_nev: $("#k_nev").val(),
@@ -24,11 +26,97 @@ $(document).ready(function() {
                 success: function(ret) {
                     //console.log(ret);
                     if(ret == "registration_succeeded") {
-                        // uzenet megjelenitese
-                        // a regisztacio sikerult, lehet bejelentkezni
+                        $.blockUI({
+                            message: $('div.reg_ok'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
+                    } else if(ret == "username_in_use") {
+                        $.blockUI({
+                            message: $('div.username_in_use'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
+                    } else if(ret == "card_in_use") {
+                        $.blockUI({
+                            message: $('div.card_in_use'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
                     } else if(ret == "email_in_use") {
-                        // uzenet megjelenitese
-                        // a beirt email cim mar hasznalatban van
+                        $.blockUI({
+                            message: $('div.email_in_use'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
                     } else {
                         // uzenet megjelenitese
                         // ismeretlen hiba tortent, a cucc ertesitette a fejlesztoket (ezt kesobb megoldjuk),
@@ -39,43 +127,100 @@ $(document).ready(function() {
         }
     });
 
-    $("#kartya").keyup(function() {
+    kartya.keyup(function() {
 
         // itt kérdezzük le az adatbázisból a kártyaszámot...
         // ha minden jól megy, nyitjuk a regisztrációs formot,
         // ezt jelezzük a jobb felső sarokban,
         // és eltüntetjük az üres részt a lap aljáról
 
-        if($(this).val().length > 5) {
-            $(this).css(attr, val_accept); // ha az ajax sikeresen azonosította a kártyát, csak akkor zöldüljön ki
+        if($(this).val().length == 10) {
+            $.ajax({
+                url: "reg_ajax.php",
+                type: "POST",
+                data: {
+                    feladat: "keres",
+                    kartya: $(this).val()
+                },
+                success: function(ret) {
+                    if(ret == "kartya_ok") {
+                        kartya.css(attr, val_accept); // ha az ajax sikeresen azonosította a kártyát, csak akkor zöldüljön ki
 
-            $(this).prop("disabled", true); // ha az ajax sikeresen azonosította a kártyát, akkor legyen disabled
+                        kartya.prop("disabled", true); // ha az ajax sikeresen azonosította a kártyát, akkor legyen disabled
 
-            $.blockUI({
-                message: $('div.kartya_ok'),
-                fadeIn: 700,
-                fadeOut: 700,
-                timeout: 2500,
-                showOverlay: false,
-                centerY: false,
-                css: {
-                    width: '450px',
-                    top: '10px',
-                    left: '',
-                    right: '10px',
-                    border: 'none',
-                    padding: '5px',
-                    backgroundColor: '#000',
-                    'border-radius': '10px',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .7,
-                    color: '#fff'
+                        $.blockUI({
+                            message: $('div.kartya_ok'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
+
+                        $(".reg").fadeIn(1200, function() {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'ceg_ajax.php',
+                                data: {
+                                    kartya: kartya.val()
+                                },
+                                dataType: 'json',
+                                success: function(cegEsTelephelyei) {
+                                    alert(cegEsTelephelyei[1]);
+                                    /*var i;
+                                    $("#vall_neve").val(cegEsTelephelyei[0]);
+                                    $("#vall_neve").prop("disabled", true);
+                                    for(i = 1; i < cegEsTelephelyei.length; i++) {
+                                        $("#vall_thely").append("<option>" + cegEsTelephelyei[i] + "</option>");
+                                    }*/
+                                }
+                            });
+                        });
+                        $("#uresresz").css("padding", "20px 0");
+                    } else if(ret == "kartya_nem_ok") {
+                        $.blockUI({
+                            message: $('div.kartya_nem_ok'),
+                            fadeIn: 700,
+                            fadeOut: 700,
+                            timeout: 2500,
+                            showOverlay: false,
+                            centerY: false,
+                            css: {
+                                width: '450px',
+                                top: '10px',
+                                left: '',
+                                right: '10px',
+                                border: 'none',
+                                padding: '5px',
+                                backgroundColor: '#000',
+                                'border-radius': '10px',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .7,
+                                color: '#fff'
+                            }
+                        });
+                    } else {
+                        // uzenet megjelenitese
+                        // ismeretlen hiba tortent, a cucc ertesitette a fejlesztoket (ezt kesobb megoldjuk),
+                        // dolgozunk a hiba elharitasan, stb.
+                    }
                 }
             });
-
-            $(".reg").fadeIn(1200);
-            $("#uresresz").css("padding", "20px 0");
         } else {
             $(this).css(attr, val_default);
             $(this).focus().css(attr, val_default_focus);

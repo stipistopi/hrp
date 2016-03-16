@@ -30,7 +30,7 @@ try {
          FOREIGN KEY (cegId) REFERENCES ceg(id) ON UPDATE CASCADE ON DELETE CASCADE
       ) ENGINE=InnoDB CHARSET=utf8;
       CREATE TABLE IF NOT EXISTS kartya (
-         kartya_id CHAR(15) PRIMARY KEY NOT NULL,
+         kartya_id INT(10) PRIMARY KEY NOT NULL,
          cegId INT NOT NULL,
          aktiv BOOLEAN DEFAULT "0" NOT NULL,
          kezdo_nap DATE,
@@ -40,7 +40,7 @@ try {
       CREATE TABLE IF NOT EXISTS felhasznalo (
          email VARCHAR(50) PRIMARY KEY NOT NULL,
          felh_nev VARCHAR(20) UNIQUE NOT NULL,
-         kartyaId CHAR(15),
+         kartyaId INT(10),
          jelszo VARCHAR(20) NOT NULL,
          vez_nev VARCHAR(25) NOT NULL,
          ker_nev VARCHAR(25) NOT NULL,

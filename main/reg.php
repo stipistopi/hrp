@@ -20,9 +20,29 @@ include 'includes/header.php';
             <div class="line-magenta"></div>
         </div>
         <div class="content-right">
-            <div class="kartya_ok" style="display:none">
-                <h1>Kártya azonosítva</h1>
-                <h2>A rendszer sikeresen azonosította kártyaszámát!</h2>
+            <div class="kartya_ok" style="display:none;">
+                <h1>Kártya azonosítva!</h1>
+                <h2>A rendszer sikeresen azonosította kártyaszámát</h2>
+            </div>
+            <div class="kartya_nem_ok" style="display:none;">
+                <h1>Kártya azonosítása sikertelen!</h1>
+                <h2>Vagy nincs ilyen kártya, vagy nem aktiválták még</h2>
+            </div>
+            <div class="reg_ok" style="display:none;">
+                <h1>Sikeres regisztráció!</h1>
+                <h2>E-mail elküldve; beléphet a rendszerbe</h2>
+            </div>
+            <div class="username_in_use" style="display:none;">
+                <h1>Sikertelen regisztráció!</h1>
+                <h2>Ezzel a felhasználónévvel már regisztráltak</h2>
+            </div>
+            <div class="card_in_use" style="display:none;">
+                <h1>Sikertelen regisztráció!</h1>
+                <h2>Ezzel a kártyaszámmal már regisztráltak</h2>
+            </div>
+            <div class="email_in_use" style="display:none;">
+                <h1>Sikertelen regisztráció!</h1>
+                <h2>Ezzel az e-mail címmel már regisztráltak</h2>
             </div>
             <form id="form-main-reg" style="margin-left: 5em" onsubmit="return false;">
                 <fieldset>
@@ -30,7 +50,7 @@ include 'includes/header.php';
                     <table class="reg_kartya">
                         <tr>
                             <td>Plasztik kártya száma:</td>
-                            <td><input id="kartya" type="text" placeholder="Kezdjen el gépelni..." required autofocus>
+                            <td><input id="kartya" type="text" maxlength="10" pattern="[0-9]{1,10}" placeholder="Kezdjen el gépelni..." required autofocus>
                             </td>
                         </tr>
                     </table>
@@ -82,9 +102,12 @@ include 'includes/header.php';
                         </tr>
                         <tr>
                             <td>Vállalat/intézmény telephelye:</td>
-                            <td><input id="vall_thely" type="text" maxlength="50"
+                            <td><select id="vall_thely"></select></td>
+                            <!-- AZ ADMIN FELÜLETBE ÁTVENNI:
+                            <input id="vall_thely" type="text" maxlength="50"
                                        pattern="[^\x22\x27\{\}\[\]\(\)]{3,50}"
-                                       placeholder="1111, Budapest, Ötletes u. 4."></td>
+                                       placeholder="1111, Budapest, Ötletes u. 4.">
+                            -->
                         </tr>
                         <tr>
                             <td colspan="2" align="center" style="background-color: rgba(1, 1, 1, 0.2)">Lakhely</td>

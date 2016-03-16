@@ -86,19 +86,19 @@ include 'includes/header.php';
         </div>
         <div class="content-right" style="padding: 20px 0;">
             <div class="erd_reg_ok" style="display:none;">
-                <h1>E-mail elküldve</h1>
+                <h1>E-mail elküldve!</h1>
                 <h2>Kódját elküldtük a megadott címre</h2>
             </div>
             <div class="erd_reg_nem_ok" style="display:none;">
-                <h1>Hiba</h1>
+                <h1>Hiba!</h1>
                 <h2>Ezzel az e-mail címmel már igényeltek kódot</h2>
             </div>
             <div class="kod_ok" style="display:none;">
-                <h1>Kód elfogadva</h1>
+                <h1>Kód elfogadva!</h1>
                 <h2>Videó betöltése...</h2>
             </div>
             <div class="kod_nem_ok" style="display:none;">
-                <h1>Hiba</h1>
+                <h1>Hiba!</h1>
                 <h2>Nem találtam ilyen kódot</h2>
             </div>
             <!-- lecke video helye -->
