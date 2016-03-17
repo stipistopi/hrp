@@ -8,10 +8,9 @@ $(document).ready(function() {
     $("input:submit").click(function() {
         if($("#form-main-reg").is(":valid")) {
             $.ajax({
-                url: "reg_ajax.php",
+                url: "ajax/user_register.php",
                 type: "POST",
                 data: {
-                    feladat: "hozzaad",
                     kartyaId: $("#kartya").val(),
                     vez_nev: $("#vez_nev").val(),
                     ker_nev: $("#k_nev").val(),
@@ -136,10 +135,9 @@ $(document).ready(function() {
 
         if($(this).val().length == 10) {
             $.ajax({
-                url: "reg_ajax.php",
+                url: "ajax/card_validate.php",
                 type: "POST",
                 data: {
-                    feladat: "keres",
                     kartya: $(this).val()
                 },
                 success: function(ret) {
@@ -174,7 +172,7 @@ $(document).ready(function() {
                         $(".reg").fadeIn(1200, function() {
                             $.ajax({
                                 type: 'POST',
-                                url: 'ceg_ajax.php',
+                                url: 'ajax/get_company_data.php',
                                 data: {
                                     kartya: kartya.val()
                                 },

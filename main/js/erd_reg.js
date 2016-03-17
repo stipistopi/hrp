@@ -27,10 +27,9 @@ $(document).ready(function() {
             if($("#hirlevel").is(":checked")) hirlevel = 1; else hirlevel = 0;
 
             $.ajax({
-                url: "demo_reg.php",
+                url: "ajax/demo_register.php",
                 type: "POST",
                 data: {
-                    feladat: "hozzaad",
                     vez_nev: $("#vez_nev").val(),
                     k_nev: $("#k_nev").val(),
                     e_nev: $("#e_nev").val(),
@@ -88,10 +87,9 @@ $(document).ready(function() {
 
         if($(this).val().length == 10) {
             $.ajax({
-                url: "demo_reg.php",
+                url: "ajax/demo_code_validate.php",
                 type: "POST",
                 data: {
-                    feladat: "keres",
                     kod: $(this).val()
                 },
                 success: function(siker) {
