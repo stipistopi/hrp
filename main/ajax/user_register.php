@@ -46,6 +46,8 @@ if ($row_count == 0 && $row_count2 == 0 && $row_count3 == 0) {
     mail($to, $subject, $message, $headers);
     /* *********************************************** */
 
+    $hash = password_hash($jelszo, PASSWORD_BCRYPT, ['cost' => 10]);
+
     $stmt = $conn->prepare("INSERT INTO felhasznalo (email, felh_nev, kartyaId, jelszo, vez_nev, ker_nev, elonev,
                               telefon, lakhely_varos, lakhely_varosresz)
                             VALUES (:email, :felh_nev, :kartyaId, :jelszo, :vez_nev, :ker_nev, :elonev,
@@ -53,7 +55,7 @@ if ($row_count == 0 && $row_count2 == 0 && $row_count3 == 0) {
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':felh_nev', $felh_nev);
     $stmt->bindParam(':kartyaId', $kartyaId);
-    $stmt->bindParam(':jelszo', $jelszo);
+    $stmt->bindParam(':jelszo', $hash);
     $stmt->bindParam(':vez_nev', $vez_nev);
     $stmt->bindParam(':ker_nev', $ker_nev);
     $stmt->bindParam(':elonev', $elonev);
