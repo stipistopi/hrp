@@ -125,6 +125,11 @@ table.gyteszt_alja td.gyta_elso {
     padding-bottom: .5em;
 }
 
+table.gyteszt_nav td {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
 table.reg_kartya td, table.demo_kod td {
     /*margin-left: 2em;*/
     padding: 1.5em;
@@ -217,8 +222,8 @@ div#also_link:hover {
     display:inline-block; /* ehelyett lett alkalmazva: float:left; */
     margin:0 30px 0 0;
     padding:5px;
-    width:35px;
-    height:20px;
+    width:25px;
+    height:25px;
     position:relative;
 }
 
@@ -232,7 +237,7 @@ div#also_link:hover {
 
 .gyteszt_gombok input[type="radio"] {
     opacity:0.011;
-    z-index:100;
+    z-index:90;
 }
 
 #gy_g1 input[type="radio"]:checked + label {
@@ -253,8 +258,9 @@ div#also_link:hover {
 
 .gyteszt_gombok label {
     border:1px solid #CCC;
+    border-radius: 50%;
     cursor:pointer;
-    z-index:90;
+    z-index:100;
     /* font-size: js által beállítva; */
     overflow: hidden;
     text-align:center;

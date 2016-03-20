@@ -1,5 +1,4 @@
 <?php
-$active = "reg";
 $color = "green";
 include 'includes/header.php';
 include 'includes/configHRP.php';
@@ -26,11 +25,11 @@ include 'includes/configHRP.php';
                 <h2>A rendszer sikeresen azonosította kártyaszámát</h2>
             </div>
             <fieldset>
-                <legend align="center">Gyorsteszt</legend>
+                <legend id="curr_state" align="center">Gyorsteszt (1/4)</legend>
                     <form id="form-gyteszt" onsubmit="return false;">
                         <?php
                         for($kerdes_i=1; $kerdes_i<=4; $kerdes_i++) {
-                            echo "<fieldset>";
+                            if($kerdes_i != 1) echo "<fieldset id='f$kerdes_i' style='display: none'>"; else echo "<fieldset id='f$kerdes_i'>";
                             if($kerdes_i == 1) echo "<legend>JÖVŐKÉP, LEGFONTOSABB FELADATOK</legend>";
                             if($kerdes_i == 2) echo "<legend>DOLGOZÓI EGYÜTTMŰKÖDÉSI PROFIL</legend>";
                             if($kerdes_i == 3) echo "<legend>A DOLGOZÓK ALAPÁLLAPOTA, RENDELKEZÉSRE ÁLLÁSA</legend>";
@@ -53,10 +52,16 @@ include 'includes/configHRP.php';
                                 if($valasz_i != 5) echo "<hr>";
                             }
                             echo "</fieldset>";
-                            if($kerdes_i != 4) echo "<div style=\"height:40px;\"></div>";
+                            //if($kerdes_i != 4) echo "<div style=\"height:20px;\"></div>";
                         }
                         ?>
-                        <table class="gyteszt_alja" width="100%">
+                        <table class="gyteszt_nav" width="100%">
+                            <tr>
+                                <td align="center"><button type="button" id="prev" disabled>Vissza</button></td>
+                                <td align="center"><button type="button" id="next">Tovább</button></td>
+                            </tr>
+                        </table>
+                        <table class="gyteszt_alja" width="100%" style="display: none;">
                             <tr>
                                 <td class="gyta_elso">E-mail cím<span style="color: red;font-weight: bold;">*</span>:</td>
                                 <td class="gyta_elso"><input id="e-mail" type="text" maxlength="50"
