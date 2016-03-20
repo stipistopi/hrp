@@ -115,8 +115,13 @@ html, body {
     padding: 0 0 10px 0;
 }
 
-table.reg td, table.erdeklodo_reg td {
+table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso) {
     padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+table.gyteszt_alja td.gyta_elso {
+    padding-top: 2em;
     padding-bottom: .5em;
 }
 
@@ -127,7 +132,7 @@ table.reg_kartya td, table.demo_kod td {
 
 table.reg_kartya td input, table.demo_kod td input,
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
-table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email] {
+table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
     display: block;
@@ -146,7 +151,7 @@ table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=passw
 
 table.reg_kartya td input:focus, table.demo_kod td input:focus,
 table.reg td input[type=text]:focus, table.reg td input[type=password]:focus, table.reg td input[type=email]:focus,
-table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type=password]:focus, table.erdeklodo_reg td input[type=email]:focus {
+table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type=password]:focus, table.erdeklodo_reg td input[type=email]:focus, table.gyteszt_alja tr td input#e-mail:focus {
     background: #F7F7F7;
     border: dashed 1px #969696;
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
@@ -197,4 +202,68 @@ div.kod_nem_ok h2 {
 
 div#also_link:hover {
     color: blue;
+}
+
+
+/* CSS FOR GYTESZT.PHP */
+
+.gyteszt_gombok {
+    list-style-type:none;
+    padding:0;
+    text-align:center;
+}
+
+.gyteszt_gombok li {
+    display:inline-block; /* ehelyett lett alkalmazva: float:left; */
+    margin:0 30px 0 0;
+    padding:5px;
+    width:35px;
+    height:20px;
+    position:relative;
+}
+
+.gyteszt_gombok label, .gyteszt_gombok input {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.gyteszt_gombok input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+
+#gy_g1 input[type="radio"]:checked + label {
+    background:yellow;
+}
+
+#gy_g2 input[type="radio"]:checked + label {
+    background:rgb(252, 144, 36);
+}
+
+#gy_g3 input[type="radio"]:checked + label {
+    background:#89c540;
+}
+
+#gy_g4 input[type="radio"]:checked + label {
+    background:lightblue;
+}
+
+.gyteszt_gombok label {
+    border:1px solid #CCC;
+    cursor:pointer;
+    z-index:90;
+    /* font-size: js által beállítva; */
+    overflow: hidden;
+    text-align:center;
+}
+
+.gyteszt_gombok label:hover {
+    background:#DDD;
+}
+
+#form-gyteszt {
+    padding: 1em;
 }
