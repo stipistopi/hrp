@@ -1,12 +1,13 @@
 <?php
 
 try {
-    $dsn = 'mysql:dbname=hrp_interaktiv;host=localhost';
+    $dsn = 'mysql:dbname=hrp_interaktiv;host=localhost;charset=utf8';
     $username = 'hrp-interaktiv.h';
     $password = base64_decode("WDdhV0k0TVQ");
 
     $conn = new PDO($dsn, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Error handling
+    $conn->exec("set names utf8");
 
     /*
     $query = 'CREATE TABLE IF NOT EXISTS szerepkor (
