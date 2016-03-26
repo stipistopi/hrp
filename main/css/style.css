@@ -58,6 +58,8 @@ html, body {
 }
 
 .circle-orange {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     box-sizing: border-box;
     border: 5px rgb(252, 144, 36) solid;
@@ -66,6 +68,8 @@ html, body {
 }
 
 .circle-green {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     box-sizing: border-box;
     border: 5px #89c540 solid;
@@ -74,6 +78,8 @@ html, body {
 }
 
 .circle-magenta {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     box-sizing: border-box;
     border: 5px #900090 solid;
@@ -168,12 +174,12 @@ table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type
     border: 2px dashed rgba(137, 197, 64, 1);
 }*/
 
-div.kartya_ok, div.reg_ok, div.erd_reg_ok, div.kod_ok {
+div.kartya_ok, div.reg_ok, div.erd_reg_ok, div.kod_ok, div.gyteszt_ok {
     background: url(../images/check48.png) no-repeat 10px 10px;
 }
 
 div.erd_reg_nem_ok, div.kod_nem_ok, div.kartya_nem_ok,
-div.username_in_use, div.card_in_use, div.email_in_use {
+div.username_in_use, div.card_in_use, div.email_in_use, div.gyteszt_nem_ok, div.gyteszt_uj {
     background: url(../images/error48.png) no-repeat 10px 10px;
 }
 
@@ -186,7 +192,10 @@ div.email_in_use h1, div.email_in_use h2,
 div.erd_reg_ok h1, div.erd_reg_ok h2,
 div.erd_reg_nem_ok h1, div.erd_reg_nem_ok h2,
 div.kod_ok h1, div.kod_ok h2,
-div.kod_nem_ok h1, div.kod_nem_ok h2 {
+div.kod_nem_ok h1, div.kod_nem_ok h2,
+div.gyteszt_ok h1, div.gyteszt_ok h2,
+div.gyteszt_nem_ok h1, div.gyteszt_nem_ok h2,
+div.gyteszt_uj h1, div.gyteszt_uj h2 {
     color: white;
     padding: 5px 5px 5px 75px;
     text-align: left;
@@ -201,7 +210,10 @@ div.email_in_use h2,
 div.erd_reg_ok h2,
 div.erd_reg_nem_ok h2,
 div.kod_ok h2,
-div.kod_nem_ok h2 {
+div.kod_nem_ok h2,
+div.gyteszt_ok h2,
+div.gyteszt_nem_ok h2,
+div.gyteszt_uj h2 {
     font-size: medium;
 }
 
@@ -258,6 +270,8 @@ div#also_link:hover {
 
 .gyteszt_gombok label {
     border:1px solid #CCC;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     cursor:pointer;
     z-index:100;
@@ -272,4 +286,35 @@ div#also_link:hover {
 
 #form-gyteszt {
     padding: 1em;
+}
+
+legend#leg1, legend#leg2, legend#leg3, legend#leg4 {
+    padding: 0.2em 0.5em;
+    border: 1px solid black;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    font-size: 90%;
+}
+
+legend#leg1 {
+    background: yellow;
+}
+
+legend#leg2 {
+    background: rgb(252, 144, 36);
+}
+
+legend#leg3 {
+    background: #89c540;
+}
+
+legend#leg4 {
+    background: lightblue;
+}
+
+#main_fieldset {
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
 }
