@@ -1,16 +1,6 @@
 <?php
 include '../includes/configHRP.php';
 
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
 $vez_nev = $_POST["vez_nev"];
 $k_nev = $_POST["k_nev"];
 $e_nev = $_POST["e_nev"];

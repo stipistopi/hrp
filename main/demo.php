@@ -8,6 +8,8 @@ include 'includes/header.php';
     <script type="text/javascript" src="js/erd_reg.js"></script>
     <script>
         $(function() {
+            $("html, body").scrollTop(0);           // oldal tetejére (teszteltük, és néhány esetben lentebb kezdi)
+
             $(document).tooltip({
                 track: true,                        // a tooltip követi az egérmozgást
                 content: function() {               // sortötés a tooltip-en belül

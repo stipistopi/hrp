@@ -20,20 +20,28 @@ include 'includes/configHRP.php';
             <div class="line-green"></div>
         </div>
         <div class="content-right">
-            <div class="kartya_ok" style="display:none;">
-                <h1>Kártya azonosítva!</h1>
-                <h2>A rendszer sikeresen azonosította kártyaszámát</h2>
+            <div class="gyteszt_ok" style="display:none;">
+                <h1>E-mail elküldve!</h1>
+                <h2>Kiértékelt tesztjét e-mailben elküldtük</h2>
             </div>
-            <fieldset>
+            <div class="gyteszt_nem_ok" style="display:none;">
+                <h1>Küldés sikertelen!</h1>
+                <h2>Kérjük, minden választ adjon meg!</h2>
+            </div>
+            <div class="gyteszt_uj" style="display:none;">
+                <h1>Hiba!</h1>
+                <h2>Már kiértékeltük a tesztjét</h2>
+            </div>
+            <fieldset id="main_fieldset">
                 <legend id="curr_state" align="center">Gyorsteszt (1/4)</legend>
                     <form id="form-gyteszt" onsubmit="return false;">
                         <?php
                         for($kerdes_i=1; $kerdes_i<=4; $kerdes_i++) {
                             if($kerdes_i != 1) echo "<fieldset id='f$kerdes_i' style='display: none'>"; else echo "<fieldset id='f$kerdes_i'>";
-                            if($kerdes_i == 1) echo "<legend>JÖVŐKÉP, LEGFONTOSABB FELADATOK</legend>";
-                            if($kerdes_i == 2) echo "<legend>DOLGOZÓI EGYÜTTMŰKÖDÉSI PROFIL</legend>";
-                            if($kerdes_i == 3) echo "<legend>A DOLGOZÓK ALAPÁLLAPOTA, RENDELKEZÉSRE ÁLLÁSA</legend>";
-                            if($kerdes_i == 4) echo "<legend>PÉNZÜGYI ÉS PIACI EREDMÉNYESSÉG</legend>";
+                            if($kerdes_i == 1) echo "<legend id='leg1'>JÖVŐKÉP, LEGFONTOSABB FELADATOK</legend>";
+                            if($kerdes_i == 2) echo "<legend id='leg2'>DOLGOZÓI EGYÜTTMŰKÖDÉSI PROFIL</legend>";
+                            if($kerdes_i == 3) echo "<legend id='leg3'>A DOLGOZÓK ALAPÁLLAPOTA, RENDELKEZÉSRE ÁLLÁSA</legend>";
+                            if($kerdes_i == 4) echo "<legend id='leg4'>PÉNZÜGYI ÉS PIACI EREDMÉNYESSÉG</legend>";
                             $stmt = $conn->prepare("SELECT kerdes FROM kerdes WHERE id=?");
                             $stmt->execute(array($kerdes_i));
                             $row = $stmt->fetchColumn();
@@ -44,8 +52,9 @@ include 'includes/configHRP.php';
                                 $row = $stmt->fetchColumn();
                                 echo "<h4>" . $row . "</h4>";
                                 for($gomb_i = 1; $gomb_i <= 5; $gomb_i++) {
+                                    if($kerdes_i == 1) $gomb_val = $gomb_i; else $gomb_val = 6 - $gomb_i;
                                     if($gomb_i == 1) echo "<ul id='gy_g$kerdes_i' class=\"gyteszt_gombok\">";
-                                    echo "<li><input type=\"radio\" id=\"v".$kerdes_i."_".$valasz_i."_".$gomb_i."\" name=\"csop".$kerdes_i."_".$valasz_i."\" value=\"$gomb_i\" required />";
+                                    echo "<li><input type=\"radio\" id=\"v".$kerdes_i."_".$valasz_i."_".$gomb_i."\" name=\"csop".$kerdes_i."_".$valasz_i."\" value=\"$gomb_val\" required />";
                                     echo "<label for=\"v".$kerdes_i."_".$valasz_i."_".$gomb_i."\">$gomb_i</label>";
                                     if($gomb_i == 5) echo "</li></ul>"; else echo "</li>";
                                 }
