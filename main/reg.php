@@ -44,7 +44,7 @@ include 'includes/header.php';
                 <h1>Sikertelen regisztráció!</h1>
                 <h2>Ezzel az e-mail címmel már regisztráltak</h2>
             </div>
-            <form id="form-main-reg" style="margin-left: 5em" onsubmit="return false;">
+            <form id="form-main-reg" style="margin-left: 5em;" onsubmit="return false;">
                 <fieldset>
                     <legend>Regisztráció adatai</legend>
                     <table class="reg_kartya">

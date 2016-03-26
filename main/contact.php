@@ -3,6 +3,11 @@ $active = "contact";
 include 'includes/header.php';
 ?>
 
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
+
     <div class="flexbox-container">
         <div class="content-left">
             <div class="line-green"></div>
@@ -31,7 +36,54 @@ include 'includes/header.php';
         <div class="content-left">
             <div class="line-green"></div>
         </div>
-        <div class="content-right"><p>E-mail: info@egeszsegholding.hu</p></div>
+        <div class="content-right">
+            <div class="contact_ok" style="display:none;">
+                <h1>E-mail elküldve</h1>
+                <h2>Köszönjük! Hamarosan visszajelzünk</h2>
+            </div>
+            <div class="contact_uj" style="display:none;">
+                <h1>Hiba!</h1>
+                <h2>Az e-mailt már elküldtük</h2>
+            </div>
+            <p><button type="button" id="contact_mail">Üzenjen nekünk!</button></p>
+            <fieldset id="contact_fieldset" style="display: none;width: 80%;margin:auto;">
+                <legend align="center">Kapcsolatfelvétel</legend>
+                <form id="contact_form" onsubmit="return false;">
+                    <table width="100%">
+                        <tr>
+                            <td>Címzett<span style="color: red;font-weight: bold;">*</span>:</td>
+                            <td>
+                                <select id="contact_select">
+                                    <option value="1">Általános ügyfélszolgálat</option>
+                                    <option value="2">Vezetőség</option>
+                                    <option value="3">Fejlesztők</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tárgy<span style="color: red;font-weight: bold;">*</span>:</td>
+                            <td>
+                                <input id="email_targy" type="text" maxlength="40" pattern="[^\x22\x27\{\}\[\]\(\)]{3,40}"
+                                       placeholder="A levél tárgya" required>
+                            </td>
+                        <tr>
+                            <td>Üzenet<span style="color: red;font-weight: bold;">*</span>:</td>
+                            <td>
+                                <textarea id="contact_uzi" rows="4" style="width:100%;resize:vertical;" maxlength="500" placeholder="Üzenet szövege..." required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center"><input type="submit" value="Küldés"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 80%">A <span
+                                    style="color: red;font-weight: bold;">*</span>-al jelölt mezők kitöltése kötelező.
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </fieldset>
+        </div>
     </div>
     <div class="flexbox-container">
         <div class="content-left">
