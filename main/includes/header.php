@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -22,7 +23,7 @@
             <li style="float:right;">
                 <ul style="list-style-type:none;">
                     <li><a class="<?php if ($active == 'reg') echo 'active'; ?>" href="reg.php">Regisztráció</a></li>
-                    <li><a class="<?php if ($active == 'login') echo 'active'; ?>" href="#">Bejelentkezés</a></li>
+                    <li><a class="<?php if ($active == 'login') echo 'active'; ?>" href="login.php">Bejelentkezés</a></li>
                 </ul>
             </li>
         </ul>
