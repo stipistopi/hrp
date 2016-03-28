@@ -4,12 +4,10 @@ $color = "magenta";
 include 'includes/header.php';
 ?>
 
-<?php if (!isset($_SESSION["is_auth"])): ?>
-    A lecke oldal eléréséhez bejelentkezés szükséges.
-<?php
-    include 'includes/footer.php';
+<?php if (!isset($_SESSION["is_auth"])) {
+    header('location: login.php?msg=1');
     exit;
-endif;
+}
 ?>
 
 <script type="text/javascript" src="../js/jquery.min.js"></script>

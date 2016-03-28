@@ -21,18 +21,19 @@ if (isset($_POST['login-submit'])) {
                 if (!isset($_SESSION))
                     session_start();
                 $_SESSION['is_auth'] = true;
-                header('location: about.php'); // lecke?
-                $error = "Sikeres bejelentkezés.";
+                header('location: lecke.php');
                 exit;
             } else {
-                $error = "Hibás e-mail cím vagy jelszó.";
+                $message = "Hibás e-mail cím vagy jelszó.";
             }
         } else {
-            $error = "Hibás e-mail cím vagy jelszó.";
+            $message = "Hibás e-mail cím vagy jelszó.";
         }
     } else {
-        $error = "Kérjük írjon be egy felhasználónevet és jelszót.";
+        $message = "Kérjük, írjon be egy felhasználónevet és jelszót.";
     }
+} else if (!empty($_GET['msg'])) {
+    $message = "Az interaktív program eléréséhez bejelentkezés szükséges.";
 }
 
 include 'includes/header.php';
@@ -41,9 +42,8 @@ include 'includes/header.php';
 <form method="post" action="">
     <div>
         <?php
-        if (isset($error)) {
-            echo "<div class='errormsg'>$error</div>";
-        }
+        if (isset($message))
+            echo "<div class='msg'>$message</div>";
         ?>
         <div>
             <label for="email">E-mail:</label>
@@ -59,3 +59,7 @@ include 'includes/header.php';
         </div>
     </div>
 </form>
+
+<?php
+include 'includes/footer.php';
+?>
