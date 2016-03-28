@@ -41,6 +41,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; /* Chrome flex child height bug workaround */
 }
 
 .content-right {
@@ -103,6 +104,14 @@ html, body {
     width: 50px;
     background-color: #900090;
     height: 100%;
+}
+
+.line-orange, .line-green, .line-magenta {
+    /* Chrome flex child height bug workaround */
+    position: absolute;
+    top: 0;
+    right: 33px;
+    /* End of workaround */
 }
 
 .vertical-padding-5 {
