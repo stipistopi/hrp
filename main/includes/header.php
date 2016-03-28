@@ -22,8 +22,12 @@
             <li><a class="<?php if ($active == 'career') echo 'active'; ?>" href="career.php">Karrier</a></li>
             <li style="float:right;">
                 <ul style="list-style-type:none;">
-                    <li><a class="<?php if ($active == 'reg') echo 'active'; ?>" href="reg.php">Regisztráció</a></li>
-                    <li><a class="<?php if ($active == 'login') echo 'active'; ?>" href="login.php">Bejelentkezés</a></li>
+                    <?php if (!isset($_SESSION["is_auth"])): ?>
+                        <li><a class="<?php if ($active == 'reg') echo 'active'; ?>" href="reg.php">Regisztráció</a></li>
+                        <li><a class="<?php if ($active == 'login') echo 'active'; ?>" href="login.php">Bejelentkezés</a></li>
+                    <?php else: ?>
+                        <li><a href="logout.php">Kijelentkezés</a></li>
+                    <?php endif ?>
                 </ul>
             </li>
         </ul>

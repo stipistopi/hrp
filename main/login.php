@@ -1,7 +1,6 @@
 <?php
 $active = "login";
 
-include 'includes/header.php';
 include 'includes/configHRP.php';
 
 if (isset($_POST['login-submit'])) {
@@ -19,10 +18,12 @@ if (isset($_POST['login-submit'])) {
 
         if ($hash) {
             if (password_verify($password, $hash)) {
+                if (!isset($_SESSION))
+                    session_start();
                 $_SESSION['is_auth'] = true;
-                //header('location: index.php');
+                header('location: about.php'); // lecke?
                 $error = "Sikeres bejelentkezés.";
-                //exit;
+                exit;
             } else {
                 $error = "Hibás e-mail cím vagy jelszó.";
             }
@@ -33,6 +34,8 @@ if (isset($_POST['login-submit'])) {
         $error = "Kérjük írjon be egy felhasználónevet és jelszót.";
     }
 }
+
+include 'includes/header.php';
 ?>
 
 <form method="post" action="">
