@@ -174,7 +174,7 @@ include 'includes/header.php';
                             <td><input id="hirlevel" type="checkbox" checked></td>
                         </tr>
                         <tr>
-                            <td>Adatkezelési szabályzat elfogadása<span style="color: red;font-weight: bold;">*</span>:
+                            <td><a style="font-style: italic;" href="docs/adatk.pdf" target="_blank">Adatkezelési szabályzat</a> elfogadása<span style="color: red;font-weight: bold;">*</span>:
                             </td>
                             <td><input id="adatk" type="checkbox" required></td>
                         </tr>

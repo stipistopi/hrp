@@ -1,5 +1,6 @@
 <?php
 $active = "login";
+$color = "magenta";
 
 include 'includes/configHRP.php';
 
@@ -24,13 +25,13 @@ if (isset($_POST['login-submit'])) {
                 header('location: lecke.php');
                 exit;
             } else {
-                $message = "Hibás e-mail cím vagy jelszó.";
+                $message = "Hibás e-mail cím vagy jelszó!";
             }
         } else {
-            $message = "Hibás e-mail cím vagy jelszó.";
+            $message = "Hibás e-mail cím vagy jelszó!";
         }
     } else {
-        $message = "Kérjük, írjon be egy felhasználónevet és jelszót.";
+        $message = "Kérjük, írjon be egy felhasználónevet és jelszót!";
     }
 } else if (!empty($_GET['msg'])) {
     $message = "Az interaktív program eléréséhez bejelentkezés szükséges.";
@@ -39,26 +40,47 @@ if (isset($_POST['login-submit'])) {
 include 'includes/header.php';
 ?>
 
-<form method="post" action="">
-    <div>
-        <?php
-        if (isset($message))
-            echo "<div class='msg'>$message</div>";
-        ?>
-        <div>
-            <label for="email">E-mail:</label>
-            <input type="text" name="email" id="email" placeholder="E-mail cím" maxlength="100">
-        </div>
-        <div>
-            <label for="password">Jelszó:</label>
-            <input type="password" name="password" id="password" placeholder="Jelszó" maxlength="100">
-        </div>
-
-        <div>
-            <input type="submit" name="login-submit" id="login-submit" value="Bejelentkezés" title="Bejelentkezés">
-        </div>
+<div class="flexbox-container">
+    <div class="content-left">
+        <div class="line-magenta"></div>
     </div>
-</form>
+    <div class="content-right vertical-padding-10"></div>
+</div>
+<div class="flexbox-container">
+    <div class="content-left">
+        <div class="line-magenta"></div>
+    </div>
+    <div class="content-right">
+        <fieldset id="login_fieldset" style="width: 60%;margin:auto;">
+            <legend align="center">Bejelentkezés</legend>
+            <form method="post" action="">
+                <table>
+                    <?php
+                    if (isset($message))
+                        echo "<tr><td class='msg' colspan=\"2\" align=\"center\" style=\"background-color: lightcoral;border-radius: 16px;\">$message</td></tr>";
+                    ?>
+                    <tr>
+                        <td width="50%">E-mail:</td>
+                        <td width="50%"><input type="text" name="email" id="email" placeholder="E-mail cím" maxlength="100" autofocus></td>
+                    </tr>
+                    <tr>
+                        <td width="50%">Jelszó:</td>
+                        <td width="50%"><input type="password" name="password" id="password" placeholder="Jelszó" maxlength="100"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" name="login-submit" id="login-submit" value="Bejelentkezés" title="Bejelentkezés"></td>
+                    </tr>
+                </table>
+            </form>
+        </fieldset>
+    </div>
+</div>
+<div class="flexbox-container">
+    <div class="content-left">
+        <div class="line-magenta"></div>
+    </div>
+    <div id="uresresz" class="content-right" style="padding: 180px 0;"></div>
+</div>
 
 <?php
 include 'includes/footer.php';

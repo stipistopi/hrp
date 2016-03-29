@@ -17,6 +17,7 @@ $(document).ready(function() {
         $("fieldset#f"+nav_state).hide();
         nav_state++;
         if(nav_state <= 4) {
+            $("fieldset#main_fieldset div#bev").hide();
             $("#curr_state").html("Gyorsteszt ("+nav_state+"/4)");
             $("fieldset#f" + nav_state).show();
             $("#prev").prop("disabled", false);
@@ -42,6 +43,7 @@ $(document).ready(function() {
             $(".gyteszt_alja").hide();
             if(nav_state == 1) {
                 $(this).prop("disabled", true);
+                $("fieldset#main_fieldset div#bev").show();
             }
         } else {
             $(this).prop("disabled", true);

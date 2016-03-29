@@ -1,13 +1,13 @@
 <?php
 $active = "lecke";
 $color = "magenta";
-include 'includes/header.php';
-?>
 
-<?php if (!isset($_SESSION["is_auth"])) {
+if (!isset($_SESSION["is_auth"])) {
     header('location: login.php?msg=1');
     exit;
 }
+
+include 'includes/header.php';
 ?>
 
 <script type="text/javascript" src="../js/jquery.min.js"></script>
