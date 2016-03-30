@@ -115,14 +115,14 @@ include 'includes/header.php';
                         </tr>
                         <tr>
                             <td>Lakóhely (város)<span style="color: red;font-weight: bold;">*</span>:</td>
-                            <td><input id="lakhely_varos" type="text" maxlength="25"
-                                       pattern="^[A-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
+                            <td><input id="lakhely_varos" type="text" maxlength="50"
+                                       pattern="[0-9a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\,\- ]{3,50}"
                                        placeholder="Szeged" required></td>
                         </tr>
                         <tr>
                             <td>Lakóhely (kerület/városrész):</td>
-                            <td><input id="lakhely_vresz" type="text" maxlength="25"
-                                       pattern="^[A-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
+                            <td><input id="lakhely_vresz" type="text" maxlength="50"
+                                       pattern="[0-9a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\,\- ]{3,50}"
                                        placeholder="Makkosháza"></td>
                         </tr>
                         <tr>
@@ -136,12 +136,12 @@ include 'includes/header.php';
                         <tr>
                             <td>Jelszó<span style="color: red;font-weight: bold;">*</span>:</td>
                             <td><input id="passw" type="password" maxlength="20" pattern="[^\x22\x27\{\}\[\]\(\)]{6,20}"
-                                       placeholder="jelszo" required></td>
+                                       placeholder="jelszó" required></td>
                         </tr>
                         <tr>
                             <td>Jelszó megerősítése<span style="color: red;font-weight: bold;">*</span>:</td>
                             <td><input id="passw_re" type="password" maxlength="20"
-                                       pattern="[^\x22\x27\{\}\[\]\(\)]{6,20}" placeholder="jelszo" required></td>
+                                       pattern="[^\x22\x27\{\}\[\]\(\)]{6,20}" placeholder="jelszó" required></td>
                         </tr>
                         <tr>
                             <td><a style="font-style: italic;" href="docs/adatk.pdf" target="_blank">Adatkezelési szabályzat</a> elfogadása<span style="color: red;font-weight: bold;">*</span>:

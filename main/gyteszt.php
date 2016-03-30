@@ -35,9 +35,13 @@ include 'includes/configHRP.php';
             <fieldset id="main_fieldset">
                 <legend id="curr_state" align="center">Gyorsteszt (1/4)</legend>
                 <div id="bev" style="padding: 0 20px;">
-                    <p>Tisztelt Érdeklődő!</p>
-                    <p>Az alábbi gyorsteszt négy fontos vállalati terület működéséről ad visszajelzést Önnek. Ezek a következők: 1. Jövőkép, aktuális feladatok; 2. Dolgozói együttműködési profil; 3. A dolgozók alapállapota, rendelkezésre állása; 4. Pénzügyi és piaci eredményesség.<br>A gyorsteszt eredményét rövidesen megküldjük Ön számára.</p>
-                    <p>Üdvüzlettel:<br>HRP Interaktív Program csapata</p>
+                    <div style="background-color:#e4e4e4;">
+                        <div style="padding: 0 10px;">
+                            <p>Tisztelt Érdeklődő!</p>
+                            <p>Az alábbi gyorsteszt négy fontos vállalati terület működéséről ad visszajelzést Önnek. Ezek a következők: 1. Jövőkép, aktuális feladatok; 2. Dolgozói együttműködési profil; 3. A dolgozók alapállapota, rendelkezésre állása; 4. Pénzügyi és piaci eredményesség.<br>A gyorsteszt eredményét rövidesen megküldjük Ön számára.</p>
+                            <p>Üdvüzlettel:<br>HRP Interaktív Program csapata</p>
+                        </div>
+                    </div>
                 </div>
                 <form id="form-gyteszt" onsubmit="return false;">
                     <?php

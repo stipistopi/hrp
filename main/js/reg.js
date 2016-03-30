@@ -20,7 +20,8 @@ $(document).ready(function() {
                     lakhely_varos: $("#lakhely_varos").val(),
                     lakhely_varosresz: $("#lakhely_vresz").val(),
                     felh_nev: $("#user_n").val(),
-                    jelszo: $("#passw").val()
+                    jelszo: $("#passw").val(),
+                    thely: $("select#vall_thely option:checked").val()
                 },
                 success: function(ret) {
                     //console.log(ret);
@@ -45,6 +46,9 @@ $(document).ready(function() {
                                 '-moz-border-radius': '10px',
                                 opacity: .7,
                                 color: '#fff'
+                            },
+                            onUnblock: function() {
+                                window.location.replace("login.php");
                             }
                         });
                     } else if(ret == "username_in_use") {

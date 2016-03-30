@@ -2,7 +2,9 @@
 $active = "lecke";
 $color = "magenta";
 
-if (!isset($_SESSION["is_auth"])) {
+session_start();
+
+if(!isset($_SESSION["is_auth"])) {
     header('location: login.php?msg=1');
     exit;
 }

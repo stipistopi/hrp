@@ -2,5 +2,5 @@
 session_start();
 unset($_SESSION['is_auth']);
 session_destroy();
-header("location: about.php");
+header("location: ../index.html");
 exit;

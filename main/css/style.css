@@ -153,7 +153,7 @@ table.reg_kartya td, table.demo_kod td {
 table.reg_kartya td input, table.demo_kod td input, select#contact_select, fieldset#contact_fieldset table tr td input#email_targy, textarea#contact_uzi,
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail,
-fieldset#login_fieldset table tr td input#email, fieldset#login_fieldset table tr td input#password {
+fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
     display: block;
@@ -171,7 +171,7 @@ fieldset#login_fieldset table tr td input#email, fieldset#login_fieldset table t
 table.reg_kartya td input, table.demo_kod td input, select#contact_select, fieldset#contact_fieldset table tr td input#email_targy,
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail,
-fieldset#login_fieldset table tr td input#email, fieldset#login_fieldset table tr td input#password {
+fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
     padding: 4px 8px;
     width: 170px;
 }
@@ -179,7 +179,7 @@ fieldset#login_fieldset table tr td input#email, fieldset#login_fieldset table t
 table.reg_kartya td input:focus, table.demo_kod td input:focus, select#contact_select:focus, fieldset#contact_fieldset table tr td input#email_targy:focus, textarea#contact_uzi:focus,
 table.reg td input[type=text]:focus, table.reg td input[type=password]:focus, table.reg td input[type=email]:focus, table.reg tr td select:focus,
 table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type=password]:focus, table.erdeklodo_reg td input[type=email]:focus, table.gyteszt_alja tr td input#e-mail:focus,
-fieldset#login_fieldset table tr td input#email:focus, fieldset#login_fieldset table tr td input#password:focus {
+fieldset#login_fieldset table tr td input#username:focus, fieldset#login_fieldset table tr td input#password:focus {
     background: #F7F7F7;
     border: dashed 1px #969696;
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
