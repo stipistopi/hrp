@@ -62,19 +62,19 @@ include 'includes/header.php';
                         <tr>
                             <td>Vezetéknév<span style="color: red;font-weight: bold;">*</span>:</td>
                             <td><input id="vez_nev" type="text" maxlength="25"
-                                       pattern="^[A-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
+                                       pattern="^[A-ZÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
                                        placeholder="Példa" required></td>
                         </tr>
                         <tr>
                             <td>Keresztnév<span style="color: red;font-weight: bold;">*</span>:</td>
                             <td><input id="k_nev" type="text" maxlength="25"
-                                       pattern="^[A-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
+                                       pattern="^[A-ZÖÜÓŐÚÉÁŰÍ]{1}[a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\.\- ]{1,24}"
                                        placeholder="Tamás" required></td>
                         </tr>
                         <tr>
                             <td>Előnév:</td>
                             <td><input id="e_nev" type="text" maxlength="20"
-                                       pattern="^[A-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]{1}[\.\-a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\s]{1,19}"
+                                       pattern="^[A-ZÖÜÓŐÚÉÁŰÍ]{1}[\.\-a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\s]{1,19}"
                                        placeholder="Ifj."></td>
                         </tr>
                         <tr>

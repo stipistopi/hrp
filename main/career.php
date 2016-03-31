@@ -118,7 +118,7 @@ include 'includes/header.php';
         <div class="line-green"></div>
     </div>
     <div class="content-right">
-        <p>Küldje magyar nyelvű szakmai önéletrajzát és motivációs levelét az info@egeszsegholding.hu e-mail címre.</p>
+        <p>Küldje magyar nyelvű szakmai önéletrajzát és motivációs levelét az <a href="mailto:info@egeszsegholding.hu?Subject=HRP%20-%20Karrier" target="_top">info@egeszsegholding.hu</a> e-mail címre.</p>
     </div>
 </div>
 <div class="flexbox-container">

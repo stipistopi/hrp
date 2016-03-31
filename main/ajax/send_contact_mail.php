@@ -24,11 +24,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </head>
         <body>
         <h1 align=\"center\" style=\"background:#89c540;border-radius:16px;\">Új kapcsolatfelvételi üzenet</h1>
+        <div style=\"width: 80%;margin: auto;\">
+        <fieldset><legend align=\"center\">Adatok</legend>
         <h3>Címzett: ". $staff ."</h3><hr>
         <h3>Tárgy: ". $subj ."</h3>
-        <div style=\"padding:10px 0px;\"></div>
+        </fieldset>
+        <div style=\"padding:10px 0;\"></div>
         <fieldset><legend align=\"center\">Üzenet szövege</legend><pre>". $msg ."</pre>
         </fieldset>
+        </div>
         <p style=\"text-align:center;\"><img src=\"http://hrp-interaktiv.hu/kepek/logo_min.jpg\" alt=\"HRP logo mini\"></p>
         <h1 align=\"center\" style=\"background:#89c540;color:#89c540;border-radius:16px;\">hrp</h1>
         </body>

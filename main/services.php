@@ -46,7 +46,7 @@
     <div class="content-left">
         <div class="line-green"></div>
     </div>
-    <div class="content-right" style="height:40px;"></div>
+    <div class="content-right" style="padding: 40px 0;"></div>
 </div>
 
 <?php

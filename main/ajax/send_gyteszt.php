@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <body>
         <h2>Tisztelt Hölgyem/Uram!</h2>
         <p>Ön gyorstesztet töltött ki rendszerünkben, melynek eredményét kiértékeltük, s alább olvasható.</p>
-        <fieldset><legend align=\"center\">Gyorsteszt - értékelés</legend><p>Kitöltés ideje: ". date("Y.m.d. H:i") ."</p><p>Ráfordított idő: ". $raf_ido ."</p>
+        <fieldset style=\"width: 80%;margin: auto;\"><legend align=\"center\">Gyorsteszt - értékelés</legend><p>Kitöltés ideje: ". date("Y.m.d. H:i") ."</p><p>Ráfordított idő: ". $raf_ido ."</p>
         <fieldset><legend style=\"padding: 0.2em 0.5em;border:1px solid black;background:yellow;border-radius:16px;\">JÖVŐKÉP, LEGFONTOSABB FELADATOK</legend>". $str1 ."</fieldset>
         <div style=\"padding:10px 0px;\"></div>
         <fieldset><legend style=\"padding: 0.2em 0.5em;border:1px solid black;background:rgb(252, 144, 36);border-radius:16px;\">DOLGOZÓI EGYÜTTMŰKÖDÉSI PROFIL</legend>". $str2 ."</fieldset>

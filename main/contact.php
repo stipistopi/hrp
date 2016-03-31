@@ -36,7 +36,13 @@ include 'includes/header.php';
         <div class="content-left">
             <div class="line-green"></div>
         </div>
-        <div class="content-right">
+        <div class="content-right"><p><button type="button" id="contact_mail">Üzenjen nekünk!</button></p></div>
+    </div>
+    <div class="flexbox-container">
+        <div class="content-left">
+            <div class="line-green"></div>
+        </div>
+        <div class="content-right content-right-center">
             <div class="contact_ok" style="display:none;">
                 <h1>E-mail elküldve</h1>
                 <h2>Köszönjük! Hamarosan visszajelzünk</h2>
@@ -45,8 +51,7 @@ include 'includes/header.php';
                 <h1>Hiba!</h1>
                 <h2>Az e-mailt már elküldtük</h2>
             </div>
-            <p><button type="button" id="contact_mail">Üzenjen nekünk!</button></p>
-            <fieldset id="contact_fieldset" style="display: none;width: 80%;margin:auto;">
+            <fieldset id="contact_fieldset" style="display: none;width: 80%;">
                 <legend align="center">Kapcsolatfelvétel</legend>
                 <form id="contact_form" onsubmit="return false;">
                     <table width="100%">

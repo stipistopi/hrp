@@ -50,6 +50,10 @@ html, body {
     flex: 0.95;
 }
 
+.content-right-center {
+    justify-content: center;
+}
+
 .content-right p, .content-right ol li, .content-right ul li {
     text-align: justify;
 }
@@ -130,7 +134,7 @@ html, body {
     padding: 0 0 10px 0;
 }
 
-table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso), fieldset#contact_fieldset table td, fieldset#login_fieldset table td {
+table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso), fieldset#contact_fieldset table td, fieldset#eleskamra_fieldset table td, fieldset#login_fieldset table td {
     padding-top: .5em;
     padding-bottom: .5em;
 }
@@ -151,6 +155,7 @@ table.reg_kartya td, table.demo_kod td {
 }
 
 table.reg_kartya td input, table.demo_kod td input, select#contact_select, fieldset#contact_fieldset table tr td input#email_targy, textarea#contact_uzi,
+fieldset#eleskamra_fieldset table tr td input[type=text],
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail,
 fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
@@ -169,6 +174,7 @@ fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset tabl
 }
 
 table.reg_kartya td input, table.demo_kod td input, select#contact_select, fieldset#contact_fieldset table tr td input#email_targy,
+fieldset#eleskamra_fieldset table tr td input[type=text],
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail,
 fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
@@ -177,6 +183,7 @@ fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset tabl
 }
 
 table.reg_kartya td input:focus, table.demo_kod td input:focus, select#contact_select:focus, fieldset#contact_fieldset table tr td input#email_targy:focus, textarea#contact_uzi:focus,
+fieldset#eleskamra_fieldset table tr td input[type=text]:focus,
 table.reg td input[type=text]:focus, table.reg td input[type=password]:focus, table.reg td input[type=email]:focus, table.reg tr td select:focus,
 table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type=password]:focus, table.erdeklodo_reg td input[type=email]:focus, table.gyteszt_alja tr td input#e-mail:focus,
 fieldset#login_fieldset table tr td input#username:focus, fieldset#login_fieldset table tr td input#password:focus {

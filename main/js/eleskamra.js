@@ -1,24 +1,24 @@
 $(document).ready(function() {
     var filled_out = false;
 
-    $("#contact_mail").click(function() {
+    $("#eleskamra_mail").click(function() {
         $(this).hide();
-        $("#contact_fieldset").show();
+        $("#eleskamra_fieldset").show();
     });
 
     $("input:submit").click(function() {
-        if($("#contact_form").is(":valid")) {
+        if($("#eleskamra_form").is(":valid")) {
             if(!filled_out) {
                 $.ajax({
-                    url: "ajax/send_contact_mail.php",
+                    url: "ajax/send_eleskamra_mail.php",
                     type: "POST",
                     data: {
-                        msg_to: $("option:checked").val(),
-                        subj: $("#email_targy").val(),
-                        msg: $("#contact_uzi").val()
+                        elk_nev: $("#elk_nev").val(),
+                        elk_email: $("#elk_email").val(),
+                        elk_lakhely: $("#elk_lakhely").val()
                     },
                     success: function(ret) {
-                        if (ret == "contact_mail_sent") {
+                        if (ret == "eleskamra_mail_sent") {
                             filled_out = true;
 
                             $.blockUI({

@@ -50,8 +50,8 @@ include 'includes/header.php';
     <div class="content-left">
         <div class="line-magenta"></div>
     </div>
-    <div class="content-right">
-        <fieldset id="login_fieldset" style="width: 60%;margin:auto;">
+    <div class="content-right content-right-center">
+        <fieldset id="login_fieldset" style="width: 60%;">
             <legend align="center">Bejelentkezés</legend>
             <form method="post" action="">
                 <table>
