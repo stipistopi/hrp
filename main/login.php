@@ -57,7 +57,7 @@ include 'includes/header.php';
                 <table>
                     <?php
                     if(isset($message))
-                        echo "<tr><td class='msg' colspan=\"2\" align=\"center\" style=\"background-color: lightcoral;border-radius: 16px;\">$message</td></tr>";
+                        echo "<tr><td class='msg' colspan=\"2\" align=\"center\"><div style=\"background-color: lightcoral;border-radius: 16px;padding: 5px 0;\">$message</div></td></tr>";
                     ?>
                     <tr>
                         <td width="50%">Felhasználónév:</td>

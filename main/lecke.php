@@ -62,7 +62,7 @@ include 'includes/header.php';
     <div class="content-left">
         <div class="line-magenta"></div>
     </div>
-    <div class="content-right vertical-padding-10"></div>
+    <div class="content-right vertical-padding-10" style="padding: 40px 0;"></div>
 </div>
 
 <?php
