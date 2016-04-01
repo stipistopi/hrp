@@ -4,8 +4,8 @@ $color = "magenta";
 
 include 'includes/configHRP.php';
 
-if(isset($_POST['login-submit'])) {
-    if(!empty($_POST['username']) && !empty($_POST['password'])) {
+if (isset($_POST['login-submit'])) {
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -18,9 +18,9 @@ if(isset($_POST['login-submit'])) {
 
         $hash = $stmt->fetchColumn();
 
-        if($hash) {
-            if(password_verify($password, $hash)) {
-                if(!isset($_SESSION)) session_start();
+        if ($hash) {
+            if (password_verify($password, $hash)) {
+                if (!isset($_SESSION)) session_start();
                 $_SESSION['is_auth'] = true;
                 header('location: lecke.php');
                 exit;
@@ -33,7 +33,7 @@ if(isset($_POST['login-submit'])) {
     } else {
         $message = "Kérjük, írja be felhasználónevét és jelszavát!";
     }
-} else if(!empty($_GET['msg'])) {
+} else if (!empty($_GET['msg'])) {
     $message = "Az interaktív program eléréséhez bejelentkezés szükséges.";
 }
 
@@ -55,20 +55,34 @@ include 'includes/header.php';
             <legend align="center">Bejelentkezés</legend>
             <form method="post" action="">
                 <table>
-                    <?php
-                    if(isset($message))
-                        echo "<tr><td class='msg' colspan=\"2\" align=\"center\"><div style=\"background-color: lightcoral;border-radius: 16px;padding: 5px 0;\">$message</div></td></tr>";
-                    ?>
+                    <?php if (isset($message)): ?>
+                        <tr>
+                            <td class="msg" colspan="2" align="center">
+                                <div style="background-color:lightcoral;border-radius:16px;padding:5px 0;">
+                                    <?php echo $message ?>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endif ?>
                     <tr>
                         <td width="50%">Felhasználónév:</td>
-                        <td width="50%"><input type="text" name="username" id="username" placeholder="peldatomi" maxlength="100" required autofocus></td>
+                        <td width="50%">
+                            <input type="text" name="username" id="username" placeholder="peldatomi"
+                                   maxlength="100" required autofocus>
+                        </td>
                     </tr>
                     <tr>
                         <td width="50%">Jelszó:</td>
-                        <td width="50%"><input type="password" name="password" id="password" placeholder="jelszó" maxlength="100" required></td>
+                        <td width="50%">
+                            <input type="password" name="password" id="password" placeholder="jelszó"
+                                   maxlength="100" required>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" name="login-submit" id="login-submit" value="Bejelentkezés" title="Bejelentkezés"></td>
+                        <td colspan="2" align="center">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   value="Bejelentkezés" title="Bejelentkezés">
+                        </td>
                     </tr>
                 </table>
             </form>
