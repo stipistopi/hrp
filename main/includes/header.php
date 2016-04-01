@@ -1,5 +1,6 @@
 <?php
 include_once 'config_session.php';
+if (!isset($active)) $active = '';
 ?>
 <!DOCTYPE html>
 <html lang="hu">

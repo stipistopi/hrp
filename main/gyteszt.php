@@ -1,7 +1,6 @@
 <?php
 $color = "green";
 include 'includes/header.php';
-include 'includes/configHRP.php';
 ?>
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
