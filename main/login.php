@@ -2,26 +2,30 @@
 $active = "login";
 $color = "magenta";
 
-include 'includes/configHRP.php';
+include_once 'includes/configHRP.php';
+include_once 'includes/config_session.php';
 
 if (isset($_POST['login-submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $stmt = $conn->prepare("SELECT jelszo
+        $stmt = $conn->prepare("SELECT id, jelszo
                                 FROM felhasznalo
                                 WHERE felh_nev = :uname");
         $stmt->bindParam(':uname', $username);
-        $ret = $stmt->execute();
-        //$row_count = $stmt->rowCount();
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_BOTH);
 
-        $hash = $stmt->fetchColumn();
+        $userId = $result[0];
+        $hash = $result[1];
 
         if ($hash) {
             if (password_verify($password, $hash)) {
-                if (!isset($_SESSION)) session_start();
                 $_SESSION['is_auth'] = true;
+                if (isset($_POST['remember_me'])) {
+                    storeNewAuthToken($userId);
+                }
                 header('location: lecke.php');
                 exit;
             } else {
@@ -76,6 +80,12 @@ include 'includes/header.php';
                         <td width="50%">
                             <input type="password" name="password" id="password" placeholder="jelszó"
                                    maxlength="100" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%">Emlékezzen rám</td>
+                        <td width="50%">
+                            <input type="checkbox" name="remember_me" value="1">
                         </td>
                     </tr>
                     <tr>
