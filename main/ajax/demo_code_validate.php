@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $kod = $_POST["kod"];
 

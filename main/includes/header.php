@@ -1,5 +1,5 @@
 <?php
-include_once 'config_session.php';
+include_once 'config.php';
 if (!isset($active)) $active = '';
 ?>
 <!DOCTYPE html>

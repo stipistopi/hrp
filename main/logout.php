@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/config_session.php';
+include_once 'includes/config.php';
 
 if (!empty($_SESSION['auth_token'])) {
     deleteAuthToken($_SESSION['auth_token']);

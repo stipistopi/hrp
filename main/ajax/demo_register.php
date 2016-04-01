@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $vez_nev = $_POST["vez_nev"];
 $k_nev = $_POST["k_nev"];

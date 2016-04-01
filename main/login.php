@@ -2,8 +2,7 @@
 $active = "login";
 $color = "magenta";
 
-include_once 'includes/configHRP.php';
-include_once 'includes/config_session.php';
+include_once 'includes/config.php';
 
 if (isset($_POST['login-submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {

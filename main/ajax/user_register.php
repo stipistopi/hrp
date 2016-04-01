@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $kartyaId = test_input(ltrim($_POST["kartyaId"], "0"));

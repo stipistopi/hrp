@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $msg_to = 0;
 $subj = $msg = $staff = "";

@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $valaszok = $email = $ido = "";
 $csop1 = $csop2 = $csop3 = $csop4 = 0;

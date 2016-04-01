@@ -1,17 +1,5 @@
 <?php
-include_once "configHRP.php";
-
-if (!function_exists('hash_equals')) {
-    function hash_equals($a, $b)
-    {
-        $ret = strlen($a) ^ strlen($b);
-        $ret |= array_sum(unpack("C*", $a ^ $b));
-        return !$ret;
-    }
-}
-
-function storeNewAuthToken($userId)
-{
+function storeNewAuthToken($userId) {
     $selector = base64_encode(openssl_random_pseudo_bytes(9));
     $authenticator = openssl_random_pseudo_bytes(33);
 

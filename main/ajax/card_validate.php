@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $kartya = ltrim($_POST["kartya"], "0");
 

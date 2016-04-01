@@ -1,5 +1,5 @@
 <?php
-include '../includes/configHRP.php';
+include '../includes/config.php';
 
 $elk_nev = $elk_email = $elk_lakhely = "";
 
