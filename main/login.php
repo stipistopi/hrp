@@ -23,6 +23,7 @@ if (isset($_POST['login-submit'])) {
         if ($hash) {
             if (password_verify($password, $hash)) {
                 $_SESSION['is_auth'] = true;
+                $_SESSION['userId'] = $userId;
                 if (isset($_POST['remember_me'])) {
                     storeNewAuthToken($userId);
                 }
