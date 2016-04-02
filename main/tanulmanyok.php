@@ -25,10 +25,10 @@ include 'includes/header.php';
         </div>
         <div class="content-right">
             <ol>
-                <li><p>Az egészség – befektetés (tanulmány)</p></li>
-                <li><p>Fit for work? Munkaképes? Mozgásszervi megbetegedések és a magyar munkaerőpiac (jelentés)</p></li>
-                <li><p>Egészséges munkahelyek krónikus betegek munkavállalók számára (útmutató)</p></li>
-                <li><p>A munkahelyi stressz és az egészség összefüggései hazai és nemzetközi viszonylatban (doktori értekezés)</p></li>
+                <li><p><a id="also_link" href="docs/p01.pdf" target="_blank">Az egészség – befektetés (tanulmány)</a></p></li>
+                <li><p><a id="also_link" href="docs/p02.pdf" target="_blank">Fit for work? Munkaképes? Mozgásszervi megbetegedések és a magyar munkaerőpiac (jelentés)</a></p></li>
+                <li><p><a id="also_link" href="docs/p03.pdf" target="_blank">Egészséges munkahelyek krónikus betegek munkavállalók számára (útmutató)</a></p></li>
+                <li><p><a id="also_link" href="docs/p04.pdf" target="_blank">A munkahelyi stressz és az egészség összefüggései hazai és nemzetközi viszonylatban (doktori értekezés)</a></p></li>
             </ol>
         </div>
     </div>

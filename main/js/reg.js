@@ -137,7 +137,7 @@ $(document).ready(function() {
         // ezt jelezzük a jobb felső sarokban,
         // és eltüntetjük az üres részt a lap aljáról
 
-        if($(this).val().length == 10) {
+        if($(this).val().length == 8) {
             $.ajax({
                 url: "ajax/card_validate.php",
                 type: "POST",

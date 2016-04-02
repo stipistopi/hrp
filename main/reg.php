@@ -50,8 +50,8 @@ include 'includes/header.php';
                     <table class="reg_kartya">
                         <tr>
                             <td>Plasztik kártya száma:</td>
-                            <td><input id="kartya" type="text" maxlength="10" pattern="[0-9]{1,10}"
-                                       placeholder="Kezdjen el gépelni..." required autofocus>
+                            <td>IP <input id="kartya" type="text" maxlength="8" pattern="[0-9]{8}"
+                                       placeholder="11001000" required autofocus>
                             </td>
                         </tr>
                     </table>

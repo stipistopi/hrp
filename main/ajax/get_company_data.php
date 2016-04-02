@@ -1,7 +1,8 @@
 <?php
 include '../includes/config.php';
 
-$kartya = ltrim($_POST["kartya"], "0");
+//$kartya = ltrim($_POST["kartya"], "0");
+$kartya = test_input($_POST["kartya"]);
 
 // CÉG ÉS TELEPHELYEINEK BETÖLTÉSE EGY TÖMBBE
 

@@ -2,7 +2,7 @@
 include '../includes/config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $kartyaId = test_input(ltrim($_POST["kartyaId"], "0"));
+    $kartyaId = test_input($_POST["kartyaId"]);
     $vez_nev = test_input($_POST["vez_nev"]);
     $ker_nev = test_input($_POST["ker_nev"]);
     $elonev = test_input($_POST["elonev"]);
@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $ret1 = db_addUser($email, $felh_nev, $kartyaId, $hash, $vez_nev, $ker_nev, $elonev,
             $telefon, $lakhely_varos, $lakhely_varosresz);
 
-        $stmt = $conn->prepare("UPDATE kartya SET kezdo_nap=CURDATE(),vallalat_telephely=? WHERE kartya_id=?");
+        $stmt = $conn->prepare("UPDATE kartya SET vallalat_telephely=? WHERE kartya_id=?");
         $ret2 = $stmt->execute(array($thely, $kartyaId));
 
         if ($ret1 === TRUE && $ret2) {

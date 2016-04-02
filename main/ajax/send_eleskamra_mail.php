@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $elk_lakhely = test_input($_POST["elk_lakhely"]);
 
     /* ************* HTML E-MAIL KÜLDÉSE ************* */
-    $to = "makra.zsolt@drcsoki.hu";
+    $to = "makra.zsolt@egeszsegholding.hu";
     $subject = "HRP - Új érdeklődő (éléskamra program)";
 
     $message = "

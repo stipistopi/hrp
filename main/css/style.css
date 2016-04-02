@@ -161,7 +161,7 @@ table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=passw
 fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
-    display: block;
+    display: inline-block;
     border: 1px dashed #DBDBDB;
     color: #3F3F3F;
     -webkit-border-radius: 2px;
@@ -245,8 +245,55 @@ div.contact_uj h2 {
     font-size: medium;
 }
 
-div#also_link:hover {
-    color: blue;
+#also_link {
+    cursor: pointer;
+    /*display: inline-block;*/
+    position: relative;
+    padding-bottom: 3px;
+}
+
+a#also_link {
+    color: initial;
+    text-decoration: none;
+}
+
+#also_link:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    transition: width 0s ease, background .5s ease;
+}
+
+#also_link:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: blue;
+    transition: width .5s ease;
+}
+
+#also_link:hover {
+    font-style: italic;
+}
+
+#also_link:hover:before {
+    width: 100%;
+    background: blue;
+    transition: width .5s ease;
+}
+
+#also_link:hover:after {
+    width: 100%;
+    background: transparent;
+    transition: all 0s ease;
 }
 
 
