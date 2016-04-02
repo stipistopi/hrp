@@ -9,17 +9,10 @@ if (isset($_POST['login-submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $stmt = $conn->prepare("SELECT id, jelszo
-                                FROM felhasznalo
-                                WHERE felh_nev = :uname");
-        $stmt->bindParam(':uname', $username);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_BOTH);
+        $userId = db_getUserId($username, null, null);
+        $hash = db_getUserHash($userId, $username, null, null);
 
-        $userId = $result[0];
-        $hash = $result[1];
-
-        if ($hash) {
+        if ($userId && $hash) {
             if (password_verify($password, $hash)) {
                 $_SESSION['is_auth'] = true;
                 $_SESSION['userId'] = $userId;

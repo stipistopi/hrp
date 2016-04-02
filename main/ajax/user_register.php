@@ -14,25 +14,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $jelszo = test_input($_POST["jelszo"]);
     $thely = test_input($_POST["thely"]);
 
-    // ******* REGISZTRÁLT-E MÁR EZZEL A CÍMMEL *******
-    $stmt = $conn->prepare("SELECT * FROM felhasznalo WHERE email=?");
-    $stmt->execute(array($email));
-    $row_count = $stmt->rowCount();
-    // ************************************************
+    $email_in_use = db_getUserId(null, $email, null);
+    $username_in_use = db_getUserId($felh_nev, null, null);
+    $card_in_use = db_getUserId(null, null, $kartyaId);
 
-    // ******* VAN-E MÁR ILYEN FELHASZNÁLÓNÉV *******
-    $stmt = $conn->prepare("SELECT * FROM felhasznalo WHERE felh_nev=?");
-    $stmt->execute(array($felh_nev));
-    $row_count2 = $stmt->rowCount();
-    // **********************************************
-
-    // ******* REGISZTRÁLT-E MÁR EZZEL A KÁRTYÁVAL *******
-    $stmt = $conn->prepare("SELECT * FROM felhasznalo WHERE kartyaId=?");
-    $stmt->execute(array($kartyaId));
-    $row_count3 = $stmt->rowCount();
-    // ***************************************************
-
-    if($row_count == 0 && $row_count2 == 0 && $row_count3 == 0) {
+    if ($email_in_use === FALSE && $username_in_use === FALSE && $card_in_use === FALSE) {
         /* ************* HTML E-MAIL KÜLDÉSE ************* */
         $to = $email;
         $subject = "HRP Interaktív Program - Regisztráció";
@@ -50,33 +36,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hash = password_hash($jelszo, PASSWORD_BCRYPT, ['cost' => 10]);
 
-        $stmt = $conn->prepare("INSERT INTO felhasznalo (email, felh_nev, kartyaId, jelszo, vez_nev, ker_nev, elonev,
-                              telefon, lakhely_varos, lakhely_varosresz)
-                            VALUES (:email, :felh_nev, :kartyaId, :jelszo, :vez_nev, :ker_nev, :elonev,
-                              :telefon, :lakhely_varos, :lakhely_varosresz)");
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':felh_nev', $felh_nev);
-        $stmt->bindParam(':kartyaId', $kartyaId);
-        $stmt->bindParam(':jelszo', $hash);
-        $stmt->bindParam(':vez_nev', $vez_nev);
-        $stmt->bindParam(':ker_nev', $ker_nev);
-        $stmt->bindParam(':elonev', $elonev);
-        $stmt->bindParam(':telefon', $telefon);
-        $stmt->bindParam(':lakhely_varos', $lakhely_varos);
-        $stmt->bindParam(':lakhely_varosresz', $lakhely_varosresz);
-        $ret1 = $stmt->execute();
+        $ret1 = db_addUser($email, $felh_nev, $kartyaId, $hash, $vez_nev, $ker_nev, $elonev,
+            $telefon, $lakhely_varos, $lakhely_varosresz);
 
         $stmt = $conn->prepare("UPDATE kartya SET kezdo_nap=CURDATE(),vallalat_telephely=? WHERE kartya_id=?");
         $ret2 = $stmt->execute(array($thely, $kartyaId));
 
-        if($ret1 && $ret2) {
+        if ($ret1 === TRUE && $ret2) {
             echo "registration_succeeded";
         } else {
             echo "registration_failed";
         }
-    } else if($row_count2 != 0) {
+    } else if ($username_in_use !== FALSE) {
         echo "username_in_use";
-    } else if($row_count3 != 0) {
+    } else if ($card_in_use !== FALSE) {
         echo "card_in_use";
     } else {
         echo "email_in_use";
