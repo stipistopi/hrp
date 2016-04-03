@@ -4,18 +4,30 @@ $color = "magenta";
 
 include_once 'includes/config.php';
 
+if(isset($_SESSION["is_auth"])) {
+    header('location: lecke.php');
+    exit;
+}
+
 if (isset($_POST['login-submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
         $userId = db_getUserId($username, null, null);
+        $userFirstName = db_getUserFirstName($username, null, null);
+        $userLastLogin = db_getUserLastLogin($username, null, null);
+        db_updateLastLogin(null, $username, null, null);
+        $timeWindowName = db_getUserTimeWindow(null, $username, null, null);
         $hash = db_getUserHash($userId, $username, null, null);
 
         if ($userId && $hash) {
             if (password_verify($password, $hash)) {
                 $_SESSION['is_auth'] = true;
                 $_SESSION['userId'] = $userId;
+                $_SESSION['userFirstName'] = $userFirstName;
+                $_SESSION['userLastLogin'] = $userLastLogin;
+                $_SESSION['timeWindowName'] = $timeWindowName;
                 if (isset($_POST['remember_me'])) {
                     storeNewAuthToken($userId);
                 }

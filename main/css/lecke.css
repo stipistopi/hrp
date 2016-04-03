@@ -24,25 +24,29 @@ img.lecke-vid {
 	bottom: 0;
 }
 
-.content-right {
+.content-right-mod {
 	position: relative;
 	left: -30px;
 }
 
-.lecke-upper-1 {
+.lecke-upper-1, .lecke-upper-2 {
+	cursor: pointer;
 	border: 3px solid #900090;
+	color: #8c2989;
 	font-size: 1.1em;
 	padding: 5px;
 	width: 130px;
 	text-align: center;
+}
+
+.lecke-upper-1 {
 	margin-left: 125px;
 }
 
 .lecke-upper-2 {
-	border: 3px solid #900090;
-	font-size: 1.1em;
-	padding: 5px;
-	width: 130px;
-	text-align: center;
 	margin-left: 147px;
+}
+
+.lecke-upper-1:hover, .lecke-upper-2:hover {
+	background-color: rgba(0, 0, 0, 0.2);
 }
