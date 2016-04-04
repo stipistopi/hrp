@@ -48,5 +48,6 @@ img.lecke-vid {
 }
 
 .lecke-upper-1:hover, .lecke-upper-2:hover {
+	/* border-color: #ed45e6; */
 	background-color: rgba(0, 0, 0, 0.2);
 }

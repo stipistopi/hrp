@@ -19,6 +19,9 @@ $(document).ready(function() {
     var orvos = $("#orvos");
     var segitseg = $("#segitseg");
     var vallalom = $("#vallalom");
+    var fontSize = parseInt($(".gyteszt_gombok li").height())+"px";
+
+    $(".gyteszt_gombok li label").css('font-size', fontSize);
 
     $(document).tooltip({
         track: true,

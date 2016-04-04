@@ -343,6 +343,10 @@ a#also_link {
     background:lightblue;
 }
 
+.insert_x input[type="radio"]:checked + label:after {
+    content: "X";
+}
+
 .gyteszt_gombok label {
     border:1px solid #CCC;
     -webkit-border-radius: 50%;
