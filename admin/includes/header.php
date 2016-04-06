@@ -1,3 +1,7 @@
+<?php
+include_once 'config.php';
+if (!isset($active)) $active = '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +46,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Beállítások</a></li>
-                <li><a href="#">Kilépés</a></li>
+                <li><a href="logout.php">Kilépés</a></li>
             </ul>
         </div>
     </div>
