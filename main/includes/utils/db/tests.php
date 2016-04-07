@@ -24,12 +24,32 @@ function db_checkIfTestFilledOut($userId = -1, $testName = "-1") {
 }
 
 /**
- * Returns the lecke_start test name for the corresponding time window name.
+ * Returns the lecke starting test name for the corresponding time window name.
  * @param string $timeWindowName
- * @return string containing the lecke_start test name, or FALSE if it cannot be found.
+ * @return string containing the lecke starting test name, or FALSE if it cannot be found.
  */
 function db_getLeckeStartTestName($timeWindowName = "-1") {
     $kezdo = "%kezdo";
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT nev
+                            FROM teszt
+                            WHERE (idoablakId = (SELECT id
+                                                 FROM idoablakok
+                                                 WHERE nev = :timeWindowName) AND nev LIKE :kezdo)");
+    $stmt->bindParam(':timeWindowName', $timeWindowName);
+    $stmt->bindParam(':kezdo', $kezdo);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
+/**
+ * Returns the 'lecke kerdezz' test name for the corresponding time window name.
+ * @param string $timeWindowName
+ * @return string containing the 'lecke kerdezz' test name, or FALSE if it cannot be found.
+ */
+function db_getLeckeKerdezzTestName($timeWindowName = "-1") {
+    $kezdo = "%kf";
 
     global $conn;
     $stmt = $conn->prepare("SELECT nev

@@ -14,7 +14,7 @@ if(!isset($_SESSION["is_auth"])) {
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
 
-$testName = db_getLeckeStartTestName($timeWindowName);
+$testName = db_getLeckeKerdezzTestName($timeWindowName);
 $filledOut = db_checkIfTestFilledOut($userId, $testName);
 
 if(pregMatch_oneNumberFromString($testName)) {
@@ -49,7 +49,7 @@ include 'includes/header.php';
     </div>
     <div class="content-right">
         <fieldset id="main_fieldset">
-            <legend align="center">Leckekezdő teszt</legend>
+            <legend align="center">Kérdezz-felelek teszt</legend>
             <div style="padding: 0 20px;">
                 <?php
                 if(!empty($numberOfLecke)) {
@@ -59,14 +59,11 @@ include 'includes/header.php';
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 10px;">
                         <p style="font-weight: bold;">Kedves Partnerünk!</p>
-                        <p>Az egészségfejlesztés első lépése, hogy szembenézzünk önmagunkkal és meghatározzuk, honnan is kell elinduljunk, és mit kell pontosan tennünk. Ehhez ad segítséget az alábbi kérdéssor is.</p>
-                        <p>Minden kérdésnél három lehetséges választ sorolunk fel. Önnek ezek közül kell egyet kiválasztania.</p>
-                        <p>Az Ön által adott adatok bizalmasak, ezért arról csak Ön kap egy részletes kockázatértékelést.</p>
-                        <p>Jó munkát kívánunk!</p>
+                        <p>Kérjük, olvassa végig a kérdéseket, majd a megadott válaszlehetőségekből válassza ki és jelölje be a helyes választ! (Egy helyes megoldás van.)</p>
+                        <p>A teszt kitöltéséről hamarosan visszajelzést, értékelést kap.</p>
                         <p>Üdvüzlettel:<br>Interaktív Program csapata</p>
                     </div>
                 </div>
-                <h3>Kérem, válasszon a felsorolt válaszok közül!</h3>
             </div>
             <div style="padding: 0 60px;">
                 <form id="form-leckekezdo" onsubmit="return false;">

@@ -37,3 +37,15 @@ function generateRandomString($length = 10) {
     }
     return $randomString;
 }
+
+/**
+ * Matches the number (one character) in a string and return with that if it matched.
+ * @param string $str
+ * @return string if it matched the number, or FALSE if not or error.
+ */
+function pregMatch_oneNumberFromString($str = "-1") {
+    $re = "/(([^0-9]*)([0-9]{1})([^0-9]*)){1}/";
+    if(preg_match($re, $str, $matches) == 1 && $matches[0] == $str) {
+        return $matches[3];
+    } else return false;
+}

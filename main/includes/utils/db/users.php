@@ -125,6 +125,10 @@ function db_getUserTimeWindow($id = -1, $username = "-1", $email = "-1", $cardId
                             WHERE ertek BETWEEN :days AND :days_offset
                             ORDER BY ertek ASC
                             LIMIT 1;");
+    /* azért kell ez, mert a 10. napon pl. mindkét
+     * időablakot kidobja, az 1.-t meg a 2.-at is,
+     * és így biztosan csak az időben előbb lévőt
+     * fogja (aztán a 11. napon vált) */
     $stmt->bindParam(':days', $days);
     $stmt->bindParam(':days_offset', $days_offset);
     $stmt->execute();
