@@ -54,7 +54,7 @@
     <text class="cls-3" transform="translate(556.57 97.77) rotate(60)"><tspan class="cls-4">T</tspan><tspan x="12.76" y="0">ün</tspan><tspan x="44.28" y="0">e</tspan><tspan x="59.05" y="0">t</tspan><tspan x="68.77" y="0">ellenőr</tspan><tspan x="154.44" y="0">z</tspan><tspan x="165.63" y="0">ő</tspan></text>
     <text class="cls-3" transform="translate(249.71 78.34)">K<tspan x="15.04" y="0">é</tspan><tspan x="29.97" y="0">r</tspan><tspan x="40.02" y="0">d</tspan><tspan x="55.78" y="0">e</tspan><tspan x="70.42" y="0">zz</tspan><tspan x="94.12" y="0">-</tspan><tspan x="103.04" y="0">f</tspan><tspan x="111.45" y="0">elelek</tspan></text>
     <text x="-16.52"/>  <text class="cls-3" transform="translate(360.62 638.73)">O<tspan x="19.86" y="0">r</tspan><tspan x="30.6" y="0">v</tspan><tspan x="43.87" y="0">os </tspan><tspan x="78.21" y="0">k</tspan><tspan x="90.88" y="0">e</tspan><tspan x="105.81" y="0">r</tspan><tspan x="115.87" y="0">eső</tspan></text>
-    <a xlink:href="#">
+    <a xlink:href="lecke_kerdezz.php">
         <rect id="kerdezz" x="243" y="47" fill="rgba(0, 0, 0, 0.2)" width="0" height="40" />
         <rect id="kerdezz_referencia" x="242" y="47" width="197" height="40" opacity="0" />
         <rect id="kerdezz_hover" x="195" y="44" opacity="0" width="244" height="50" />
