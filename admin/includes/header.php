@@ -1,5 +1,9 @@
 <?php
 include_once 'config.php';
+if (!isset($_SESSION["admin_is_auth"])) {
+    header('location: index.php');
+    exit;
+}
 if (!isset($active)) $active = '';
 ?>
 <!DOCTYPE html>
