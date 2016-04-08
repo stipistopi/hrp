@@ -17,7 +17,9 @@ $companies = db_getCompaniesOverview();
     <tr>
         <td><?php echo $company['id'] ?></td>
         <td><?php echo $company['name'] ?></td>
-        <td><a href="">Szerkesztés</a> - <a href="">Törlés</a></td>
+        <td>
+            <a href="editcompany.php?id=<?php echo $company['id'] ?>">Szerkesztés</a> - <a href="">Törlés</a>
+        </td>
     </tr>
     <?php endforeach ?>
 </table>
