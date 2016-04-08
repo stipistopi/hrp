@@ -1,0 +1,25 @@
+<?php
+$active = "companies";
+include 'includes/header.php';
+
+$companies = db_getCompaniesOverview();
+?>
+
+<h1 class="page-header">Cégek kezelése</h1>
+
+<table class="table table-striped" style="max-width:550px;">
+    <tr>
+        <th style="width:70px">ID</th>
+        <th>Név</th>
+        <th style="width:150px"></th>
+    </tr>
+    <?php foreach ($companies as $company): ?>
+    <tr>
+        <td><?php echo $company['id'] ?></td>
+        <td><?php echo $company['name'] ?></td>
+        <td><a href="">Szerkesztés</a> - <a href="">Törlés</a></td>
+    </tr>
+    <?php endforeach ?>
+</table>
+
+<?php include 'includes/footer.php' ?>
