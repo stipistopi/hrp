@@ -52,8 +52,9 @@ include 'includes/header.php';
             <legend align="center">Kérdezz-felelek teszt</legend>
             <div style="padding: 0 20px;">
                 <?php
+                $randomColor = mt_rand(1,4);
                 if(!empty($numberOfLecke)) {
-                    echo "<table id=\"lecke_number_in_tests\"><tr><td><div>#$numberOfLecke</div></td></tr></table>";
+                    echo "<table id=\"lecke_number_in_tests\"><tr><td id=\"color$randomColor\"><div>#$numberOfLecke</div></td></tr></table>";
                 }
                 ?>
                 <div style="background-color:#e4e4e4;">
@@ -71,7 +72,7 @@ include 'includes/header.php';
                     $testId = db_getTestId($testName);
                     $startFromQuestionId = db_getStartQuestionId($testId);
                     $questionInterval = db_getQuestionInterval($testId);
-                    $randomColor = mt_rand(1,4);
+                    //$randomColor = mt_rand(1,4);
                     $numsQ = 1;
                     for($i = $startFromQuestionId; $i < ($startFromQuestionId + $questionInterval); $i++) {
                         $stmt = $conn->prepare("SELECT kerdes FROM kerdes WHERE id = :qId;");

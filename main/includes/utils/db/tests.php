@@ -24,6 +24,29 @@ function db_checkIfTestFilledOut($userId = -1, $testName = "-1") {
 }
 
 /**
+ * Returns TRUE if the user filled out the given 'lecke end' test (that is in table 'lzaro_kitolt') or FALSE otherwise.
+ * @param int $userId
+ * @param string $timeWindowName
+ * @return int with serial number (first column in the matched row) on success or FALSE on failure.
+ */
+function db_checkIfLeckeEndTestFilledOut($userId = -1, $timeWindowName = "-1") {
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if(empty($ret)) return FALSE;
+    $username = $ret['felh_nev'];
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT *
+                            FROM lzaro_kitolt
+                            WHERE (felhNev = :username AND idoablakId = (SELECT id
+                                                                         FROM idoablakok
+                                                                         WHERE nev = :twn))");
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':twn', $timeWindowName);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
+/**
  * Returns the lecke starting test name for the corresponding time window name.
  * @param string $timeWindowName
  * @return string containing the lecke starting test name, or FALSE if it cannot be found.

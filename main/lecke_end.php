@@ -14,11 +14,11 @@ if(!isset($_SESSION["is_auth"])) {
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
 
-$testName = db_getLeckeStartTestName($timeWindowName);
-$filledOut = db_checkIfTestFilledOut($userId, $testName);
+$testName = "leckezaro";
+$filledOut = db_checkIfLeckeEndTestFilledOut($userId, $timeWindowName);
 
-if(pregMatch_oneNumberFromString($testName)) {
-    $numberOfLecke = pregMatch_oneNumberFromString($testName);
+if(pregMatch_oneNumberFromString($timeWindowName)) {
+    $numberOfLecke = pregMatch_oneNumberFromString($timeWindowName);
 } else {
     $numberOfLecke = "";
 }
@@ -49,7 +49,7 @@ include 'includes/header.php';
     </div>
     <div class="content-right">
         <fieldset id="main_fieldset">
-            <legend align="center">Leckekezdő teszt</legend>
+            <legend align="center">Leckezáró teszt</legend>
             <div style="padding: 0 20px;">
                 <?php
                 $randomColor = mt_rand(1,4);
@@ -60,14 +60,9 @@ include 'includes/header.php';
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 10px;">
                         <p style="font-weight: bold;">Kedves Partnerünk!</p>
-                        <p>Az egészségfejlesztés első lépése, hogy szembenézzünk önmagunkkal és meghatározzuk, honnan is kell elinduljunk, és mit kell pontosan tennünk. Ehhez ad segítséget az alábbi kérdéssor is.</p>
-                        <p>Minden kérdésnél három lehetséges választ sorolunk fel. Önnek ezek közül kell egyet kiválasztania.</p>
-                        <p>Az Ön által adott adatok bizalmasak, ezért arról csak Ön kap egy részletes kockázatértékelést.</p>
-                        <p>Jó munkát kívánunk!</p>
-                        <p>Üdvüzlettel:<br>Interaktív Program csapata</p>
+                        <p>Köszönjük, hogy válaszaival segíti munkánkat! Kérjük, mondjon véleményt a most megnézett, feldolgozott leckéről!<br>Kérjük, az alábbi kérdések válaszaiból jelölje be az Ön által igaznak tartott választ!</p>
                     </div>
                 </div>
-                <h3>Kérem, válasszon a felsorolt válaszok közül!</h3>
             </div>
             <div style="padding: 0 60px;">
                 <form id="form-leckekezdo" onsubmit="return false;">
@@ -78,13 +73,17 @@ include 'includes/header.php';
                     //$randomColor = mt_rand(1,4);
                     $numsQ = 1;
                     for($i = $startFromQuestionId; $i < ($startFromQuestionId + $questionInterval); $i++) {
+                        if($i == ($startFromQuestionId + $questionInterval) - 1) echo "<div style=\"background-color:#e4e4e4;\"><p style=\"padding: 0 10px;\">Kérjük, segítse fejlesztési törekvéseinket! Válaszoljon az alábbi kérdésre!</p></div>";
                         $stmt = $conn->prepare("SELECT kerdes FROM kerdes WHERE id = :qId;");
                         $stmt->bindParam(':qId', $i);
                         $stmt->execute();
                         $question = $stmt->fetchColumn();
-                        echo "<h4>" . $numsQ . ") " . $question . "</h4>";
+                        if($i == ($startFromQuestionId + $questionInterval) - 1) {
+                            if($numberOfLecke == 1) $question = str_replace("variable", "táplálkozás", $question);
+                        }
+                        echo "<h4 id=\"$i\">" . $numsQ . ". " . $question . "</h4>";
 
-                        $stmt = $conn->prepare("SELECT val_lehetoseg, suly FROM valasz WHERE kerdesId = :qId;");
+                        $stmt = $conn->prepare("SELECT id, val_lehetoseg FROM valasz WHERE kerdesId = :qId;");
                         $stmt->bindParam(':qId', $i);
                         $stmt->execute();
                         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -92,18 +91,13 @@ include 'includes/header.php';
                         $numsA = 1;
                         $sizeA = sizeof($rows);
                         foreach($rows as $row) {
-                            if($numsA == 1) $numsALetter = "a";
-                            if($numsA == 2) $numsALetter = "b";
-                            if($numsA == 3) $numsALetter = "c";
-                            if($numsA == 4) $numsALetter = "d";
-                            if($numsA == 5) $numsALetter = "e";
-                            echo "<tr><td width=\"50%\">" . $numsALetter . ") " . $row['val_lehetoseg'] . "</td>";
+                            echo "<tr><td width=\"50%\">" . $row['val_lehetoseg'] . "</td>";
                             if($numsA == 1) {
                                 echo "<td rowspan=\"" . $sizeA . "\" width=\"50%\" align=\"center\">";
                                 echo "<ul id=\"gy_g". $randomColor ."\" class=\"gyteszt_gombok insert_x\">";
                                 $numsB = 1;
                                 foreach($rows as $row1) {
-                                    echo "<li><input type=\"radio\" id=\"v". $numsQ ."_". $numsB ."\" name=\"csop". $numsQ ."\" value=\"". $row1['suly'] ."\" required />";
+                                    echo "<li><input type=\"radio\" id=\"v". $numsQ ."_". $numsB ."\" name=\"csop". $numsQ ."\" value=\"". $row1['id'] ."\" required />";
                                     echo "<label for=\"v". $numsQ ."_". $numsB ."\"></label></li>";
                                     if($numsB != $sizeA) echo "<br><div style=\"padding: .8em 0;\"></div>";
                                     $numsB++;
@@ -116,13 +110,13 @@ include 'includes/header.php';
                             $numsA++;
                         }
                         echo "</table>";
-                        if($i != ($startFromQuestionId + $questionInterval) - 1) echo "<hr>";
+                        if($i != ($startFromQuestionId + $questionInterval) - 1 && $i != ($startFromQuestionId + $questionInterval) - 2) echo "<hr>";
                         $numsQ++;
                     }
                     ?>
                     <div style="padding: 20px 0;"></div>
                     <div style="border: 3px dashed green;text-align: center;padding: 20px 0;">
-                        <input type="submit" value="Kiértékelés">
+                        <input type="submit" value="Küldés">
                     </div>
                 </form>
             </div>
