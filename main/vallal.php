@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $to = $email;
         $subject = "HRP - Vállalások (" . $numberOfLecke . ". lecke)";
 
-        if($valaszok[0] == "Nem vállalok semmit.") {
+        if($valaszok[0] == $vallalasok[sizeof($vallalasok) - 1]) {
             $message = "
             <html>
             <head>
