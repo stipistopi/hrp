@@ -28,6 +28,8 @@ $(document).ready(function() {
         show: { delay: dur - 200 }
     });
 
+    //var ret = getUrlParameter('return');
+
     $("polygon[id*='_hover'], rect[id*='_hover']").hover(function() {
         nev = $(this).attr("id");
         kor = nev.replace("_hover", "_kor");

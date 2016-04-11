@@ -118,7 +118,7 @@ include 'includes/header.php';
                     }
                     ?>
                     <div style="padding: 20px 0;"></div>
-                    <div style="border: 3px dashed green;text-align: center;padding: 20px 0;">
+                    <div id="test_submit<?php echo $randomColor; ?>" class="teszt_kiertekel">
                         <input type="submit" value="Kiértékelés">
                     </div>
                 </form>

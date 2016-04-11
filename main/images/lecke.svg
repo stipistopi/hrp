@@ -74,12 +74,12 @@
         <polygon id="orvos_referencia" points="528,610 527,648 353,647 353,610" opacity="0" />
         <polygon id="orvos_hover" points="575,603 575,650 353,647 353,610" opacity="0" />
     </a>
-    <a xlink:href="#">
+    <a xlink:href="help.php">
         <polygon id="segitseg" points="" opacity="0.2" />
         <polygon id="segitseg_referencia" points="222,600 188,623 95,463 129,441" opacity="0" />
         <polygon id="segitseg_hover" points="247,630 213,665 95,463 129,441" opacity="0" />
     </a>
-    <a xlink:href="#">
+    <a xlink:href="vallal.php">
         <polygon id="vallalom" points="" opacity="0.2" />
         <polygon id="vallalom_referencia" points="42,320 76,340 172,168 138,149" opacity="0" />
         <polygon id="vallalom_hover" points="18,358 58,382 172,168 138,149" opacity="0" />

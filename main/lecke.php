@@ -18,13 +18,18 @@ include 'includes/header.php';
 
 if(!empty($_GET['msg'])) {
     if($_GET['msg'] == 1) {
-        $message = "<h2>A teszt még (vagy már) nem elérhető.</h2>";
+        $text = "A teszt még (vagy már) nem elérhető.";
     }
+    if($_GET['msg'] == 2) {
+        $text = "Ez a tartalom jelenleg Önnek nem elérhető.";
+    }
+    $message = "<div style=\"padding-top: 20px;width:90%;margin: auto;\"><p style=\"background-color:darkred;border-radius:16px;text-align: center;padding: 5px 0;font-weight: bold;color: white;\">$text</p></div>";
 }
 ?>
 
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="js/lecke.js"></script>
 <link rel="stylesheet" type="text/css" href="css/lecke.css">
 <link rel="stylesheet" type="text/css" href="css/progressbar.css">
@@ -34,7 +39,7 @@ if(!empty($_GET['msg'])) {
     <div class="content-left">
         <div class="line-magenta"></div>
     </div>
-    <div class="content-right vertical-padding-10"><?php if(isset($message)) echo $message; ?></div>
+    <div class="content-right"><?php if(isset($message)) echo $message; ?></div>
 </div>
 <div class="flexbox-container">
     <div class="content-left">

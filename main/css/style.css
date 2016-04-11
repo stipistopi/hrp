@@ -134,7 +134,8 @@ html, body {
     padding: 0 0 10px 0;
 }
 
-table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso), fieldset#contact_fieldset table td, fieldset#eleskamra_fieldset table td, fieldset#login_fieldset table td {
+table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso), fieldset#contact_fieldset table td, fieldset#eleskamra_fieldset table td, fieldset#login_fieldset table td,
+table#vallal_tabla td {
     padding-top: .5em;
     padding-bottom: .5em;
 }
@@ -158,7 +159,7 @@ table.reg_kartya td input, table.demo_kod td input, select#contact_select, field
 fieldset#eleskamra_fieldset table tr td input[type=text],
 table.reg td input[type=text], table.reg td input[type=password], table.reg td input[type=email], table.reg tr td select,
 table.erdeklodo_reg td input[type=text], table.erdeklodo_reg td input[type=password], table.erdeklodo_reg td input[type=email], table.gyteszt_alja tr td input#e-mail,
-fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password {
+fieldset#login_fieldset table tr td input#username, fieldset#login_fieldset table tr td input#password, textarea#help_msg {
     /*margin-left: 1em;*/ /*abban az esetben, ha a szövegdoboz túl közel lenne a szöveghez*/
     outline: none;
     display: inline-block;
@@ -186,7 +187,7 @@ table.reg_kartya td input:focus, table.demo_kod td input:focus, select#contact_s
 fieldset#eleskamra_fieldset table tr td input[type=text]:focus,
 table.reg td input[type=text]:focus, table.reg td input[type=password]:focus, table.reg td input[type=email]:focus, table.reg tr td select:focus,
 table.erdeklodo_reg td input[type=text]:focus, table.erdeklodo_reg td input[type=password]:focus, table.erdeklodo_reg td input[type=email]:focus, table.gyteszt_alja tr td input#e-mail:focus,
-fieldset#login_fieldset table tr td input#username:focus, fieldset#login_fieldset table tr td input#password:focus {
+fieldset#login_fieldset table tr td input#username:focus, fieldset#login_fieldset table tr td input#password:focus, textarea#help_msg:focus {
     background: #F7F7F7;
     border: dashed 1px #969696;
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
@@ -422,6 +423,27 @@ legend#leg4 {
     border: 4px solid lightblue;
 }
 
+.teszt_kiertekel {
+    text-align: center;
+    padding: 20px 0;
+}
+
+#test_submit1 {
+    border: 3px dashed #e4e400;
+}
+
+#test_submit2 {
+    border: 3px dashed rgb(252, 144, 36);
+}
+
+#test_submit3 {
+    border: 3px dashed #89c540;
+}
+
+#test_submit4 {
+    border: 3px dashed lightblue;
+}
+
 #lecke_number_in_tests td {
     /* border: 4px solid lightgray; */
     -webkit-border-radius: 50%;
@@ -433,4 +455,8 @@ legend#leg4 {
 #lecke_number_in_tests td div {
     margin: 30px 30px;
     font-size: 300%;
+}
+
+table#vallal_tabla label {
+    cursor: pointer;
 }

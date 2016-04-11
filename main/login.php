@@ -67,7 +67,7 @@ include 'includes/header.php';
                     <?php if (isset($message)): ?>
                         <tr>
                             <td class="msg" colspan="2" align="center">
-                                <div style="background-color:lightcoral;border-radius:16px;padding:5px 0;">
+                                <div style="background-color:darkred;border-radius:16px;font-weight: bold;color:white;padding:5px 0;">
                                     <?php echo $message ?>
                                 </div>
                             </td>
