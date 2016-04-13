@@ -69,7 +69,33 @@ if(!empty($_GET['msg'])) {
     <div class="content-left">
         <div class="line-magenta"></div>
     </div>
-    <div class="content-right content-right-mod" style="height:60px;">
+    <div class="content-right" style="padding-bottom: 1em;">
+        <fieldset style="margin: auto;width: 90%;">
+            <legend align="center">Ön jelenleg itt tart...</legend>
+            <h4>A teljes programban:</h4>
+            <div style="padding: .6em 0;" align="center">
+                <div id="progress" class="graph" align="left">
+                    <div id="bar" class="prog_color1" style="width:34%">
+                        <p>34% teljesítve</p>
+                    </div>
+                </div>
+            </div>
+            <h4>A leckében (2. lecke):</h4>
+            <div style="padding: .6em 0;" align="center">
+                <div id="progress" class="graph" align="left">
+                    <div id="bar" class="prog_color2" style="width:80%">
+                        <p>80% teljesítve</p>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="flexbox-container">
+    <div class="content-left">
+        <div class="line-magenta"></div>
+    </div>
+    <div class="content-right content-right-mod" style="padding: 1.5em 0;">
         <div class="lecke-upper-1" onclick="window.location='lecke_start.php';"
              title="Erre a gombra kattintva indíthatja el és aktiválhatja az aktuális témakör lecke anyagát és töltheti le a leckéhez tartozó gyorstesztet.">
             Lecke indítása
