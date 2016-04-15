@@ -478,7 +478,7 @@ table#vallal_tabla label {
     position: relative;
 }
 
-#bar {
+.bar {
     height: 29px; /* Not 30px because the 1px top-border brings it up to 30px to match #graph */
 }
 
@@ -526,7 +526,7 @@ table#vallal_tabla label {
     border-top: 1px solid rgba(195, 241, 255, 1);
 }
 
-#bar p {
+.bar p {
     position: absolute;
     text-align: center;
     width: 100%;

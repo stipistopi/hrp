@@ -136,6 +136,21 @@ function db_getUserTimeWindow($id = -1, $username = "-1", $email = "-1", $cardId
 }
 
 /**
+ * Returns the time window id from time window name.
+ * @param string $timeWindowName
+ * @return int containing the time window id, or FALSE if it cannot be found.
+ */
+function db_getTimeWindowIdFromName($timeWindowName = "-1") {
+    global $conn;
+    $stmt = $conn->prepare("SELECT id
+                            FROM idoablakok
+                            WHERE nev = :tname");
+    $stmt->bindParam(':tname', $timeWindowName);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
+/**
  * Adds a new user into the database.
  * @param $email
  * @param $username
@@ -167,4 +182,59 @@ function db_addUser($email, $username, $cardId, $password, $lastName, $firstName
     $stmt->bindParam(':city', $city);
     $stmt->bindParam(':city_district', $city_district);
     return $stmt->execute();
+}
+
+/**
+ * Returns a percentage of user's status in full program.
+ * @param $userId
+ * @return int (percentage) on success or FALSE on failure.
+ */
+function db_getStatusInFullProgram($userId = -1) {
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if (empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT SUM(suly) FROM aktivitas");
+    $stmt->execute();
+    $egesz = $stmt->fetchColumn();
+
+    $stmt = $conn->prepare("SELECT SUM(suly)
+                            FROM aktivitas, aktivitas_ertekek
+                            WHERE aktivitas.id = aktivitas_ertekek.aktivitasId AND felhNev = :usern");
+    $stmt->bindParam(':usern', $userName);
+    $stmt->execute();
+    $resz = $stmt->fetchColumn();
+
+    return round($resz * (100 / $egesz));
+}
+
+/**
+ * Returns a percentage of user's status in the current lecke.
+ * @param $userId
+ * @param $timeWindowName
+ * @return int (percentage) on success or FALSE on failure.
+ */
+function db_getStatusInLecke($userId = -1, $timeWindowName = "-1") {
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if (empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+
+    $tid = db_getTimeWindowIdFromName($timeWindowName);
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT SUM(suly)
+                            FROM aktivitas
+                            WHERE idoablakId = :twid");
+    $stmt->bindParam(':twid', $tid);
+    $stmt->execute();
+    $egesz = $stmt->fetchColumn();
+
+    $stmt = $conn->prepare("SELECT SUM(suly)
+                            FROM aktivitas, aktivitas_ertekek
+                            WHERE aktivitas.id = aktivitas_ertekek.aktivitasId AND felhNev = :usern AND idoablakId = :twid");
+    $stmt->bindParam(':usern', $userName);
+    $stmt->bindParam(':twid', $tid);
+    $stmt->execute();
+    $resz = $stmt->fetchColumn();
+
+    return round($resz * (100 / $egesz));
 }

@@ -18,11 +18,17 @@ if (!isset($active)) $active = '';
     <div id="top-menu-wrapper">
         <img alt="Logó" src="images/logo.png">
         <ul id="top-menu">
-            <li><a class="<?php if ($active == 'index') echo 'active'; ?>" href="../index.html">Főoldal</a></li>
-            <li><a class="<?php if ($active == 'about') echo 'active'; ?>" href="about.php">Rólunk</a></li>
-            <li><a class="<?php if ($active == 'services') echo 'active'; ?>" href="services.php">Szolgáltatásaink</a></li>
-            <li><a class="<?php if ($active == 'contact') echo 'active'; ?>" href="contact.php">Kapcsolat</a></li>
-            <li><a class="<?php if ($active == 'career') echo 'active'; ?>" href="career.php">Karrier</a></li>
+            <?php if (!isset($_SESSION["is_auth"])): ?>
+                <li><a class="<?php if ($active == 'index') echo 'active'; ?>" href="../index.html">Főoldal</a></li>
+                <li><a class="<?php if ($active == 'about') echo 'active'; ?>" href="about.php">Rólunk</a></li>
+                <li><a class="<?php if ($active == 'services') echo 'active'; ?>" href="services.php">Szolgáltatásaink</a></li>
+                <li><a class="<?php if ($active == 'contact') echo 'active'; ?>" href="contact.php">Kapcsolat</a></li>
+                <li><a class="<?php if ($active == 'career') echo 'active'; ?>" href="career.php">Karrier</a></li>
+            <?php else: ?>
+                <li><a class="<?php if ($active == 'lecke') echo 'active'; ?>" href="lecke.php">Interaktív Program</a></li>
+                <li><a class="<?php if ($active == 'profile') echo 'active'; ?>" href="#">Profilom</a></li>
+                <li><a class="<?php if ($active == 'activity') echo 'active'; ?>" href="#">Tevékenységnapló</a></li>
+            <?php endif ?>
             <li style="float:right;">
                 <ul style="list-style-type:none;">
                     <?php if (!isset($_SESSION["is_auth"])): ?>

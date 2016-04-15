@@ -2,6 +2,19 @@
  * jQuery code by Peter Tisóczki
  */
 
+$.fn.progBarAnim = function() {
+    var $szoveg;
+    var $szazalek;
+    var $ido;
+
+    $szoveg = this.children().html();
+    $szazalek = $szoveg.substr(0, $szoveg.indexOf("%"));
+
+    if($szazalek < 25) $ido = 1000; else $ido = 2000;
+
+    this.animate({width: $szazalek+"%"}, $ido);
+};
+
 $(document).ready(function() {
     var nev;
     var kor;
@@ -29,6 +42,9 @@ $(document).ready(function() {
     });
 
     //var ret = getUrlParameter('return');
+
+    $("#bar1").progBarAnim();
+    $("#bar2").progBarAnim();
 
     $("polygon[id*='_hover'], rect[id*='_hover']").hover(function() {
         nev = $(this).attr("id");
