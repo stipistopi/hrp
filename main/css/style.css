@@ -135,7 +135,7 @@ html, body {
 }
 
 table.reg td, table.erdeklodo_reg td, table.gyteszt_alja td:not(.gyta_elso), fieldset#contact_fieldset table td, fieldset#eleskamra_fieldset table td, fieldset#login_fieldset table td,
-table#vallal_tabla td {
+table#vallal_tabla td, table#activity_table td {
     padding-top: .5em;
     padding-bottom: .5em;
 }
@@ -153,6 +153,24 @@ table.gyteszt_nav td {
 table.reg_kartya td, table.demo_kod td {
     /*margin-left: 2em;*/
     padding: 1.5em;
+}
+
+table#activity_table tr {
+    text-align: center;
+}
+
+table#activity_table tr:first-of-type {
+    font-style: italic;
+    font-weight: bold;
+}
+
+table#activity_table tr:first-of-type td {
+    border-bottom: 2px solid black;
+}
+
+table#activity_table tr td:nth-child(2) {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 table.reg_kartya td input, table.demo_kod td input, select#contact_select, fieldset#contact_fieldset table tr td input#email_targy, textarea#contact_uzi,
@@ -446,6 +464,8 @@ legend#leg4 {
 
 #lecke_number_in_tests td {
     /* border: 4px solid lightgray; */
+    width: 110px;
+    height: 110px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -464,7 +484,7 @@ table#vallal_tabla label {
 /* CSS FOR PROGRESS BAR */
 
 .graph {
-    width: 500px; /* width and height are arbitrary, just make sure the #bar styles are changed accordingly */
+    width: 500px; /* width and height are arbitrary, just make sure the .bar styles are changed accordingly */
     height: 30px;
     border: 1px solid #888;
     background: rgb(168,168,168);
@@ -479,7 +499,7 @@ table#vallal_tabla label {
 }
 
 .bar {
-    height: 29px; /* Not 30px because the 1px top-border brings it up to 30px to match #graph */
+    height: 29px; /* Not 30px because the 1px top-border brings it up to 30px to match .graph */
 }
 
 .prog_color1 {

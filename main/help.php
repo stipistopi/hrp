@@ -13,6 +13,7 @@ if(!isset($_SESSION["is_auth"])) {
 
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
+$userFirstName = $_SESSION['userFirstName'];
 
 include 'includes/header.php';
 
@@ -47,7 +48,7 @@ include 'includes/header.php';
             <div style="padding: 0 20px;">
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 15px;">
-                        <p style="font-weight: bold;padding-top: 5px;">Kedves Partnerünk!</p>
+                        <p style="font-weight: bold;padding-top: 5px;">Kedves <?php echo $userFirstName; ?>!</p>
                         <p>Küldje el kérdését ügyfélszolgálatunk számára!<br>Munkatársaink hamarosan felveszik Önnel a kapcsolatot.</p>
                         <p style="padding-bottom: 5px;">Üdvüzlettel:<br>Interaktív Program csapata</p>
                     </div>

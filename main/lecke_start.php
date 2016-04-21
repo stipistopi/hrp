@@ -13,6 +13,7 @@ if(!isset($_SESSION["is_auth"])) {
 
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
+$userFirstName = $_SESSION['userFirstName'];
 
 $testName = db_getLeckeStartTestName($timeWindowName);
 $filledOut = db_checkIfTestFilledOut($userId, $testName);
@@ -59,7 +60,7 @@ include 'includes/header.php';
                 ?>
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 10px;">
-                        <p style="font-weight: bold;">Kedves Partnerünk!</p>
+                        <p style="font-weight: bold;">Kedves <?php echo $userFirstName; ?>!</p>
                         <p>Az egészségfejlesztés első lépése, hogy szembenézzünk önmagunkkal és meghatározzuk, honnan is kell elinduljunk, és mit kell pontosan tennünk. Ehhez ad segítséget az alábbi kérdéssor is.</p>
                         <p>Minden kérdésnél három lehetséges választ sorolunk fel. Önnek ezek közül kell egyet kiválasztania.</p>
                         <p>Az Ön által adott adatok bizalmasak, ezért arról csak Ön kap egy részletes kockázatértékelést.</p>

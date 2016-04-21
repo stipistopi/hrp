@@ -27,7 +27,7 @@ if (!isset($active)) $active = '';
             <?php else: ?>
                 <li><a class="<?php if ($active == 'lecke') echo 'active'; ?>" href="lecke.php">Interaktív Program</a></li>
                 <li><a class="<?php if ($active == 'profile') echo 'active'; ?>" href="#">Profilom</a></li>
-                <li><a class="<?php if ($active == 'activity') echo 'active'; ?>" href="#">Tevékenységnapló</a></li>
+                <li><a class="<?php if ($active == 'activity') echo 'active'; ?>" href="activity.php">Tevékenységnapló</a></li>
             <?php endif ?>
             <li style="float:right;">
                 <ul style="list-style-type:none;">

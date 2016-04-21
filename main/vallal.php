@@ -11,6 +11,7 @@ if(!isset($_SESSION["is_auth"])) {
 
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
+$userFirstName = $_SESSION['userFirstName'];
 
 if(strpos($timeWindowName, 'lecke') === false) { // tesztelni azt is, hogy kitöltötte-e már az adott vállalom-részt
     header('location: lecke.php?msg=2');
@@ -131,7 +132,7 @@ include 'includes/header.php';
                 <?php echo $text; ?>
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 15px;">
-                        <p style="font-weight: bold;padding-top: 5px;">Kedves Partnerünk!</p>
+                        <p style="font-weight: bold;padding-top: 5px;">Kedves <?php echo $userFirstName; ?>!</p>
                         <p style="padding-bottom: 5px;">Az alábbiakban található pontok közül kedve szerint válasszon egy, vagy több pontot. A kiválasztással azt vállalja, hogy az elkövetkező egy évben azt megtartja, és azt beépíti mindennapi életébe. Azt vállalja, hogy konkrét lépéssel, pozitív magatartási mintával is elősegíti egészsége fejlesztését.</p>
                     </div>
                 </div>

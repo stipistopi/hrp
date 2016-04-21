@@ -74,7 +74,7 @@ if(!empty($_GET['msg'])) {
             <div style="padding: .6em 0;" align="center">
                 <div id="progress1" class="graph" align="left">
                     <div id="bar1" class="bar prog_color<?php echo $randomColor1; ?>" style="width:0%">
-                        <p><?php echo $statusInFullProgram; ?>% teljesítve</p>
+                        <p class="<?php echo $statusInFullProgram; ?>">0% teljesítve</p>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@ if(!empty($_GET['msg'])) {
                         <div style=\"padding: .6em 0;\" align=\"center\">
                             <div id=\"progress2\" class=\"graph\" align=\"left\">
                                 <div id=\"bar2\" class=\"bar prog_color". $randomColor2 ."\" style=\"width:0%\">
-                                    <p>$statusInLecke% teljesítve</p>
+                                    <p class=\"$statusInLecke\">0% teljesítve</p>
                                 </div>
                             </div>
                         </div>";

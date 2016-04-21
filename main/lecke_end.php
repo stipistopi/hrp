@@ -13,6 +13,7 @@ if(!isset($_SESSION["is_auth"])) {
 
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
+$userFirstName = $_SESSION['userFirstName'];
 
 $testName = "leckezaro";
 $filledOut = db_checkIfLeckeEndTestFilledOut($userId, $timeWindowName);
@@ -59,7 +60,7 @@ include 'includes/header.php';
                 ?>
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 10px;">
-                        <p style="font-weight: bold;">Kedves Partnerünk!</p>
+                        <p style="font-weight: bold;">Kedves <?php echo $userFirstName; ?>!</p>
                         <p>Köszönjük, hogy válaszaival segíti munkánkat! Kérjük, mondjon véleményt a most megnézett, feldolgozott leckéről!<br>Kérjük, az alábbi kérdések válaszaiból jelölje be az Ön által igaznak tartott választ!</p>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ if(!isset($_SESSION["is_auth"])) {
 
 $userId = $_SESSION['userId'];
 $timeWindowName = $_SESSION['timeWindowName'];
+$userFirstName = $_SESSION['userFirstName'];
 
 $testName = db_getLeckeKerdezzTestName($timeWindowName);
 $filledOut = db_checkIfTestFilledOut($userId, $testName);
@@ -59,7 +60,7 @@ include 'includes/header.php';
                 ?>
                 <div style="background-color:#e4e4e4;">
                     <div style="padding: 0 10px;">
-                        <p style="font-weight: bold;">Kedves Partnerünk!</p>
+                        <p style="font-weight: bold;">Kedves <?php echo $userFirstName; ?>!</p>
                         <p>Kérjük, olvassa végig a kérdéseket, majd a megadott válaszlehetőségekből válassza ki és jelölje be a helyes választ! (Egy helyes megoldás van.)</p>
                         <p>A teszt kitöltéséről hamarosan visszajelzést, értékelést kap.</p>
                         <p>Üdvüzlettel:<br>Interaktív Program csapata</p>

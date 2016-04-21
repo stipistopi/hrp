@@ -3,16 +3,23 @@
  */
 
 $.fn.progBarAnim = function() {
-    var $szoveg;
+    var $obj = this;
     var $szazalek;
     var $ido;
 
-    $szoveg = this.children().html();
-    $szazalek = $szoveg.substr(0, $szoveg.indexOf("%"));
+    $szazalek = this.children().attr("class");
 
     if($szazalek < 25) $ido = 1000; else $ido = 2000;
 
     this.animate({width: $szazalek+"%"}, $ido);
+
+    $({width:0}).animate({width: $szazalek}, {
+        duration: $ido,
+        step: function(now) {
+            $obj.children().html(Math.round(now) + "% teljesítve");
+        }
+    });
+
 };
 
 $(document).ready(function() {
