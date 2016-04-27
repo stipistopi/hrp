@@ -59,12 +59,12 @@
         <rect id="kerdezz_referencia" x="242" y="47" width="197" height="40" opacity="0" />
         <rect id="kerdezz_hover" x="195" y="44" opacity="0" width="244" height="50" />
     </a>
-    <a xlink:href="#">
+    <a xlink:href="tunet.php">
         <polygon id="tunet" points="" opacity="0.2" />
         <polygon id="tunet_referencia" points="677,242 580,75 545,99 644,268" opacity="0" />
         <polygon id="tunet_hover" points="677,242 560,34 516,56 644,268" opacity="0" />
     </a>
-    <a xlink:href="#">
+    <a xlink:href="ttar.php">
         <polygon id="tudastar" points="" opacity="0.2" />
         <polygon id="tudastar_referencia" points="683,358 718,379 658,475 623,454" opacity="0" />
         <polygon id="tudastar_hover" points="697,319 743,338 658,475 623,454" opacity="0" />

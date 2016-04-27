@@ -30,7 +30,7 @@ if($numberOfLecke == 1) {
         "A mai naptól megválogatom a táplálékaimat. Törekszem arra, hogy hagyományos eljárással készült 'tiszta' táplálék legyen.",
         "A mai naptól figyelek a kellő mennyiségű folyadék bevitelére.",
         "A mai naptól figyelek a testsúlyomra, elérem az optimális testsúlyomat.",
-        "A mai naptól rendszerese mozgással is segítem emésztésemet, egészségemet.",
+        "A mai naptól rendszeresen mozgással is segítem emésztésemet, egészségemet.",
         "A mai naptól legalább évente járok szűrésekre, rendszeresen elmegyek orvosi vizsgálatra.",
         "Nem vállalok semmit.");
 }

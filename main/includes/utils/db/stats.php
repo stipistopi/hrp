@@ -173,3 +173,20 @@ function db_getHowManyTestsAreLeft($userId = -1) {
 
     return $maxTests - $numberOfFilledOutTests;
 }
+
+/**
+ * Returns the number of how many lecke are in the full program.
+ * @return int containing the number of leckes, or FALSE if it founds none (it's failure).
+ */
+function db_getNumberOfAllLecke() {
+    $pattern = "%lecke%";
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(*)
+                            FROM idoablakok
+                            WHERE nev LIKE :pattern");
+    $stmt->bindParam(':pattern', $pattern);
+    $stmt->execute();
+
+    return $stmt->fetchColumn();
+}

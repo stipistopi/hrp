@@ -194,7 +194,7 @@ include 'includes/header.php';
             <div class="line-green"></div>
         </div>
         <div class="content-right" style="padding: 10px 0;">
-            <div id="also_link" style="margin-left: 3em;">Kód igénylése (gyors és ingyenes) ide kattintva</div>
+            <div class="also_link" style="margin-left: 3em;">Kód igénylése (gyors és ingyenes) ide kattintva</div>
         </div>
     </div>
     <div class="flexbox-container">

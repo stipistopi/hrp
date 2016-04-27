@@ -21,6 +21,35 @@ function db_getUserDataRaw($id = -1, $username = "-1", $email = "-1", $cardId = 
 }
 
 /**
+ * Check if card is activated or not, if at least one parameter is defined. Undefined parameters must be set to null.
+ * @param int $id
+ * @param string $username
+ * @param string $email
+ * @param int $cardId
+ * @return bool TRUE if activated or FALSE if not.
+ */
+function db_testCardValidation($id = -1, $username = "-1", $email = "-1", $cardId = -1) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT *
+                            FROM kartya
+                            WHERE kartya_id = (SELECT kartyaId
+                                               FROM felhasznalo
+                                               WHERE (id = :id OR felh_nev = :username OR email = :email OR kartyaId = :cardId))
+                                  AND aktiv = 1");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':cardId', $cardId);
+    $stmt->execute();
+
+    if($stmt->rowCount()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * Returns the user name if at least one parameter is defined. Undefined parameters must be set to null.
  * @param string $username
  * @param string $email

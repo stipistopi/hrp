@@ -7,8 +7,8 @@ $(document).ready(function() {
     var kod_msg;
     var hirlevel;
 
-    $("#also_link, #lecke_vid_link").click(function() {
-        if($("#also_link").is(":visible")) {
+    $(".also_link, #lecke_vid_link").click(function() {
+        if($(".also_link").is(":visible")) {
             //$("#lecke_vid_link").blur();
             $("#also_resz").fadeOut(1200);
             $("#demo_login").fadeOut(1200, function () {

@@ -264,52 +264,52 @@ div.contact_uj h2 {
     font-size: medium;
 }
 
-#also_link {
+.also_link {
     cursor: pointer;
     /*display: inline-block;*/
     position: relative;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 }
 
-a#also_link {
+.also_link {
     color: initial;
     text-decoration: none;
 }
 
-#also_link:before {
+.also_link:before {
     content: '';
     display: block;
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 2px;
+    height: 1px;
     width: 0;
     transition: width 0s ease, background .5s ease;
 }
 
-#also_link:after {
+.also_link:after {
     content: '';
     display: block;
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 2px;
+    height: 1px;
     width: 0;
     background: blue;
     transition: width .5s ease;
 }
 
-#also_link:hover {
+.also_link:hover {
     font-style: italic;
 }
 
-#also_link:hover:before {
+.also_link:hover:before {
     width: 100%;
     background: blue;
     transition: width .5s ease;
 }
 
-#also_link:hover:after {
+.also_link:hover:after {
     width: 100%;
     background: transparent;
     transition: all 0s ease;
@@ -564,3 +564,35 @@ table#vallal_tabla label {
 }
 
 /* ******************** */
+
+/* CSS FOR TUNET.PHP & TTAR.PHP */
+
+#tunet_list, #ttar_list {
+    display: block;
+    margin: auto;
+}
+
+.tunet_item, .ttar_item {
+    padding: 1em 0;
+    line-height: 40px; /* eredetileg ez nem volt benne */
+}
+
+.tunet_item:before, .ttar_item:before {
+    content:'';
+    display:block;
+    background: url(../images/pdf48.png) no-repeat;
+    background-size: 40px 40px;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 20px;
+
+    /* eredetileg így volt megoldva:
+    content: url(../images/pdf48.png);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    */
+}
+
+/* ***************** */

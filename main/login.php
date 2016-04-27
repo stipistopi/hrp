@@ -15,6 +15,7 @@ if (isset($_POST['login-submit'])) {
         $password = $_POST['password'];
 
         $userId = db_getUserId($username, null, null);
+        $cardIsActive = db_testCardValidation($userId, null, null, null);
         $userFirstName = db_getUserFirstName($username, null, null);
         $userLastLogin = db_getUserLastLogin($username, null, null);
         db_updateLastLogin(null, $username, null, null);
@@ -23,16 +24,20 @@ if (isset($_POST['login-submit'])) {
 
         if ($userId && $hash) {
             if (password_verify($password, $hash)) {
-                $_SESSION['is_auth'] = true;
-                $_SESSION['userId'] = $userId;
-                $_SESSION['userFirstName'] = $userFirstName;
-                $_SESSION['userLastLogin'] = $userLastLogin;
-                $_SESSION['timeWindowName'] = $timeWindowName;
-                if (isset($_POST['remember_me'])) {
-                    storeNewAuthToken($userId);
+                if($cardIsActive) {
+                    $_SESSION['is_auth'] = true;
+                    $_SESSION['userId'] = $userId;
+                    $_SESSION['userFirstName'] = $userFirstName;
+                    $_SESSION['userLastLogin'] = $userLastLogin;
+                    $_SESSION['timeWindowName'] = $timeWindowName;
+                    if (isset($_POST['remember_me'])) {
+                        storeNewAuthToken($userId);
+                    }
+                    header('location: lecke.php');
+                    exit;
+                } else {
+                    $message = "A kártya (már) nem aktív!";
                 }
-                header('location: lecke.php');
-                exit;
             } else {
                 $message = "Hibás jelszó!";
             }
