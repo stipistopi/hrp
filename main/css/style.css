@@ -578,8 +578,8 @@ table#vallal_tabla label {
 }
 
 .tunet_item:before, .ttar_item:before {
-    content:'';
-    display:block;
+    content: '';
+    display: block;
     background: url(../images/pdf48.png) no-repeat;
     background-size: 40px 40px;
     width: 40px;

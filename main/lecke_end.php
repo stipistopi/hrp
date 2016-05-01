@@ -29,6 +29,40 @@ if(strpos($timeWindowName, 'lecke') === false || $filledOut) {
     exit;
 }
 
+if(!db_checkUserActivity($timeWindowName, "lzaro_nyit", $userId, null, null, null)) {
+    db_addUserActivity($timeWindowName, "lzaro_nyit", $userId, null, null, null);
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['test_submit'])) {
+
+        // kitöltésre fordított idő számítása
+        $start_time = test_input($_POST['start_time']);
+        $timeDiff = strtotime('now') - strtotime($start_time);
+        $fillOutTime = date("s", $timeDiff) + 60*date("i", $timeDiff) + 60*60*(date("H", $timeDiff) - 1);
+
+        $newLeckeEndTestId = db_addNewRecordInTableLzaro_kitolt($userId, $timeWindowName, $testName, $fillOutTime);
+        if($newLeckeEndTestId) $success = true; else $success = false;
+
+        // válaszok db-be írása
+        $i = 1;
+        while(isset($_POST['csop' . $i]) && $success) {
+            $success = db_addNewRecordInTableLzaro_valaszok($newLeckeEndTestId, $_POST['csop' . $i]);
+            $i++;
+        }
+
+        if($success) {
+            db_addUserActivity($timeWindowName, "lzaro_zar", $userId, null, null, null);
+            header('location: lecke.php?msg=3');
+            exit;
+        } else {
+            header('location: lecke.php?msg=4');
+            exit;
+        }
+
+    }
+}
+
 include 'includes/header.php';
 
 ?>
@@ -66,7 +100,7 @@ include 'includes/header.php';
                 </div>
             </div>
             <div style="padding: 0 60px;">
-                <form id="form-leckekezdo" onsubmit="return false;">
+                <form id="form-leckekezdo" method="post" action="">
                     <?php
                     $testId = db_getTestId($testName);
                     $startFromQuestionId = db_getStartQuestionId($testId);
@@ -117,7 +151,8 @@ include 'includes/header.php';
                     ?>
                     <div style="padding: 20px 0;"></div>
                     <div id="test_submit<?php echo $randomColor; ?>" class="teszt_kiertekel">
-                        <input type="submit" value="Küldés">
+                        <input type="text" name="start_time" value="<?php echo date("Y-m-d H:i:s"); ?>" style="display: none;">
+                        <input type="submit" name="test_submit" value="Küldés">
                     </div>
                 </form>
             </div>

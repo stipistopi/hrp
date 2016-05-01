@@ -29,6 +29,40 @@ if(strpos($timeWindowName, 'lecke') === false || $filledOut) {
     exit;
 }
 
+if(!db_checkUserActivity($timeWindowName, "lecke_kf_nyit", $userId, null, null, null)) {
+    db_addUserActivity($timeWindowName, "lecke_kf_nyit", $userId, null, null, null);
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['test_submit'])) {
+
+        // pontszám számítása
+        $pont = 0;
+        $i = 1;
+        while(isset($_POST['csop' . $i])) {
+            $pont += $_POST['csop' . $i];
+            $i++;
+        }
+
+        // kitöltésre fordított idő számítása
+        $start_time = test_input($_POST['start_time']);
+        $timeDiff = strtotime('now') - strtotime($start_time);
+        $fillOutTime = date("s", $timeDiff) + 60*date("i", $timeDiff) + 60*60*(date("H", $timeDiff) - 1);
+
+        // százalék számítása
+        $szazalek = round($pont/10, 3);
+
+        if(db_addNewRecordInTableKitolt($userId, $testName, $pont, $fillOutTime, $szazalek)) {
+            header('location: lecke.php?msg=3');
+            exit;
+        } else {
+            header('location: lecke.php?msg=4');
+            exit;
+        }
+
+    }
+}
+
 include 'includes/header.php';
 
 ?>
@@ -68,7 +102,7 @@ include 'includes/header.php';
                 </div>
             </div>
             <div style="padding: 0 60px;">
-                <form id="form-leckekezdo" onsubmit="return false;">
+                <form id="form-leckekezdo" method="post" action="">
                     <?php
                     $testId = db_getTestId($testName);
                     $startFromQuestionId = db_getStartQuestionId($testId);
@@ -120,7 +154,8 @@ include 'includes/header.php';
                     ?>
                     <div style="padding: 20px 0;"></div>
                     <div id="test_submit<?php echo $randomColor; ?>" class="teszt_kiertekel">
-                        <input type="submit" value="Kiértékelés">
+                        <input type="text" name="start_time" value="<?php echo date("Y-m-d H:i:s"); ?>" style="display: none;">
+                        <input type="submit" name="test_submit" value="Kiértékelés">
                     </div>
                 </form>
             </div>

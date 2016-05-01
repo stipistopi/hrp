@@ -190,3 +190,68 @@ function db_getNumberOfAllLecke() {
 
     return $stmt->fetchColumn();
 }
+
+/**
+ * Adds a user's activity.
+ * @param $timeWindowName
+ * @param $actName
+ * @param $userId
+ * @param $userName
+ * @param $email
+ * @param $cardId
+ * @return bool TRUE on success or FALSE on failure.
+ */
+function db_addUserActivity($timeWindowName = "-1", $actName = "-1", $userId = -1, $userName = "-1", $email = "-1", $cardId = -1) {
+    $tid = db_getTimeWindowIdFromName($timeWindowName);
+
+    if($userName == "-1" || empty($userName)) {
+        $ret = db_getUserDataRaw($userId, null, $email, $cardId);
+        if(empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+    }
+
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO aktivitas_ertekek
+                            VALUES (NULL, (SELECT id
+                                           FROM aktivitas
+                                           WHERE idoablakId = :twid AND nev = :aname), :uname, NOW())");
+    $stmt->bindParam(':twid', $tid);
+    $stmt->bindParam(':aname', $actName);
+    $stmt->bindParam(':uname', $userName);
+    return $stmt->execute();
+}
+
+/**
+ * Check if a user's activity is inserted or not.
+ * @param $timeWindowName
+ * @param $actName
+ * @param $userId
+ * @param $userName
+ * @param $email
+ * @param $cardId
+ * @return bool TRUE on success or FALSE on failure.
+ */
+function db_checkUserActivity($timeWindowName = "-1", $actName = "-1", $userId = -1, $userName = "-1", $email = "-1", $cardId = -1) {
+    $tid = db_getTimeWindowIdFromName($timeWindowName);
+
+    if($userName == "-1" || empty($userName)) {
+        $ret = db_getUserDataRaw($userId, null, $email, $cardId);
+        if(empty($ret)) return false; else $userName = $ret['felh_nev'];
+    }
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT *
+                            FROM aktivitas_ertekek
+                            WHERE aktivitasId = (SELECT id
+                                                 FROM aktivitas
+                                                 WHERE idoablakId = :twid AND nev = :aname) AND felhNev = :uname");
+    $stmt->bindParam(':twid', $tid);
+    $stmt->bindParam(':aname', $actName);
+    $stmt->bindParam(':uname', $userName);
+    $stmt->execute();
+
+    if($stmt->rowCount()) {
+        return true;
+    } else {
+        return false;
+    }
+}

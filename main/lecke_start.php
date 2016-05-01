@@ -29,6 +29,80 @@ if(strpos($timeWindowName, 'lecke') === false || $filledOut) {
     exit;
 }
 
+if(!db_checkUserActivity($timeWindowName, "lkezdo_nyit", $userId, null, null, null)) {
+    db_addUserActivity($timeWindowName, "lkezdo_nyit", $userId, null, null, null);
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['test_submit'])) {
+
+        // pontszám számítása
+        $pont = 0;
+        $i = 1;
+        while(isset($_POST['csop' . $i])) {
+            $pont += $_POST['csop' . $i];
+            $i++;
+        }
+
+        // kitöltésre fordított idő számítása
+        $start_time = test_input($_POST['start_time']);
+        $timeDiff = strtotime('now') - strtotime($start_time);
+        $fillOutTime = date("s", $timeDiff) + 60*date("i", $timeDiff) + 60*60*(date("H", $timeDiff) - 1);
+
+        // százalék számítása
+        $szazalek = round($pont/40, 3);
+
+        if(db_addNewRecordInTableKitolt($userId, $testName, $pont, $fillOutTime, $szazalek)) {
+            db_addUserActivity($timeWindowName, "lkezdo_zar", $userId, null, null, null);
+
+            $user = db_getUserDataRaw($userId, null, null, null);
+            $email = $user['email'];
+
+            /* ************* HTML E-MAIL KÜLDÉSE ************* */
+            $to = $email;
+            $subject = "HRP - Leckekezdő teszt kiértékelése (" . $numberOfLecke . ". lecke)";
+
+                $message = "
+            <html>
+            <head>
+            <title>HRP - Leckekezdő teszt</title>
+            </head>
+            <body>
+            <h2>Tisztelt Partnerünk!</h2>
+            <p>A leckekezdő gyorsteszt az Ön táplálkozással és emésztéssel kapcsolatos kockázatairól ad visszajelzést.</p>
+            <p>Fontos megjegyezni, hogy az alábbi kockázati szint meghatározás nem orvosi diagnózis!</p>
+            <p style=\"font-weight:bold;\">Az ön eredményei a következők:</p>
+            <p>Ön az egészségének táplálkozással és emésztéssel kapcsolatos kockázati szintjét <span style=\"font-weight:bold;\">veszélyeztetett</span> szintre értékeli.</p>
+            <p>A kockázat csökkentése érdekében Önnek <span style=\"font-weight:bold;\">további kivizsgálás</span> javasolt.</p>
+            <p style=\"font-weight:bold;\">A diagramok értelmezése:</p>
+            <p>Az Ön személyes eredményeit az alábbi grafikonokon piros színű oszlopok jelzik, az elfogadható szinthez (zöld szín), illetve az céges (barna szín) átlagokhoz viszonyítva.</p>
+            <p>Az átlagértékek 0-tól 100-ig terjednek (0: alacsony, 100: magas). A piros színű oszlopok a negatív tényezőket ábrázolják. Minél magasabb a piros oszloppal megjelenített érték, annál jelentősebb a hatás az adott mutató alapján. Ha magasabb a piros oszlop, mint az elfogadható-, illetve a céges átlag, akkor Ön az adott mutató alapján veszélyeztetettebb az átlagosnál.</p>
+            <p>GRAFIKON</p>
+            <p>Ha a kockázatelemzéssel kapcsolatban megjegyzése van, kérem, vegye fel a kapcsolatot az ügyfélszolgálatunkkal!</p>
+            <div style=\"padding:20px 0;\"><span style=\"font-style: italic;\">Üdvözlettel:<br>Interaktív Program csapata</span><br>
+            <img src=\"http://hrp-interaktiv.hu/kepek/logo_min.jpg\" alt=\"HRP logo mini\"></div>
+            </body>
+            </html>";
+
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            //$headers .= 'From: <webmaster@example.com>' . "\r\n";
+            //$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+            mail($to, $subject, $message, $headers);
+            /* *********************************************** */
+
+            header('location: lecke.php?msg=3');
+            exit;
+        } else {
+            header('location: lecke.php?msg=4');
+            exit;
+        }
+
+    }
+}
+
 include 'includes/header.php';
 
 ?>
@@ -71,7 +145,7 @@ include 'includes/header.php';
                 <h3>Kérem, válasszon a felsorolt válaszok közül!</h3>
             </div>
             <div style="padding: 0 60px;">
-                <form id="form-leckekezdo" onsubmit="return false;">
+                <form id="form-leckekezdo" method="post" action="">
                     <?php
                     $testId = db_getTestId($testName);
                     $startFromQuestionId = db_getStartQuestionId($testId);
@@ -123,7 +197,8 @@ include 'includes/header.php';
                     ?>
                     <div style="padding: 20px 0;"></div>
                     <div id="test_submit<?php echo $randomColor; ?>" class="teszt_kiertekel">
-                        <input type="submit" value="Kiértékelés">
+                        <input type="text" name="start_time" value="<?php echo date("Y-m-d H:i:s"); ?>" style="display: none;">
+                        <input type="submit" name="test_submit" value="Kiértékelés">
                     </div>
                 </form>
             </div>

@@ -124,3 +124,75 @@ function db_getQuestionInterval($testId = -1) {
     $stmt->execute();
     return $stmt->fetchColumn();
 }
+
+/**
+ * Adds a new record in table kitolt into the database.
+ * @param $userId
+ * @param $testName
+ * @param $points
+ * @param $time
+ * @param $percentage
+ * @return bool TRUE on success or FALSE on failure.
+ */
+function db_addNewRecordInTableKitolt($userId, $testName, $points, $time, $percentage) {
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if(empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+
+    $ret = db_getTestId($testName);
+    if(empty($ret)) return FALSE; else $testId = $ret;
+
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO kitolt
+                            VALUES (:uname, :tid, :point, :secs, NOW(), :percentage)");
+    $stmt->bindParam(':uname', $userName);
+    $stmt->bindParam(':tid', $testId);
+    $stmt->bindParam(':point', $points);
+    $stmt->bindParam(':secs', $time);
+    $stmt->bindParam(':percentage', $percentage);
+    return $stmt->execute();
+}
+
+/**
+ * Adds a new record in table lzaro_kitolt into the database.
+ * @param $userId
+ * @param $timeWindowName
+ * @param $testName
+ * @param $time
+ * @return integer containing the last inserted id, or FALSE on failure.
+ */
+function db_addNewRecordInTableLzaro_kitolt($userId, $timeWindowName, $testName, $time) {
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if(empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+
+    $tid = db_getTimeWindowIdFromName($timeWindowName);
+
+    $ret = db_getTestId($testName);
+    if(empty($ret)) return FALSE; else $testId = $ret;
+
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO lzaro_kitolt
+                            VALUES (NULL, :uname, :tid, :testId, :secs, NOW())");
+    $stmt->bindParam(':uname', $userName);
+    $stmt->bindParam(':tid', $tid);
+    $stmt->bindParam(':testId', $testId);
+    $stmt->bindParam(':secs', $time);
+    $stmt->execute();
+    return $conn->lastInsertId();
+}
+
+/**
+ * Adds a new record in table lzaro_kitolt into the database.
+ * @param $kitoltId
+ * @param $valaszId
+ * @return bool TRUE on success or FALSE on failure.
+ */
+function db_addNewRecordInTableLzaro_valaszok($kitoltId, $valaszId) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO lzaro_valaszok
+                            VALUES (NULL, :kitId, (SELECT kerdesId
+                                                   FROM valasz
+                                                   WHERE id = :valId), :valId)");
+    $stmt->bindParam(':kitId', $kitoltId);
+    $stmt->bindParam(':valId', $valaszId);
+    return $stmt->execute();
+}

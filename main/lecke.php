@@ -32,15 +32,21 @@ do {
 } while ($randomColor1 == $randomColor2);
 
 if(!empty($_GET['msg'])) {
+    $msgColor = "darkred";
     if($_GET['msg'] == 1) {
         $text = "A teszt még (vagy már) nem elérhető.";
     } else if($_GET['msg'] == 2) {
         $text = "Ez a tartalom jelenleg Önnek nem elérhető.";
+    } else if($_GET['msg'] == 3) {
+        $text = "Sikeres teszt beküldés!";
+        $msgColor = "darkgreen";
+    } else if($_GET['msg'] == 4) {
+        $text = "Adatbázis hiba! Kérjük, jelentse!";
     } else {
         $text = null;
     }
     if(isset($text)) {
-        $message = "<div style=\"padding-top: 20px;width:90%;margin: auto;\"><p style=\"background-color:darkred;border-radius:16px;text-align: center;padding: 5px 0;font-weight: bold;color: white;\">$text</p></div>";
+        $message = "<div style=\"padding-top: 20px;width:90%;margin: auto;\"><p style=\"background-color:$msgColor;border-radius:16px;text-align: center;padding: 5px 0;font-weight: bold;color: white;\">$text</p></div>";
     }
 }
 ?>
