@@ -49,7 +49,7 @@ if (!isset($active)) $active = '';
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Beállítások</a></li>
+                <li><a href="user_settings.php">Beállítások</a></li>
                 <li><a href="logout.php">Kilépés</a></li>
             </ul>
         </div>
