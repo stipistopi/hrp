@@ -41,3 +41,32 @@ function db_getUserHash($id, $username) {
         return FALSE;
     return $ret['password_hash'];
 }
+
+function db_setUserHash($id, $hash) {
+    if ($id < 0) return FALSE;
+    global $conn;
+    $stmt = $conn->prepare("UPDATE admin_users
+                            SET password_hash = :hash 
+                            WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':hash', $hash);
+    return $stmt->execute();
+}
+
+function db_getUserEmail($id, $username) {
+    $ret = db_getUserDataRaw($id, $username);
+    if (empty($ret))
+        return FALSE;
+    return $ret['email'];
+}
+
+function db_setUserEmail($id, $newEmail) {
+    if ($id < 0) return FALSE;
+    global $conn;
+    $stmt = $conn->prepare("UPDATE admin_users
+                            SET email = :email 
+                            WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':email', $newEmail);
+    return $stmt->execute();
+}
