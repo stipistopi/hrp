@@ -53,6 +53,62 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $szazalek = round($pont/10, 3);
 
         if(db_addNewRecordInTableKitolt($userId, $testName, $pont, $fillOutTime, $szazalek)) {
+            $user = db_getUserDataRaw($userId, null, null, null);
+            $email = $user['email'];
+
+            /* ************* HTML E-MAIL KÜLDÉSE ************* */
+            $to = $email;
+            $subject = "HRP - Kérdezz-felelek teszt kiértékelése (" . $numberOfLecke . ". lecke)";
+
+            if($numberOfLecke == 1) {
+                $leckeTextSima = "táplálkozás és emésztés";
+                $leckeText = "táplálkozással és emésztéssel kapcsolatos";
+            } else {
+                $leckeText = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
+            }
+
+            if($pont >= 0 && $pont <= 3) {
+                $szint = "nem megfelelő";
+            } else if($pont > 3 && $pont <= 7) {
+                $szint = "megfelelő";
+            } else if($pont > 7 && $pont <= 10) {
+                $szint = "kitűnő";
+            } else {
+                $szint = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
+            }
+
+            $message = "
+            <html>
+            <head>
+            <title>HRP - Kérdezz-felelek teszt</title>
+            </head>
+            <body>
+            <h2>Tisztelt Partnerünk!</h2>
+            <p>A kérdezz-felelek felmérés az Ön tudásszintjéről ad visszajelzést. Megmutatja, hogy mennyire sikerült a(z) $leckeText ismereteket megjegyeznie.</p>
+            <p style=\"font-weight:bold;\">Az eredményét itt láthatja:</p>
+            <div style=\"margin-left:4em;\">
+            <p>Az Ön $leckeTextSima témakör elsajátítási szintje: " . strtoupper($szint) . "</p>
+            <div style=\"text-align: center;\">
+            <p style=\"font-style: italic;\">Az eddig kitöltők átlagos elsajátítási szintje</p>
+            <p><a href=\"http://hrp-interaktiv.hu/main/results.php?test=kf&lecke=$numberOfLecke\" target=\"_blank\"><img src=\"http://hrp-interaktiv.hu/main/images/graph.png\" alt=\"HRP grafikon kép\" width=\"400\" height=\"auto\"></a></p>
+            </div>
+            </div>
+            <p>Tipp: A <a href=\"http://hrp-interaktiv.hu/main/ttar.php\" target=\"_blank\">tudástárban</a> további hasznos ismereteket találhat. Vegye és bővítse tovább ismereteit.</p>
+            <p>Ha a kérdezz-felelek kérdéssorral kapcsolatban megjegyzése van, kérem, vegye fel a kapcsolatot az <a href=\"http://hrp-interaktiv.hu/main/help.php\" target=\"_blank\">ügyfélszolgálatunk</a>kal!</p>
+            <div style=\"padding:20px 0;\"><span style=\"font-style: italic;\">Üdvözlettel:<br>Interaktív Program csapata</span><br>
+            <img src=\"http://hrp-interaktiv.hu/kepek/logo_min.jpg\" alt=\"HRP logo mini\"></div>
+            </body>
+            </html>";
+
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            //$headers .= 'From: <webmaster@example.com>' . "\r\n";
+            //$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+            mail($to, $subject, $message, $headers);
+            /* *********************************************** */
+
             header('location: lecke.php?msg=3');
             exit;
         } else {

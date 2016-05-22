@@ -42,6 +42,8 @@ if(!empty($_GET['msg'])) {
         $msgColor = "darkgreen";
     } else if($_GET['msg'] == 4) {
         $text = "Adatbázis hiba! Kérjük, jelentse!";
+    } else if($_GET['msg'] == 5) {
+        $text = "Ez az oldal nem létezik.";
     } else {
         $text = null;
     }

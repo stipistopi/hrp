@@ -180,6 +180,37 @@ function db_getTimeWindowIdFromName($timeWindowName = "-1") {
 }
 
 /**
+ * Check if the user's actual time window value greater than the first time window or not.
+ * @param string $timeWindowName
+ * @return bool TRUE if greater, or FALSE if not.
+ */
+function db_checkIfTimeWindowGreaterThanPkezdo($timeWindowName = "-1") {
+    global $conn;
+    $stmt = $conn->prepare("SELECT ertek
+                            FROM idoablakok
+                            WHERE nev = :tname");
+    $stmt->bindParam(':tname', $timeWindowName);
+    $stmt->execute();
+    $currTw = $stmt->fetchColumn();
+
+    $timeWindowName = "pkezdo";
+
+    $stmt = $conn->prepare("SELECT ertek
+                            FROM idoablakok
+                            WHERE nev = :tname");
+    $stmt->bindParam(':tname', $timeWindowName);
+    $stmt->execute();
+    $pkezdoTw = $stmt->fetchColumn();
+    $pkezdoTw++;
+
+    if($pkezdoTw <= $currTw) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * Adds a new user into the database.
  * @param $email
  * @param $username

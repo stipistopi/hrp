@@ -255,3 +255,139 @@ function db_checkUserActivity($timeWindowName = "-1", $actName = "-1", $userId =
         return false;
     }
 }
+
+/**
+ * Returns the three column data for the corresponding lecke (test type: lecke start test).
+ * @param $userId
+ * @param $numberOfLecke
+ * @return array 1D associative array containing the graph dara, or FALSE if the user cannot be found.
+ */
+function db_getGraphDataForLeckeStartTest($userId = -1, $numberOfLecke = -1) {
+    $graphData = array();
+
+    $leckeName = "lecke" . $numberOfLecke . "kezdo";
+
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    if(empty($ret)) return FALSE; else $userName = $ret['felh_nev'];
+
+    /* first column for the graph */
+    global $conn;
+    $stmt = $conn->prepare("SELECT szazalek
+                            FROM kitolt
+                            WHERE felhNev = :uname AND tesztId = (SELECT id
+                                                                  FROM teszt
+                                                                  WHERE nev = :lname)");
+    $stmt->bindParam(':uname', $userName);
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    $row_count = $stmt->rowCount();
+    if($row_count == 0) {
+        array_push($graphData, 0);
+    } else {
+        array_push($graphData, round($stmt->fetchColumn() * 100));
+    }
+
+    /* second column for the graph */
+    array_push($graphData, round(0.25 * 100));
+
+    /* third column for the graph */
+
+    $ret = db_getUserDataRaw($userId, null, null, null);
+    $cardId = $ret['kartyaId'];
+
+    $stmt = $conn->prepare("SELECT cegId
+                            FROM kartya
+                            WHERE kartya_id = :kartya");
+    $stmt->bindParam(':kartya', $cardId);
+    $stmt->execute();
+    $companyId = $stmt->fetchColumn();
+
+    $stmt = $conn->prepare("SELECT AVG(szazalek)
+                            FROM kitolt
+                            WHERE felhNev IN (SELECT felh_nev
+                                              FROM felhasznalo
+                                              WHERE kartyaId IN (SELECT kartya_id
+                                                                 FROM kartya
+                                                                 WHERE cegId = :compId)) AND tesztId = (SELECT id
+                                                                                                        FROM teszt
+                                                                                                        WHERE nev = :lname)");
+    $stmt->bindParam(':compId', $companyId);
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    if($row_count == 0) {
+        array_push($graphData, 0);
+    } else {
+        array_push($graphData, round($stmt->fetchColumn() * 100));
+    }
+
+    return $graphData;
+}
+
+/**
+ * Returns the three column data for the corresponding lecke (test type: lecke kerdezz test).
+ * @param $numberOfLecke
+ * @return array 1D associative array containing the graph dara, or FALSE if the user cannot be found.
+ */
+function db_getGraphDataForLeckeKerdezzTest($numberOfLecke = -1) {
+    $graphData = array();
+
+    $leckeName = "lecke" . $numberOfLecke . "kf";
+
+    /* összes kitöltő */
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(*)
+                            FROM kitolt
+                            WHERE tesztId = (SELECT id
+                                             FROM teszt
+                                             WHERE nev = :lname)");
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    $allFiller = $stmt->fetchColumn();
+
+    /* first column for the graph */
+    $stmt = $conn->prepare("SELECT COUNT(*)
+                            FROM kitolt
+                            WHERE tesztId = (SELECT id
+                                             FROM teszt
+                                             WHERE nev = :lname) AND pontszam BETWEEN 0 AND 3");
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    $row_count = $stmt->rowCount();
+    if($row_count == 0 || $allFiller == 0) {
+        array_push($graphData, 0);
+    } else {
+        array_push($graphData, round(($stmt->fetchColumn() / $allFiller) * 100));
+    }
+
+    /* second column for the graph */
+    $stmt = $conn->prepare("SELECT COUNT(*)
+                            FROM kitolt
+                            WHERE tesztId = (SELECT id
+                                             FROM teszt
+                                             WHERE nev = :lname) AND pontszam BETWEEN 4 AND 7");
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    $row_count = $stmt->rowCount();
+    if($row_count == 0 || $allFiller == 0) {
+        array_push($graphData, 0);
+    } else {
+        array_push($graphData, round(($stmt->fetchColumn() / $allFiller) * 100));
+    }
+
+    /* third column for the graph */
+    $stmt = $conn->prepare("SELECT COUNT(*)
+                            FROM kitolt
+                            WHERE tesztId = (SELECT id
+                                             FROM teszt
+                                             WHERE nev = :lname) AND pontszam BETWEEN 8 AND 10");
+    $stmt->bindParam(':lname', $leckeName);
+    $stmt->execute();
+    $row_count = $stmt->rowCount();
+    if($row_count == 0 || $allFiller == 0) {
+        array_push($graphData, 0);
+    } else {
+        array_push($graphData, round(($stmt->fetchColumn() / $allFiller) * 100));
+    }
+
+    return $graphData;
+}

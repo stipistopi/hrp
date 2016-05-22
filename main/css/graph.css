@@ -1,11 +1,20 @@
-.main{
+div#right-menu {
+    width: 0;
+    display: none;
+}
+
+div#content {
+    width: 100%;
+}
+
+.main {
     text-align: center;
     width: 100%;
-    background: rgba(0,0,0,0.03);
-    padding: 30px 50px 50px 50px;
+    /* background: rgba(0,0,0,0.03); */
+    padding: 0px 50px 50px 50px;
     margin: 0 auto 30px auto;
-    border: 1px solid rgba(255,255,255,0.8);
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    /* border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.2); */
 }
 
 /*********************
@@ -84,7 +93,7 @@
 .graph-container > li > span {
     position: absolute;
     left: 0;
-    bottom: -2em;
+    bottom: -3em;
     width: 80%; /* play with this one if you change perspective depth */
     text-align: center;
     font-weight: bold;
@@ -244,7 +253,7 @@
     z-index: 3; /* be above .bar-background and .bar-inner */
 }
 .bar-foreground,
-.bar-inner {
+.bar-inner, .bar-inner-text {
     position: absolute;
     width: 10em;
     height: 100%;
@@ -255,7 +264,9 @@
 .bar-foreground:before,
 .bar-foreground:after,
 .bar-inner:before,
-.bar-inner:after {
+.bar-inner:after,
+.bar-inner-text:before,
+.bar-inner-text:after {
     content: "";
     position: absolute;
 }
@@ -292,14 +303,31 @@
     transform: skew(-45deg);
 }
 
+/* Transformed text in the top of the bar-inner element */
+.bar-inner-text:after {
+    content: attr(data-height);
+    top: -1.5em;
+    right: -3em;
+    width: 100%;
+    height: 2.5em;
+    font-size: 150%;
+    letter-spacing: 3px;
+
+    -webkit-transform: skew(-45deg);
+    -moz-transform: skew(-45deg);
+    -o-transform: skew(-45deg);
+    -ms-transform: skew(-45deg);
+    transform: skew(-45deg);
+}
+
 /** BAR's inner block **/
-.bar-inner {
+.bar-inner, .bar-inner-text {
     z-index: 2; /* to be above .bar-background */
     top: auto; /* reset position top */
-    background-color: rgba(5, 62, 123, .6);
+    /* background-color: rgba(5, 62, 123, .6); */
     height: 0;
     bottom: -2.5em;
-    color: transparent; /* hide text values */
+    color: white; /* hide text values */
 
     -webkit-transition: height 0.8s ease-out, bottom 0.8s ease-out;
     -moz-transition: height 0.8s ease-out, bottom 0.8s ease-out;
@@ -421,9 +449,11 @@
 */
 
 /* Green */
+/*
 .graph-container .bar-inner,
 .graph-container .bar-inner:before { background-color: rgba(5, 123, 5, .3); }
 .graph-container .bar-inner:after { background-color: rgba(63, 122, 47, .4); }
+*/
 
 /******************************************************************************
  **                                                                          **

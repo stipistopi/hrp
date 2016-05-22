@@ -62,6 +62,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $to = $email;
             $subject = "HRP - Leckekezdő teszt kiértékelése (" . $numberOfLecke . ". lecke)";
 
+            if($numberOfLecke == 1) {
+                $leckeTextSima = "táplálkozás és emésztés";
+                $leckeText = "táplálkozással és emésztéssel kapcsolatos";
+            } else {
+                $leckeText = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
+            }
+
+            if($pont >= 0 && $pont <= 10) {
+                $szint = "normális";
+                $tovabbi = "<span style=\"font-weight:bold;\">további kivizsgálás nem javasolt</span>";
+            } else if($pont > 10 && $pont <= 29) {
+                $szint = "veszélyeztetett";
+                $tovabbi = "<span style=\"font-weight:bold;\">további kivizsgálás</span> javasolt";
+            } else if($pont > 29 && $pont <= 40) {
+                $szint = "kifejezetten veszélyeztetett";
+                $tovabbi = "<span style=\"font-weight:bold;\">további kivizsgálás</span> javasolt";
+            } else {
+                $szint = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
+            }
+
                 $message = "
             <html>
             <head>
@@ -69,16 +89,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </head>
             <body>
             <h2>Tisztelt Partnerünk!</h2>
-            <p>A leckekezdő gyorsteszt az Ön táplálkozással és emésztéssel kapcsolatos kockázatairól ad visszajelzést.</p>
+            <p>A leckekezdő gyorsteszt az Ön $leckeText kockázatairól ad visszajelzést.</p>
             <p>Fontos megjegyezni, hogy az alábbi kockázati szint meghatározás nem orvosi diagnózis!</p>
             <p style=\"font-weight:bold;\">Az ön eredményei a következők:</p>
-            <p>Ön az egészségének táplálkozással és emésztéssel kapcsolatos kockázati szintjét <span style=\"font-weight:bold;\">veszélyeztetett</span> szintre értékeli.</p>
-            <p>A kockázat csökkentése érdekében Önnek <span style=\"font-weight:bold;\">további kivizsgálás</span> javasolt.</p>
+            <div style=\"margin-left:4em;\">
+            <p>Ön az egészségének $leckeText kockázati szintjét <span style=\"font-weight:bold;\">$szint</span> szintre értékeli.</p>
+            <p>A kockázat csökkentése érdekében Önnek $tovabbi.</p>
+            </div>
             <p style=\"font-weight:bold;\">A diagramok értelmezése:</p>
             <p>Az Ön személyes eredményeit az alábbi grafikonokon piros színű oszlopok jelzik, az elfogadható szinthez (zöld szín), illetve az céges (barna szín) átlagokhoz viszonyítva.</p>
             <p>Az átlagértékek 0-tól 100-ig terjednek (0: alacsony, 100: magas). A piros színű oszlopok a negatív tényezőket ábrázolják. Minél magasabb a piros oszloppal megjelenített érték, annál jelentősebb a hatás az adott mutató alapján. Ha magasabb a piros oszlop, mint az elfogadható-, illetve a céges átlag, akkor Ön az adott mutató alapján veszélyeztetettebb az átlagosnál.</p>
-            <p>GRAFIKON</p>
-            <p>Ha a kockázatelemzéssel kapcsolatban megjegyzése van, kérem, vegye fel a kapcsolatot az ügyfélszolgálatunkkal!</p>
+            <div style=\"text-align: center;\">
+            <p style=\"font-style: italic;\">" . ucfirst($leckeTextSima) . " kockázati szint</p>
+            <p><a href=\"http://hrp-interaktiv.hu/main/results.php?test=lkezdo&lecke=$numberOfLecke\" target=\"_blank\"><img src=\"http://hrp-interaktiv.hu/main/images/graph.png\" alt=\"HRP grafikon kép\" width=\"400\" height=\"auto\"></a></p>
+            </div>
+            <p>Ha a kockázatelemzéssel kapcsolatban megjegyzése van, kérem, vegye fel a kapcsolatot az <a href=\"http://hrp-interaktiv.hu/main/help.php\" target=\"_blank\">ügyfélszolgálatunk</a>kal!</p>
             <div style=\"padding:20px 0;\"><span style=\"font-style: italic;\">Üdvözlettel:<br>Interaktív Program csapata</span><br>
             <img src=\"http://hrp-interaktiv.hu/kepek/logo_min.jpg\" alt=\"HRP logo mini\"></div>
             </body>

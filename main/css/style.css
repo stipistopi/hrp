@@ -572,15 +572,22 @@ table#vallal_tabla label {
     margin: auto;
 }
 
-.tunet_item, .ttar_item {
+.tunet_item, .ttar_item, .graph_item {
     padding: 1em 0;
     line-height: 40px; /* eredetileg ez nem volt benne */
 }
 
 .tunet_item:before, .ttar_item:before {
+    background: url(../images/pdf48.png) no-repeat;
+}
+
+.graph_item:before {
+    background: url(../images/stat48.png) no-repeat;
+}
+
+.tunet_item:before, .ttar_item:before, .graph_item:before {
     content: '';
     display: block;
-    background: url(../images/pdf48.png) no-repeat;
     background-size: 40px 40px;
     width: 40px;
     height: 40px;
