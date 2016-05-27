@@ -49,7 +49,7 @@ if (!isset($active)) $active = '';
                 <li><a class="<?php if ($active == 'career') echo 'active'; ?>" href="career.php">Karrier</a></li>
             <?php else: ?>
                 <li><a class="<?php if ($active == 'lecke') echo 'active'; ?>" href="lecke.php">Interaktív Program</a></li>
-                <li><a class="<?php if ($active == 'profile') echo 'active'; ?>" href="#">Profilom</a></li>
+                <li><a class="<?php if ($active == 'profile') echo 'active'; ?>" href="profile.php">Profilom</a></li>
                 <li><a class="<?php if ($active == 'activity') echo 'active'; ?>" href="activity.php">Tevékenységnapló</a></li>
                 <li><a class="<?php if ($active == 'results') echo 'active'; ?>" href="results.php">Eredményeim</a></li>
             <?php endif ?>

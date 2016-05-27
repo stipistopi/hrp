@@ -21,6 +21,36 @@ function db_getUserDataRaw($id = -1, $username = "-1", $email = "-1", $cardId = 
 }
 
 /**
+ * Returns the user's company data if at least one parameter is defined. Undefined parameters must be set to null.
+ * @param int $id
+ * @param string $username
+ * @param string $email
+ * @param int $cardId
+ * @return mixed 1D associative array containing the company details, or FALSE on failure.
+ */
+function db_getCompanyDataForUser($id = -1, $username = "-1", $email = "-1", $cardId = -1) {
+    global $conn;
+
+    if($cardId == "-1" || empty($cardId)) {
+        $stmt = $conn->prepare("SELECT kartyaId
+                                FROM felhasznalo
+                                WHERE (id = :id OR felh_nev = :username OR email = :email)");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $cardId = $stmt->fetchColumn();
+    }
+
+    $stmt = $conn->prepare("SELECT vallalat_telephely AS thely, vallalat_nev AS nev
+                            FROM kartya, ceg
+                            WHERE (kartya_id = :cid AND id = cegId)");
+    $stmt->bindParam(':cid', $cardId);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_BOTH);
+}
+
+/**
  * Check if card is activated or not, if at least one parameter is defined. Undefined parameters must be set to null.
  * @param int $id
  * @param string $username
@@ -241,6 +271,33 @@ function db_addUser($email, $username, $cardId, $password, $lastName, $firstName
     $stmt->bindParam(':telephoneNumber', $telephoneNumber);
     $stmt->bindParam(':city', $city);
     $stmt->bindParam(':city_district', $city_district);
+    return $stmt->execute();
+}
+
+/**
+ * Updates a user's record in the database.
+ * @param $id
+ * @param $email
+ * @param $username
+ * @param $password
+ * @param $telephoneNumber
+ * @param $city
+ * @param $city_district
+ * @return bool TRUE on success or FALSE on failure.
+ */
+function db_updateUser($id, $email, $username, $password, $telephoneNumber, $city, $city_district) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE felhasznalo
+                            SET email = :email, felh_nev = :username, jelszo = :password, telefon = :telephoneNumber,
+                                 lakhely_varos = :city, lakhely_varosresz = :city_district
+                            WHERE id = :id");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':telephoneNumber', $telephoneNumber);
+    $stmt->bindParam(':city', $city);
+    $stmt->bindParam(':city_district', $city_district);
+    $stmt->bindParam(':id', $id);
     return $stmt->execute();
 }
 
