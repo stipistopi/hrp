@@ -2,7 +2,8 @@
 include_once '../includes/config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $leckeNum = test_input($_POST['leckeNum']);
+    $timeWindowName = $_SESSION['timeWindowName'];
+    $leckeNum = pregMatch_oneNumberFromString($timeWindowName);
     $vidMp = test_input($_POST['vidMp']);
 
     setcookie(

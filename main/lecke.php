@@ -197,12 +197,9 @@ if(!empty($_GET['msg'])) {
                 url: "ajax/save_vid_state.php",
                 type: "POST",
                 data: {
-                    leckeNum: <?php echo $numberOfLecke; ?>,
                     vidMp: Math.round(player.getCurrentTime())
                 }
             });
-            //alert(Math.round(player.getCurrentTime()));
-            // setTimeout(stopVideo, 6000);
         }
     }
 

@@ -75,6 +75,14 @@ $(document).ready(function() {
 
         $('.blockOverlay').click(function() {
             $.unblockUI();
+
+            $.ajax({
+                url: "ajax/save_vid_state.php",
+                type: "POST",
+                data: {
+                    vidMp: Math.round(player.getCurrentTime())
+                }
+            });
         });
     });
 
