@@ -22,8 +22,12 @@ $statusInLecke = db_getStatusInLecke($userId, $timeWindowName);
 
 if(pregMatch_oneNumberFromString($timeWindowName)) {
     $numberOfLecke = pregMatch_oneNumberFromString($timeWindowName);
+    $vid_title = $numberOfLecke . ". lecke videóanyagának megnyitása. (Ha szünetet tartana, csak állítsa meg, a rendszer megjegyzi, hol tartott.)";
+    if($numberOfLecke == 1) $vidId = "rPMh2fETxEg";
+    if($numberOfLecke == 2) $vidId = "U6zt9S_dzlE";
 } else {
     $numberOfLecke = "";
+    $vid_title = "Videó jelenleg nem elérhető.";
 }
 
 $randomColor1 = mt_rand(1,4);
@@ -129,13 +133,84 @@ if(!empty($_GET['msg'])) {
     <div class="content-right content-right-mod">
         <div class="lecke">
             <?php echo file_get_contents("images/lecke.svg"); ?>
-            <div class="lecke-vid-container"
-                 title="A beépített tartalomra kattintva nézheti meg az előadást, a lecke prezentációját.">
+            <div <?php if(!empty($numberOfLecke)) echo "id=\"open-modal\" style=\"cursor: pointer;\""; ?> class="lecke-vid-container"
+                 title="<?php echo $vid_title; ?>">
+                <!-- Eredeti title: "A beépített tartalomra kattintva nézheti meg az előadást, a lecke prezentációját."  -->
                 <img src="images/fakevid.png" class="lecke-vid">
+                <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+                <div id="player" style="display: none;"></div>
             </div>
         </div>
     </div>
 </div>
+<?php if(!empty($numberOfLecke)): ?>
+<script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+        $("#open-modal").click(function() {
+            player = new YT.Player('player', {
+                height: playerHeight,
+                width: playerWidth,
+                videoId: '<?php echo $vidId; ?>',
+                playerVars: {
+                    <?php
+                    if(!empty($_COOKIE['vid_state_in_secs'])) {
+                        list($lecke, $secs) = explode(':', $_COOKIE['vid_state_in_secs']);
+                        if($lecke == $numberOfLecke) echo "'start': " . $secs . ",";
+                    }
+                    ?>
+                    'rel': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            $("iframe#player").attr("title", "");
+        });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+        // do whatever you want here
+        //event.target.playVideo();
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PAUSED) {
+            $.ajax({
+                url: "ajax/save_vid_state.php",
+                type: "POST",
+                data: {
+                    leckeNum: <?php echo $numberOfLecke; ?>,
+                    vidMp: Math.round(player.getCurrentTime())
+                }
+            });
+            //alert(Math.round(player.getCurrentTime()));
+            // setTimeout(stopVideo, 6000);
+        }
+    }
+
+    function stopVideo() {
+        player.stopVideo();
+    }
+</script>
+<?php endif ?>
 <div class="flexbox-container">
     <div class="content-left">
         <div class="line-magenta"></div>

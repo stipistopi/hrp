@@ -2,6 +2,9 @@
  * jQuery code by Peter Tisóczki
  */
 
+var playerHeight = 390;
+var playerWidth = 640;
+
 $.fn.progBarAnim = function() {
     var $obj = this;
     var $szazalek;
@@ -52,6 +55,28 @@ $(document).ready(function() {
 
     $("#bar1").progBarAnim();
     $("#bar2").progBarAnim();
+
+    // YouTube player embedding
+
+    $("#open-modal").click(function() {
+        $.blockUI({
+            message: $('#player'),
+            css: {
+                top:  ($(window).height() - playerHeight) / 2 + 'px',
+                left: ($(window).width() - playerWidth) / 2 + 'px',
+                height: playerHeight,
+                width: playerWidth,
+                cursor: 'auto'
+            },
+            overlayCSS: {
+                cursor: 'auto'
+            }
+        });
+
+        $('.blockOverlay').click(function() {
+            $.unblockUI();
+        });
+    });
 
     $("polygon[id*='_hover'], rect[id*='_hover']").hover(function() {
         nev = $(this).attr("id");
