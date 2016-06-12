@@ -6,6 +6,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $leckeNum = pregMatch_oneNumberFromString($timeWindowName);
     $vidMp = test_input($_POST['vidMp']);
 
+    setcookie("vid_state_in_secs", "", time() - 3600); // delete cookie
+
     setcookie(
         'vid_state_in_secs', // name
         $leckeNum . ':' . $vidMp, // value
