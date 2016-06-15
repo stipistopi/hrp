@@ -2,15 +2,17 @@
 /**
  * Returns the company data if the ID is defined.
  * @param int $id
+ * @param string $name
  * @return mixed 1D associative array containing the raw table row, or FALSE if the company cannot be found.
  */
-function db_getCompanyData($id = -1)
+function db_getCompanyData($id = -1, $name = "-1")
 {
     global $conn;
     $stmt = $conn->prepare("SELECT id AS id, vallalat_nev AS name
                             FROM ceg
-                            WHERE id = :id");
+                            WHERE id = :id OR vallalat_nev = :cname");
     $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':cname', $name);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_BOTH);
 }

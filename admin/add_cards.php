@@ -2,33 +2,48 @@
 $active = "add_cards";
 include 'includes/header.php';
 
-$cardIds = db_getAllCardIds();
-$companies = db_getCompaniesOverview();
-
-// array containing the range of free card IDs in the following form:
-// freeRanges[range index]['start'] - freeRanges[range index]['stop']
-// where 'start' is the first free ID, and stop is the last free ID.
-$freeRanges = array();
-
-// populate freeRanges
-for ($i = 1; $i < count($cardIds); $i++) {
-    $currVal = $cardIds[$i]['id'];
-    $prevVal = $cardIds[$i - 1]['id'];
-    if ($currVal - $prevVal > 1) {
-        $j = count($freeRanges);
-        $freeRanges[$j]['start'] = $prevVal + 1;
-        $freeRanges[$j]['end'] = $currVal - 1;
+$msg = null;
+$err = null;
+if (isset($_POST['add-submit'])) {
+    $start = $_POST['start'];
+    $end = $start + $_POST['quantity'] - 1;
+    if (db_isCardRangeFree($start, $end)) {
+        $company = db_getCompanyData(null, $_POST['company']);
+        if ($company !== FALSE) {
+            $companyId = $company['id'];
+            $ret = db_addCardRange($start, $end, $companyId, 0);
+            if ($ret === TRUE) {
+                $msg = "Sikeres hozzáadás.";
+            } else {
+                $err = "Hiba a hozzáadás során!";
+            }
+        } else {
+            $err = "Érvénytelen cég!";
+        }
+    } else {
+        $err = "A kiválasztott intervallum érvénytelen!";
     }
 }
+
+if ($err)
+    echo '<h4 style="color:red">' . $err . '</h4>' . '<br>';
+
+if ($msg)
+    echo '<h4>' . $msg . '</h4>' . '<br>';
+
+$freeRanges = db_getFreeCardRanges();
+
+$cardIds = db_getAllCardIds();
+$companies = db_getCompaniesOverview();
 ?>
 
 <datalist id="companies">
     <?php foreach ($companies as $company): ?>
-    <option value="<?php echo $company['name'] ?>">
-        <?php endforeach; ?>
+        <option value="<?php echo $company['name'] ?>">
+    <?php endforeach; ?>
 </datalist>
 
-<form class="form-inline">
+<form method="post" action="" class="form-inline">
     <div class="form-group">
         <label for="start">Kezdőérték</label>
         <input type="number" class="form-control" style="width:115px;" name="start" id="start"
@@ -44,9 +59,10 @@ for ($i = 1; $i < count($cardIds); $i++) {
     </div>
     <div class="form-group">
         <label for="company">Cég</label>
-        <input list="companies" class="form-control" name="company" id="company" placeholder="Kezdjen el gépelni...">
+        <input list="companies" class="form-control" name="company" id="company"
+               placeholder="Kezdjen el gépelni..." autocomplete="off">
     </div>
-    <button type="submit" class="btn btn-default">Hozzáadás</button>
+    <button type="submit" class="btn btn-default" name="add-submit">Hozzáadás</button>
 </form>
 <br>
 <h4>Szabad azonosítók:</h4>
