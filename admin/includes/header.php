@@ -61,6 +61,7 @@ if (!isset($active)) $active = '';
             <ul class="nav nav-sidebar">
                 <li class="<?php if ($active == 'index') echo 'active'; ?>"><a href="admin.php">Áttekintés <span class="sr-only">(current)</span></a></li>
                 <li class="<?php if ($active == 'companies') echo 'active'; ?>"><a href="companies.php">Cégek kezelése</a></li>
+                <li class="<?php if ($active == 'cards_overview') echo 'active'; ?>"><a href="cards_overview.php">Kártyák kezelése</a></li>
                 <li class="<?php if ($active == 'add_cards') echo 'active'; ?>"><a href="add_cards.php">Kártyák hozzáadása</a></li>
                 <li class="<?php if ($active == 'stats') echo 'active'; ?>"><a href="#">Statisztika</a></li>
             </ul>

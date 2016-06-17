@@ -9,6 +9,40 @@ function db_getAllCardIds()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function db_getCompanyCards($companyId)
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT kartya_id AS id, aktiv AS active
+                            FROM kartya
+                            WHERE cegId = :companyId");
+    $stmt->bindParam(':companyId', $companyId);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function db_getCompanyCardsNum($companyId, $active)
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(kartya_id)
+                            FROM kartya
+                            WHERE cegId = :companyId AND aktiv = :active");
+    $stmt->bindParam(':companyId', $companyId);
+    $stmt->bindParam(':active', $active);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
+function db_setCardActive($number, $active)
+{
+    global $conn;
+    $stmt = $conn->prepare("UPDATE kartya
+                            SET aktiv = :active
+                            WHERE kartya_id = :number");
+    $stmt->bindParam(':number', $number);
+    $stmt->bindParam(':active', $active);
+    return $stmt->execute();
+}
+
 function db_addCard($number, $companyId, $active)
 {
     global $conn;
