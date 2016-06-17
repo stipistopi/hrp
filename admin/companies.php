@@ -11,14 +11,14 @@ $companies = db_getCompaniesOverview();
     <tr>
         <th style="width:70px">ID</th>
         <th>Név</th>
-        <th style="width:150px"></th>
+        <th style="width:100px"></th>
     </tr>
     <?php foreach ($companies as $company): ?>
     <tr>
         <td><?php echo $company['id'] ?></td>
         <td><?php echo $company['name'] ?></td>
         <td>
-            <a href="editcompany.php?id=<?php echo $company['id'] ?>">Szerkesztés</a> - <a href="">Törlés</a>
+            <a href="editcompany.php?id=<?php echo $company['id'] ?>">Szerkesztés</a>
         </td>
     </tr>
     <?php endforeach ?>
