@@ -14,7 +14,7 @@ function db_getCompanyCards($companyId)
     global $conn;
     $stmt = $conn->prepare("SELECT kartya_id AS id, aktiv AS active
                             FROM kartya
-                            WHERE cegId = :companyId");
+                            WHERE cegId = :companyId AND (aktiv = 0 OR aktiv = 1)");
     $stmt->bindParam(':companyId', $companyId);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
