@@ -20,6 +20,12 @@ $company = db_getCompanyData($id);
 $cards = db_getCompanyCards($id);
 ?>
 
+<script>
+    function checkAll(val) {
+        $("input:checkbox").prop('checked', val);
+    }
+</script>
+
 <h1 class="page-header">Kártyák kezelése - <?php echo $company['name'] ?></h1>
 
 <form method="post" action="">
@@ -40,5 +46,8 @@ $cards = db_getCompanyCards($id);
     </table>
     <button type="submit" class="btn btn-default" name="submit">Mentés</button>
 </form>
+<br>
+<button class="btn btn-default" onclick="checkAll(true)">Összes aktiválása</button>
+<button class="btn btn-default" onclick="checkAll(false)">Összes deaktiválása</button>
 
 <?php include 'includes/footer.php' ?>
