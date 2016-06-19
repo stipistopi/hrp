@@ -91,3 +91,11 @@ function db_getCompaniesOverview()
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_BOTH);
 }
+
+function db_addCompany($name) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO ceg (vallalat_nev)
+                            VALUES (:name)");
+    $stmt->bindParam(':name', $name);
+    return $stmt->execute();
+}

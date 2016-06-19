@@ -4,7 +4,7 @@ include 'includes/header.php';
 
 $id = $_GET['id'];
 
-if (isset($_POST['login-submit'])) {
+if (isset($_POST['submit'])) {
     db_updateCompanyName($id, $_POST['company-name']);
     db_updateCompanyLocationData($id, $_POST['address']);
 }
@@ -44,7 +44,7 @@ $companyLocations = db_getCompanyLocationData($id);
             <button type="button" id="addRow" class="btn btn-default">További telephely hozzáadása</button>
         </div>
         <div class="col-sm-1">
-            <button type="submit" class="btn btn-default" name="login-submit">Mentés</button>
+            <button type="submit" class="btn btn-default" name="submit">Mentés</button>
         </div>
     </div>
 </form>
