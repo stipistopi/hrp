@@ -65,6 +65,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if($numberOfLecke == 1) {
                 $leckeTextSima = "táplálkozás és emésztés";
                 $leckeText = "táplálkozással és emésztéssel kapcsolatos";
+            } else if($numberOfLecke == 2) {
+                $leckeTextSima = "szív- és érrendszer";
+                $leckeText = "szív- és érrendszerrel kapcsolatos";
             } else {
                 $leckeText = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
             }

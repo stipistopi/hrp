@@ -25,14 +25,33 @@ if(pregMatch_oneNumberFromString($timeWindowName)) {
 }
 
 if($numberOfLecke == 1) {
-    $vallalasok = array("A mai naptól oda figyelek az étkezésemre. Naponta többször keveset eszem.",
+    $vallalasok = array(
+        "A mai naptól oda figyelek az étkezésemre. Naponta többször keveset eszem.",
         "A mai naptól tartózkodom a túlforró, vagy túl fűszeres ételek fogyasztásától.",
         "A mai naptól megválogatom a táplálékaimat. Törekszem arra, hogy hagyományos eljárással készült 'tiszta' táplálék legyen.",
         "A mai naptól figyelek a kellő mennyiségű folyadék bevitelére.",
         "A mai naptól figyelek a testsúlyomra, elérem az optimális testsúlyomat.",
         "A mai naptól rendszeresen mozgással is segítem emésztésemet, egészségemet.",
         "A mai naptól legalább évente járok szűrésekre, rendszeresen elmegyek orvosi vizsgálatra.",
-        "Nem vállalok semmit.");
+        "Nem vállalok semmit."
+    );
+} else if($numberOfLecke == 2) {
+    $vallalasok = array(
+        "Leszokom a dohányzásról.",
+        "Megpróbálom csökkenteni a stresszt otthon és a munkahelyen is.",
+        "Naponta 30 percet kocogok vagy intenzíven sétálok, és erre buzdítom partneremet is.",
+        "Megváltoztatom az étrendem, több gyümölcsöt és zöldséget fogok enni, csökkentem a zsíros húsok fogyasztását.",
+        "Csökkentem a kávéfogyasztást napi 2 kávéra.",
+        "Csökkentem az alkoholfogyasztást.",
+        "Csökkentem a só fogyasztást.",
+        "Naponta 1,5-2 liter folyadékot fogyasztok.",
+        "Rendszeresen mérem a vérnyomásom.",
+        "6 havonta ellenőrzőm a koleszterinszintet, vércukorszintet.",
+        "Intenzíven figyelek a testsúlyomra, és megpróbálom elérni az ideális testsúlyomat.",
+        "A felirt gyógyszerimet rendszeresen, a megfelelő időben beveszem.",
+        "Rendszeresen megtapintom pulzusomat, és ellenőrzőm, van-e ritmuszavarom.",
+        "Nem vállalok semmit."
+    );
 }
 
 $text = "";
@@ -56,6 +75,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $to = $email;
         $subject = "HRP - Vállalások (" . $numberOfLecke . ". lecke)";
 
+        if($numberOfLecke == 1) {
+            $leckeTextSima = "táplálkozás és emésztőrendszere";
+            $leckeText = "táplálkozással és emésztéssel kapcsolatos";
+        } else if($numberOfLecke == 2) {
+            $leckeTextSima = "szív- és érrendszere";
+            $leckeText = "szív- és érrendszerrel kapcsolatos";
+        } else {
+            $leckeText = "!!NEM DEFINIÁLT VÁLTOZÓ!!";
+        }
+
         if($valaszok[0] == $vallalasok[sizeof($vallalasok) - 1]) {
             $message = "
             <html>
@@ -64,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </head>
             <body>
             <h2>Tisztelt Partnerünk!</h2>
-            <p>Sajnálattal tapasztaltuk, hogy Ön, úgy döntött, táplálkozással kapcsolatos egészségkockázatainak csökkentéséért nem vállal semmit.</p>
+            <p>Sajnálattal tapasztaltuk, hogy Ön, úgy döntött, $leckeText egészségkockázatainak csökkentéséért nem vállal semmit.</p>
             <p>Ne felejtse! Az egészségfejlesztés a hozzáállásban dől el.</p>
             <p>A következő témakörnél lesz alkalma, hogy egyéni vállalásával hozzájáruljon egészségesebb és teljesebb élet kialakításához és fenntartásához.</p>
             <div style=\"padding:20px 0;\"><span style=\"font-style: italic;\">Üdvözlettel:<br>Interaktív Program csapata</span><br>
@@ -80,9 +109,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <body>
             <h2>Tisztelt Partnerünk!</h2>
             <h3>Gratulálunk!</h3>
-            <p>Ön ezzel a döntésével megerősítette, hogy kész tenni saját magáért, táplálkozással kapcsolatos egészségkockázatainak csökkentéséért.</p>
+            <p>Ön ezzel a döntésével megerősítette, hogy kész tenni saját magáért, $leckeText egészségkockázatainak csökkentéséért.</p>
             <p>Megtette a legfontosabbat. Szembe nézett önmagával és gyengeségeivel, majd úgy döntött: néhány dolgot megváltoztat életében.</p>
-            <p>Ön azt vállalta, hogy a táplálkozás és emésztőrendszere egészségének érdekében a mai napot követően az alábbiakat teszi meg:</p><ul>";
+            <p>Ön azt vállalta, hogy a(z) $leckeTextSima egészségének érdekében a mai napot követően az alábbiakat teszi meg:</p><ul>";
             for($k = 0; $k < $n; $k++) {
                 $message .= "<li style=\"padding:10px 0;\">" . $valaszok[$k] . "</li>";
             }
